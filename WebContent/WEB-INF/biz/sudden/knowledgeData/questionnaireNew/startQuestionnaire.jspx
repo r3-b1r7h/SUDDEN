@@ -1,0 +1,105 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content"> 
+		<h3>Fragebogen: #{fillinController.currentFillinQuestionnaire.name}</h3>
+		<h3>Name: #{fillinController.currentAnsweredQuestionnaire.organisation}</h3> 
+		<ice:form>
+			<ice:outputText value="Frage:  #{fillinController.questionnairePosition} / #{fillinController.questionnaireSize}" /> <br/>
+			<ice:commandButton  value="|&lt;" action="#{fillinController.gotoFirstQuestion}" />
+			<ice:commandButton value="&lt;" action="#{fillinController.gotoPreviousQuestion}" />
+			<ice:commandButton value="&gt;" action="#{fillinController.gotoNextQuestion}"/>
+			<ice:commandButton value="&gt;|" action="#{fillinController.gotoLastQuestion}"/>
+			<br /> <ice:commandLink value="view all" action="#{fillinController.viewAll}"/>
+			
+			
+
+			<h3>Frage:  #{fillinController.currentQuestion.question}</h3>
+			<ice:panelGroup id="textonly" rendered="#{fillinController.currentQuestion.onlyFreeText}">
+					<ice:inputTextarea value="#{fillinController.freeTextAnswer}" style="height:150px; width:75%" />			
+			</ice:panelGroup>
+			<!-- 
+			<ice:panelGroup id="singlechoice" rendered="#{!fillinController.currentAnswer.dimension.onlyFreeText and !fillinController.currentAnswer.dimension.multipleChoice}">
+			 -->
+			<ice:panelGroup id="singlechoice" visible="#{!fillinController.currentQuestion.multipleChoice and !fillinController.currentQuestion.onlyFreeText}">
+					<ice:panelGrid columns="1">
+					<ice:selectOneRadio style="margin:0px;padding:0px" layout="pageDirection"  immediate="true" partialSubmit="true" value="#{fillinController.selectedMultipleChoiceItem}" valueChangeListener="#{fillinController.valueChangeSingleChoice}">
+                        <f:selectItems value="#{fillinController.multipleChoiceItems}" />
+                    </ice:selectOneRadio>
+					</ice:panelGrid>
+
+					<ice:inputTextarea value="#{fillinController.additionalRadioboxText}" rendered="#{fillinController.additionalTextRadioboxSelected}" immediate="true"/>					
+
+					
+					<!-- 
+					<ice:inputTextarea value="#{fillinController.additionalRadioboxText}" visible="#{fillinController.additionalTextRadioboxSelected}" />
+					 -->
+					<!--   value="#{fillinController.selectedMultipleChoiceItem}" -->
+			</ice:panelGroup>
+
+			<ice:panelGroup id="multipleChoice" visible="#{fillinController.currentQuestion.multipleChoice and !fillinController.currentQuestion.onlyFreeText}">
+					<ice:selectManyCheckbox layout="pageDirection" style="margin:0px;padding:0px" immediate="true" partialSubmit="true" value="#{fillinController.selectedMultipleChoiceItems}" valueChangeListener="#{fillinController.valueChangeMultipleChoice}">
+                        <f:selectItems value="#{fillinController.multipleChoiceItems}" />
+                    </ice:selectManyCheckbox>
+
+	 
+					<ice:inputTextarea value="#{fillinController.additionalMultiTextRadiobox}" rendered="#{fillinController.additionalMultiTextRadioboxSelected}" immediate="true"/>				
+	
+					<!--  
+					<ice:inputTextarea value="#{fillinController.additionalRadioboxText}" visible="#{fillinController.additionalMultiTextRadioboxSelected}" />
+					-->
+
+					<!--   value="#{fillinController.selectedMultipleChoiceItem}" -->
+			</ice:panelGroup>
+		</ice:form>
+		<!--  
+
+		
+
+				<ice:commandButton value="Neue Frage" action="#{questionnaireController.createQuestion}" /><br />
+				<ice:inputTextarea style="width:70%;height:100px;font-size:0.8em" value="#{questionnaireController.questionName}"></ice:inputTextarea>
+
+				
+		
+				<br /><br />
+			
+				<ice:commandButton value="Fuege Antworten aus Template hinzu" immediate="true" partialSubmit="true" action="#{questionnaireController.addTicksFromTemplateToSelectedQuestions}" />
+		
+				<ice:selectOneMenu value="#{questionnaireController.selectedTemplateID}" immediate="true" partialSubmit="true">
+					 <f:selectItems value="#{questionnaireController.availableTickTemplates}" />
+				</ice:selectOneMenu>
+
+                <ice:dataTable var="question" id="question"
+					value="#{questionnaireController.currentQuestionnaire.questionList}"
+					columnClasses="tableColFirst tableColFirst tableCol" scrollHeight="4" style="width:95%;border-collapse:collapse;font-size:9pt;">
+	
+	 
+					<ice:column style="width:35%">
+						<f:facet name="header">
+							<ice:outputText value="Name" />   
+						</f:facet>
+						<ice:commandLink value="#{question.question}" actionListener="#{questionnaireController.openQuestion}">
+							<f:param name="question" id="thisquestion" value="#{question}" />	
+						</ice:commandLink>
+					</ice:column>
+
+					<ice:column style="width:5%">
+							<ice:selectBooleanCheckbox value="#{question.selected}" valueChangeListener="#{questionnaireController.selectedChangeListener}" immediate="true" partialSubmit="true">
+								<f:param name="selectedquestion" id="selectedquestion" value="#{question}" />
+							</ice:selectBooleanCheckbox>
+					</ice:column>
+
+				</ice:dataTable>
+		</ice:form>
+		
+		-->
+
+	</ui:define>
+
+</ui:decorate>

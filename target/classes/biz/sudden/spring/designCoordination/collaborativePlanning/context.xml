@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="designCoordination.collaborativePlanning.actorRepository" class="biz.sudden.designCoordination.collaborativePlanning.repository.hibernate.CPActorRepositoryImpl" parent="repositoryTemplate" />
+
+	<bean id="designCoordination.collaborativePlanning.communicationRepository" class="biz.sudden.designCoordination.collaborativePlanning.repository.hibernate.CommunicationRepositoryImpl" parent="repositoryTemplate" />
+
+	<bean id="designCoordination.collaborativePlanning.communicationContainerRepository" class="biz.sudden.designCoordination.collaborativePlanning.repository.hibernate.CommunicationContainerRepositoryImpl" parent="repositoryTemplate" />
+
+	<bean id="designCoordination.collaborativePlanning.bulletinBoardRepository" class="biz.sudden.designCoordination.collaborativePlanning.repository.hibernate.BulletinBoardRepositoryImpl" parent="repositoryTemplate" />
+	
+	<bean id="designCoordination.collaborativePlanning.topicRepository" class="biz.sudden.designCoordination.collaborativePlanning.repository.hibernate.TopicRepositoryImpl" parent="repositoryTemplate" />
+
+	<bean id="designCoordination.collaborativePlanning.chatRoomRepository" class="biz.sudden.designCoordination.collaborativePlanning.repository.hibernate.ChatRoomRepositoryImpl" parent="repositoryTemplate" />
+	
+
+	<bean id="designCoordination.collaborativePlanning.sendMessageService" class="biz.sudden.designCoordination.collaborativePlanning.service.communication.impl.CPSendMessageServiceImpl">
+		<property name="communicationRepository" ref="designCoordination.collaborativePlanning.communicationRepository" />
+		<property name="userService" ref="baseAndUtility.userService" />
+		<property name="userRepository" ref="baseAndUtility.userRepository" />
+		<property name="initializeCommunications">
+			<list value-type="biz.sudden.designCoordination.collaborativePlanning.domain.Communication">
+			
+				<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication">
+					<property name="springId" value="1" />
+					<property name="sender" ref="initUsers.one" />
+					<property name="receiver">
+						<list value-type="biz.sudden.baseAndUtility.domain.User">
+							<ref bean="initUsers.two" />
+						</list>
+					</property>
+					<property name="subject" value="This is a subject" />
+					<property name="message" value="Lorem ipsum dolor sit amet, consectetuer sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet" />
+					<property name="sendDate">
+						<bean class="java.util.Date" />
+					</property>
+				</bean>
+				
+				<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication">
+					<property name="springId" value="2" />
+					<property name="sender" ref="initUsers.one" />
+					<property name="receiver">
+						<list value-type="biz.sudden.baseAndUtility.domain.User">
+							<ref bean="initUsers.two" />
+						</list>
+					</property>
+					<property name="subject" value="Urgent message" />
+					<property name="message" value="Urgent lorem ipsum   Lorem ipsum dolor sit amet, consectetuer sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet" />
+					<property name="sendDate">
+						<bean class="java.util.Date" />
+					</property>
+				</bean>
+				
+				<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication">
+					<property name="springId" value="3" />
+					<property name="sender" ref="initUsers.five" />
+					<property name="receiver">
+						<list value-type="biz.sudden.baseAndUtility.domain.User">
+							<ref bean="initUsers.two" />
+						</list>
+					</property>
+					<property name="subject" value="Re: Meeting at 10am" />
+					<property name="message" value="Please confirm the meeting. orem ipsum dolor sit amet, consectetuer sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet" />
+					<property name="sendDate">
+						<bean class="java.util.Date" />
+					</property>
+				</bean>
+				
+				<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication">
+					<property name="springId" value="4" />
+					<property name="sender" ref="initUsers.one" />
+					<property name="receiver">
+						<list value-type="biz.sudden.baseAndUtility.domain.User">
+							<ref bean="initUsers.two" />
+						</list>
+					</property>
+					<property name="subject" value="Next steps" />
+					<property name="message" value="Next steps for: Lorem ipsum dolor sit amet, consectetuer sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet" />
+					<property name="sendDate">
+						<bean class="java.util.Date" />
+					</property>
+				</bean>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="designCoordination.collaborativePlanning.getMessageService" class="biz.sudden.designCoordination.collaborativePlanning.service.communication.impl.CPGetMessageServiceImpl">
+		<property name="communicationRepository" ref="designCoordination.collaborativePlanning.communicationRepository" />
+		<property name="cpActorRepository" ref="designCoordination.collaborativePlanning.actorRepository" />
+	</bean>
+	
+	<bean id="designCoordination.collaborativePlanning.bulletinBoardService" lazy-init="true" class="biz.sudden.designCoordination.collaborativePlanning.service.communication.impl.CPBulletinBoardServiceImpl">
+		<property name="bulletinBoardRepository" ref="designCoordination.collaborativePlanning.bulletinBoardRepository" />
+		<property name="topicRepository" ref="designCoordination.collaborativePlanning.topicRepository" />	
+		<property name="communicationRepository" ref="designCoordination.collaborativePlanning.communicationRepository" />
+		<property name="genericRepository" ref="suddenGenericRepository" />
+		<property name="rootLinkService" ref="rootLinkService" />
+		<property name="linkService" ref="baseAndUtility.linkService" />
+		<property name="initializeBulletinBoards">
+			<list value-type="biz.sudden.designCoordination.collaborativePlanning.domain.BulletinBoard">
+				<ref bean="board1" />
+				<ref bean="board2" />
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	<bean id="designCoordination.collaborativePlanning.chatRoomService" class="biz.sudden.designCoordination.collaborativePlanning.service.communication.CPChatRoomService" >
+		<property name="chatRoomRepository" ref="designCoordination.collaborativePlanning.chatRoomRepository" />
+	</bean>
+	
+<bean id="designCoordination.collaborativePlanning.targetService" class="biz.sudden.designCoordination.collaborativePlanning.service.CollaborativePlanningTargetService" >
+	<property name="targetTypes">
+		<list>
+            <bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+            	  <property name="domainClass" value="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" />
+			      <property name="controllerBeanName" value="cpController" />
+			      <property name="description" value="Communication in Forum" />
+			      <property name="viewID" value="showcontribution" />
+			      <property name="parameterValuesPairs">
+			      		 <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+			      		 	<property name="parameter" value="selectedContribution" />
+			      		 	<property name="parameterValue" value="" />
+			      		 </bean>
+			      </property>		      
+			</bean>
+
+            <bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+            	  <property name="domainClass" value="biz.sudden.designCoordination.collaborativePlanning.domain.Topic" />
+			      <property name="controllerBeanName" value="cpController" />
+			      <property name="description" value="Topic in Forum" />
+			      <property name="viewID" value="showcontributions" />
+			      <property name="parameterValuesPairs">
+			      		 <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+			      		 	<property name="parameter" value="selectedTopic" />
+			      		 	<property name="parameterValue" value="" />
+			      		 </bean>
+			      </property>		      
+			</bean>
+			
+			<bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+            	  <property name="domainClass" value="biz.sudden.designCoordination.collaborativePlanning.domain.BulletinBoard" />
+			      <property name="controllerBeanName" value="cpController" />
+			      <property name="description" value="Topics in Bulletinboards" />
+			      <property name="viewID" value="showtopics" />
+			      <property name="parameterValuesPairs">
+			      		 <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+			      		 	<property name="parameter" value="selectedBoard" />
+			      		 	<property name="parameterValue" value="" />
+			      		 </bean>
+			      </property>		      
+			</bean>
+			
+			<bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+            	  <property name="domainClass" value="biz.sudden.designCoordination.collaborativePlanning.domain.BulletinBoardRating" />
+			      <property name="controllerBeanName" value="ratingController" />
+			      <property name="description" value="Improvement groups" />
+			      <property name="viewID" value="showtopicsrating" />
+			      <property name="parameterValuesPairs">
+			      		 <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+			      		 	<property name="parameter" value="selectedBoard" />
+			      		 	<property name="parameterValue" value="" />
+			      		 </bean>
+			      </property>		      
+			</bean>
+			
+			<bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+            	  <property name="domainClass" value="biz.sudden.designCoordination.collaborativePlanning.domain.TopicRating" />
+			      <property name="controllerBeanName" value="ratingController" />
+			      <property name="description" value="Training/Improvements" />
+			      <property name="viewID" value="showcontributionsratings" />
+			      <property name="parameterValuesPairs">
+			      		 <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+			      		 	<property name="parameter" value="selectedTopic" />
+			      		 	<property name="parameterValue" value="" />
+			      		 </bean>
+			      </property>		      
+			</bean>
+		</list>
+	</property>
+</bean>
+	
+	
+	<!--  SAMPLE DATA  -->
+	
+	<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.BulletinBoard" id="board1">
+		<property name="springId" value="1" />
+		<property name="dateCreated">
+			<bean class="java.util.Date" />
+		</property>
+		<property name="name" value="Discussion about current automotive problems and solutions" />
+		<property name="owner" ref="initUsers.one" />
+		<property name="topicList">
+			<list>
+				<ref bean="topic1" />
+				<ref bean="topic2" />
+			</list>
+		</property>		
+	</bean>
+	
+	<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.BulletinBoard" id="board2">
+		<property name="springId" value="2" />
+		<property name="dateCreated">
+			<bean class="java.util.Date" />
+		</property>
+		<property name="name" value="Exchange of experiences with other network members" />
+		<property name="owner" ref="initUsers.one" />
+		<property name="topicList">
+			<list>
+				<ref bean="topic3" />
+				<ref bean="topic4" />
+			</list>
+		</property>		
+	</bean>
+	
+	<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Topic" id="topic1"> 
+		<property name="springId" value="1" />
+		<property name="belongsToBoard" ref="board1" />
+		<property name="dateCreated">
+			<bean class="java.util.Date" />
+		</property>
+		<property name="name" value="Market situation 2008" />
+		<property name="owner" ref="initUsers.three" />	
+		<property name="communications">
+			<list>
+				<ref bean="message1" />
+				<ref bean="message2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Topic" id="topic2"> 
+		<property name="springId" value="2" />
+		<property name="belongsToBoard" ref="board1" />
+		<property name="dateCreated">
+			<bean class="java.util.Date" />
+		</property>
+		<property name="name" value="Automotive 2020 - look ahead" />
+		<property name="owner" ref="initUsers.one" />	
+		<property name="communications">
+			<list>
+				<ref bean="message3" />
+				<ref bean="message4" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Topic" id="topic3"> 
+		<property name="springId" value="3" />
+		<property name="belongsToBoard" ref="board2" />
+		<property name="dateCreated">
+			<bean class="java.util.Date" />
+		</property>
+		<property name="name" value="Experience with the big players" />
+		<property name="owner" ref="initUsers.one" />	
+		<property name="communications">
+			<list>
+				<ref bean="message5" />
+				<ref bean="message6" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Topic" id="topic4"> 
+		<property name="springId" value="4" />
+		<property name="belongsToBoard" ref="board2" />
+		<property name="dateCreated">
+			<bean class="java.util.Date" />
+		</property>
+		<property name="name" value="Experience with small SME's" />
+		<property name="owner" ref="initUsers.four" />	
+		<property name="communications">
+			<list>
+				<ref bean="message7" />
+				<ref bean="message8" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message1">
+		<property name="springId" value="1000" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="Market data for 2008 released" />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+		<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message2">
+		<property name="springId" value="1001" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="Comparison with 2009" />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic1" />
+	</bean>
+	
+		<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message3">
+		<property name="springId" value="1002" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="Future is now" />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+		<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message4">
+		<property name="springId" value="1003" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="Prognostics for the next 10 years" />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic2" />
+	</bean>
+	
+		<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message5">
+		<property name="springId" value="1004" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="The big OEMs" />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+		<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message6">
+		<property name="springId" value="1005" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="Experience with ..." />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic3" />
+	</bean>
+	
+		<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message7">
+		<property name="springId" value="1006" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="Productive work with ..." />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+		<bean class="biz.sudden.designCoordination.collaborativePlanning.domain.Communication" id="message8">
+		<property name="springId" value="1007" />
+		<property name="sender" ref="initUsers.two" /> 
+		<property name="subject" value="Communication problems with ..." />
+		<property name="message" value="lorem ipsum" />
+		<property name="topic" ref="topic4" />
+	</bean>
+	
+
+	
+	
+
+
+</beans>

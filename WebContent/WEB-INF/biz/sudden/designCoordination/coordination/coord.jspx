@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+	<ui:param name="action" value="runCoordination"/>
+
+      <ui:define name="navigationTopText">
+Coordination data for organising the logistics within the team
+      </ui:define>
+	
+	<ui:define name="content">
+	
+		<ice:panelGroup>
+		<!--  <h:messages globalOnly="true" />-->
+
+		<h2>Coordination Choices for Team</h2>
+		
+		<ice:form>
+	
+	 	<ice:panelPopup draggable="true" visible="#{coordinationController.plotVisible}">
+    			<f:facet name="body">
+        			<ice:panelGrid cellpadding="0" cellspacing="0">
+        				<ice:outputChart type="custom" renderOnSubmit="#{coordinationController.createChartModel}"/>
+                        <ice:commandButton action="#{coordinationController.closePlotPopup}" value="Close"/>
+                    </ice:panelGrid>
+    			</f:facet>
+			</ice:panelPopup>
+			
+			<ice:dataTable var="row" value="#{coordinationController.tableModel}"
+				columnClasses="tableCol">
+
+				<f:facet name="header">
+					<ice:columnGroup>
+						<ice:headerRow>
+							<ice:column>#</ice:column>
+						    <ice:column>Supplier</ice:column>
+							<ice:column>Product Produced</ice:column>
+							<ice:column>
+								Evaluation
+								<ice:commandLink value="(Open plot)" action="#{coordinationController.openPlotPopup}" rendered="#{not coordinationController.plotVisible}"/> 
+							</ice:column>
+							<ice:column>Production Technique</ice:column>
+						</ice:headerRow>
+					</ice:columnGroup>
+				</f:facet>
+				
+				<ice:column>
+						#{row['rowNumber']}
+						<ice:graphicImage value="/images/right-icon-48.png" rendered="#{row['selected']}"/>
+				</ice:column>
+				
+				<ice:column>
+				    #{row['supplierName']}
+				</ice:column>
+				
+				<ice:column>
+					#{row['productType']}
+				</ice:column>
+				
+				<ice:column>
+					<ice:outputProgress value="#{row['normalizedEvaluationForBar']}" 
+						label="#{row['nodeEvaluationForBarLabel']}"
+                        labelComplete="#{row['nodeEvaluationForBarLabel']}"
+                        labelPosition="right">
+					</ice:outputProgress>
+				</ice:column>
+				
+				<ice:column>
+					   <ice:selectOneMenu value="#{row['productionMethod']}" 
+					       valueChangeListener="#{coordinationController.productionMethodChanged}" 
+					       onchange="submit()">
+							<f:selectItems value="#{coordinationController.productionMethods}"/>
+					   </ice:selectOneMenu>
+					   <ice:inputHidden id="ASNNodeId" value="#{row['nodeId']}"/>
+				</ice:column>
+
+			</ice:dataTable>
+			</ice:form>
+			</ice:panelGroup>
+			
+			<ice:form partialSubmit="false">
+			<ice:panelGroup scrollHeight="600px" scrollWidth="700px">
+			<ice:tree value="#{coordinationController.treeModel}"
+                      var="item"
+                      hideRootNode="false" hideNavigation="false"
+                      partialSubmit="false">
+                <ice:treeNode>
+                    <f:facet name="icon">
+                        <ice:panelGroup style="display: inline">
+                             <ice:graphicImage value="#{item.userObject.icon}"/>
+                        </ice:panelGroup>
+                    </f:facet>
+                    <f:facet name="content">
+                         <ice:panelGroup style="display: inline">
+                            <ice:selectOneMenu value="#{item.userObject.properties['dropDownSelectedElement']}"
+                            	valueChangeListener="#{item.userObject.nodeClicked}" partialSubmit="true">
+                            	<f:selectItems value="#{item.userObject.properties['dropDownListElements']}"/>
+					   		</ice:selectOneMenu>
+					   		<ice:commandLink actionListener="#{item.userObject.productSelected}" value="#{item.userObject.text}"/>
+                         </ice:panelGroup>
+                    </f:facet>
+                </ice:treeNode>
+            </ice:tree>
+            </ice:panelGroup>
+            </ice:form>
+    
+	<!-- <ice:form>
+			<ice:dataTable var="csnDependency" value="#{coordinationController.materialDependencies}"
+				columnClasses="tableCol">
+
+				<f:facet name="header">
+					<ice:columnGroup>
+						<ice:headerRow>
+							<ice:column>Dependency Type</ice:column>
+							<ice:column>Source Product Type</ice:column>
+							<ice:column>Final Product Type</ice:column>
+							<ice:column>Logistics Technique Used</ice:column>
+						</ice:headerRow>
+					</ice:columnGroup>
+				</f:facet>
+	
+				<ice:column>
+					#{csnDependency.dependencytype}
+				</ice:column>
+	
+				<ice:column>
+					#{csnDependency.sourceproduct}
+				</ice:column>
+	
+				<ice:column>
+	  				#{csnDependency.targetproduct}
+				</ice:column>
+		
+				<ice:column>
+					   <ice:selectOneMenu value="#{csnDependency.transportationlogistics}" 
+					       valueChangeListener="#{coordinationController.transportationLogisticsChanged}" 
+					       onchange="submit()">
+							<f:selectItems value="#{coordinationController.transportationLogistics}"/>
+					   </ice:selectOneMenu>
+					   <ice:inputHidden id="ASNMaterialDependencyId" value="#{csnDependency.id}"/>
+				</ice:column>
+
+			</ice:dataTable>
+		</ice:form>-->
+	</ui:define>
+</ui:decorate>

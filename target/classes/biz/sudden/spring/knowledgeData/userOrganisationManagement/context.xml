@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xmlns:tx="http://www.springframework.org/schema/tx" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- define bean for Messages -->
+	
+	<!-- define beans for concrete Repositories -->
+		
+ 	<bean id="userOrganizationManagement.UserManagement.UserAccountRepository"
+		class="biz.sudden.userOrganizationManagement.userManagement.repository.hibernate.UserAccountRepositoryImpl"
+		parent="repositoryTemplate" /> 
+		
+ 	<bean id="userOrganizationManagement.UserManagement.UserProfileRepository"
+		class="biz.sudden.userOrganizationManagement.userManagement.repository.hibernate.UserProfileRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+ 	<bean id="userOrganizationManagement.UserManagement.UserRepository"
+		class="biz.sudden.userOrganizationManagement.userManagement.repository.hibernate.UserRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<!-- Organization -->	
+ 	<bean id="userOrganizationManagement.UserManagement.OrganizationsRepository"
+		class="biz.sudden.userOrganizationManagement.organizationManagement.repository.hibernate.OrganizationRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+ 	<bean id="userOrganizationManagement.UserManagement.OrganizationsProfileRepository"
+		class="biz.sudden.userOrganizationManagement.organizationManagement.repository.hibernate.OrganizationProfileRepositoryImpl"
+		parent="repositoryTemplate" />
+	
+	<!-- define beans for concrete Services -->	
+
+	<bean id="userOrganizationManagement.UserManagement.RegisterUserAccount" 
+	class="biz.sudden.userOrganizationManagement.userManagement.service.impl.UserAccountImpl">
+	  <property name="IUserAccountRepository">
+		  	  <ref local="userOrganizationManagement.UserManagement.UserAccountRepository" />
+		  </property>
+	</bean>
+
+	<bean id="userOrganizationManagement.UserManagement.RegisterUserProfile"
+	class="biz.sudden.userOrganizationManagement.userManagement.service.impl.UserProfileImpl">
+	  <property name="IUserProfileRepository">
+		  	  <ref local="userOrganizationManagement.UserManagement.UserProfileRepository" />
+		  </property>
+	</bean>
+
+	<bean id="userOrganizationManagement.UserManagement.RegisterUser"
+	class="biz.sudden.userOrganizationManagement.userManagement.service.impl.UserImpl">
+	  <property name="IUserRepository">
+		  	  <ref local="userOrganizationManagement.UserManagement.UserRepository" />
+		  </property>
+	</bean>
+	
+	<!-- Organization -->
+	
+	<bean id="userOrganizationManagement.organizationManagement.service.Organization"
+	class="biz.sudden.userOrganizationManagement.organizationManagement.service.impl.OrganizationImpl">
+	  <property name="IOrganizationRepository">
+		  	  <ref local="userOrganizationManagement.UserManagement.OrganizationsRepository" />
+		  </property>
+		  <property name="IOrganizationProfileRepository">
+		  	  <ref local="userOrganizationManagement.UserManagement.OrganizationsProfileRepository" />
+		  </property>
+		  <property name="genericRepository" ref="suddenGenericRepository" />
+	</bean>
+	
+	<bean id="userOrganizationManagement.organizationManagement.service.OrganizationProfile"
+	class="biz.sudden.userOrganizationManagement.organizationManagement.service.impl.OrganizationProfileImpl">
+	  <property name="IOrganizationProfileRepository">
+		  	  <ref local="userOrganizationManagement.UserManagement.OrganizationsProfileRepository" />
+		  </property>
+	</bean>
+
+</beans>

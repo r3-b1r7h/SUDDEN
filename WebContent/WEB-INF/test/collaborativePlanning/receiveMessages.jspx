@@ -1,0 +1,88 @@
+
+<!--  
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+-->
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+	<ui:define name="content">
+	
+		<ice:messages />
+
+<ice:form>
+
+			<ice:outputText value="Benutzer " />
+			<ice:inputText value="#{cpJSFController.actorForInbox}"/>
+			<br />
+			<ice:commandButton value="Messages abrufen"
+				actionListener="#{cpJSFController.showMessages}" />
+
+			<ice:dataTable var="communication"
+				value="#{cpJSFController.messages}" rows="15"
+				columnClasses="tableCol" rendered="#{not empty cpJSFController.messages}">
+
+				<ice:column>
+
+					<f:facet name="header">
+						<ice:outputText value="Sender" />
+					</f:facet>
+					<!--  
+					<h:commandLink value="#{communication.sender.name}" action="#{cpJSFController.openMessage}"> 
+						<f:param value="#{communication}"/> 				
+					</h:commandLink>	
+					-->
+					<h:commandLink value="#{communication.sender.name}"
+						action="#{cpJSFController.openMessage}" />
+
+
+
+
+
+
+				</ice:column>
+
+				<ice:column>
+
+					<f:facet name="header">
+						<ice:outputText value="Datum" />
+					</f:facet>
+
+					<ice:outputText value="#{communication.sendDate}">
+						<f:convertDateTime type="both" dateStyle="short" />
+					</ice:outputText>
+
+				</ice:column>
+
+			</ice:dataTable>
+			<ice:panelGrid columns="2">
+				<ice:outputText value="Von " />
+				<ice:outputText value="#{cpJSFController.detailFrom}" />
+				<ice:outputText value="An " />
+				<ice:outputText value="#{cpJSFController.detailTo}" />
+				<ice:outputText value="Subject " />
+				<ice:outputText value="#{cpJSFController.detailSubject}" />
+				<ice:outputText value="Message " />
+				<ice:outputText value="#{cpJSFController.detailMessage}" />
+			</ice:panelGrid>
+			
+			<ice:commandLink style="color:red" value="Back to home"
+				action="home" immediate="true" />
+				
+		</ice:form>
+		
+		
+
+	</ui:define>
+
+</ui:decorate>

@@ -1,0 +1,129 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+	<ui:define name="content">
+
+		<h1>Companies</h1>
+		<ice:panelGroup>
+			<ice:form>
+				<ice:panelGroup style="float:left;">
+					<center><ice:dataTable id="data" rows="10"
+						value="#{jsfOrganizationController.allOrganizations}"
+						var="company" scrollHeight="250px" style="float:left"
+						columnWidths="100px,100px,100px,100px"
+						styleClass="dataPaginatorDataTable" cellpadding="0">
+
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="id organization" />
+							</f:facet>
+							<ice:outputText value="#{company.id}" />
+						</ice:column>
+
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="id organization profile" />
+							</f:facet>
+							<ice:outputText value="#{company.organizationProfile.id}" />
+						</ice:column>
+
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Name" />
+							</f:facet>
+							<ice:outputText value="#{company.name}" />
+						</ice:column>
+
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Address" />
+							</f:facet>
+							<ice:outputText
+								value="#{company.organizationProfile.CSocialAddress}" />
+						</ice:column>
+
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Activities" />
+							</f:facet>
+							<ice:outputText
+								value="#{company.organizationProfile.CActivities}" />
+						</ice:column>
+
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Phone" />
+							</f:facet>
+							<ice:outputText
+								value="#{company.organizationProfile.CPhoneNumber}" />
+						</ice:column>
+
+						<ice:column>
+							<f:facet name="header">
+								<ice:outputText value="Manager" />
+							</f:facet>
+							<ice:outputText value="#{company.aux_companyManager}" />
+						</ice:column>
+
+					</ice:dataTable></center>
+				</ice:panelGroup>
+
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+
+				<ice:panelGroup>
+					<center><ice:dataPaginator id="dataScroll_1" for="data"
+						paginator="true" fastStep="3" paginatorMaxPerPage="3">
+
+						<f:facet name="first">
+							<ice:graphicImage id="firstpage_1" url="/images/arrow-first.gif"
+								style="border:none;" title="First" />
+						</f:facet>
+						<f:facet name="last">
+							<ice:graphicImage id="lastpage_1" url="/images/arrow-last.gif"
+								style="border:none;" title="Last" />
+						</f:facet>
+						<f:facet name="previous">
+							<ice:graphicImage id="previouspage_1"
+								url="/images/arrow-previous.gif" style="border:none;"
+								title="Previous" />
+						</f:facet>
+						<f:facet name="next">
+							<ice:graphicImage id="nextpage_1" url="/images/arrow-next.gif"
+								style="border:none;" title="Next" />
+						</f:facet>
+						<f:facet name="fastforward">
+							<ice:graphicImage id="fastforward_1" url="/images/arrow-ff.gif"
+								style="border:none;" title="FastForward" />
+						</f:facet>
+						<f:facet name="fastrewind">
+							<ice:graphicImage id="fastrewind_1" url="/images/arrow-fr.gif"
+								style="border:none;" title="FastRewind" />
+						</f:facet>
+
+
+					</ice:dataPaginator></center>
+				</ice:panelGroup>
+				<ice:panelGroup>
+					<p />
+					<hr />
+					<ice:commandLink style="color:red" value="Back to home"
+						action="home" immediate="true" />
+				</ice:panelGroup>
+			</ice:form>
+		</ice:panelGroup>
+	</ui:define>
+
+</ui:decorate>

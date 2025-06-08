@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd ">
+	
+	<!-- define bean for Messages -->
+	
+	<!-- define beans for concrete Repositories -->
+	
+	<!-- define beans for concrete Services -->
+
+  <bean id="pm.enterpriseService"
+		class="biz.sudden.evaluation.performanceMeasurement.service.impl.EnterpriseEvaluationServiceImpl">
+    <property name="connectableService" ref="baseAndUtility.connectableService"/>
+    <property name="aggregationFunctionRepository" ref="pm.AggregationFunctionRepository" />
+    <property name="enterpriseEvaluationProfileRepository" ref="pm.EnterpriseEvaluationProfileRepository" />
+    <property name="organisationManagementService" ref="userOrganizationManagement.organizationManagement.service.Organization" />
+    <property name="competenceService" ref="competencesManagement.CompetencesManagementService" />
+    <property name="competenceInstanceService" ref="competencesManagement.InstancesManagementService" />
+  </bean>
+  <bean id="pm.networkService"
+		class="biz.sudden.evaluation.performanceMeasurement.service.impl.NetworkEvaluationServiceImpl">
+    <property name="networkEvaluationProfileRepository" ref="pm.NetworkEvaluationProfileRepository"/>
+	<property name="competenceNeededRepository" ref="pm.CompetenceNeededRepository"/>
+	<property name="caseFileService" ref="kdm.CaseService" />
+  </bean>
+  <bean id="pm.EnterpriseEvaluationProfileRepository" 
+  		class="biz.sudden.evaluation.performanceMeasurement.repository.hibernate.EnterpriseEvaluationProfileRepositoryImpl" 
+  		parent="repositoryTemplate" /> 
+  <bean id="pm.NetworkEvaluationProfileRepository" 
+  		class="biz.sudden.evaluation.performanceMeasurement.repository.hibernate.NetworkEvaluationProfileRepositoryImpl" 
+  		parent="repositoryTemplate" >
+ </bean>
+  		
+  <bean id="pm.AggregationFunctionRepository" 
+  		class="biz.sudden.evaluation.performanceMeasurement.repository.hibernate.AggregationFunctionRepositoryImpl" 
+  		parent="repositoryTemplate" />
+ <bean id="pm.CompetenceNeededRepository" 
+  		class="biz.sudden.evaluation.performanceMeasurement.repository.hibernate.CompetenceNeededRepositoryImpl" 
+  		parent="repositoryTemplate" />
+
+<bean id="pm.enterpriseprofile.targetService"
+          class="biz.sudden.designCoordination.collaborativePlanning.service.CollaborativePlanningTargetService" >
+  <property name="targetTypes">
+   <list>
+     <bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+        <property name="domainClass"
+          value="biz.sudden.baseAndUtility.domain.EnterpriseEvaluationProfile" />
+        <property name="controllerBeanName"
+          value="pmDesignController" />
+        <property name="description" value="Enterprise PMS" />
+        <property name="viewID" value="performanceMeasurementDesign2" />
+        <property name="parameterValuesPairs">
+          <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+             <property name="parameter" value="selectedEProfile" />
+             <property name="parameterValue" value="" />
+          </bean>
+        </property>		      
+     </bean>
+    </list>
+  </property>
+</bean>
+
+<bean id="pm.enterpriseevaluation.targetService"
+          class="biz.sudden.designCoordination.collaborativePlanning.service.CollaborativePlanningTargetService" >
+  <property name="targetTypes">
+   <list>
+     <bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+        <property name="domainClass"
+          value="biz.sudden.userOrganizationManagement.organizationManagement.domain.Organization" />
+        <property name="controllerBeanName"
+          value="pmEvaluationController" />
+        <property name="description" value="Enterprise Evaluation" />
+        <property name="viewID" value="performanceMeasurementEvaluation" />
+        <property name="parameterValuesPairs">
+          <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+             <property name="parameter" value="selectedOrganisation" />
+             <property name="parameterValue" value="" />
+          </bean>
+        </property>		      
+     </bean>
+    </list>
+  </property>
+</bean>
+
+</beans>

@@ -1,0 +1,28 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:define name="content">
+	<ice:form><ice:outputLabel value="#{msg.selectModule}" /></ice:form>
+		 
+		<p />
+		<p />
+	
+			<h2 class="csc-firstHeader">Partners</h2><br />
+			<table bordercolorlight="#d0d9ee" border="1" cellpadding="2" cellspacing="2" class="contenttable"><tbody>
+			<tr><td><p class="bodytext"><img src="images/uni_manchester_01.gif.gif" style="width: 120px; height: 41px;" alt="" /></p></td><td><p class="bodytext">The University of Manchester <br/> Manchester Business School <br/> Interactive Systems and Information Systems, UK</p></td><td><p class="bodytext"><a href="http://www.mbs.ac.uk/" title="University Manchester" target="_blank" class="external-link-new-window" >http://www.mbs.ac.uk/</a></p></td></tr>
+			<tr><td><p class="bodytext"><img src="images/CE_Logo_tansparent.png" style="height: 81px;" alt="" /></p></td><td><p class="bodytext">Johannes Kepler Universitaet - Business Information Systems <br/> Communications Engineering, Austria</p></td><td><p class="bodytext"><a href="http://www.ce.jku.at/" title="University Linz" target="_blank" class="external-link-new-window" >http://www.ce.jku.at</a></p></td></tr>
+			<tr><td><p class="bodytext"><img src="images/moviquity_02.gif.gif" style="width: 120px; height: 43px;" alt="" /></p></td><td><p class="bodytext">Moviquity, Spain</p></td><td><p class="bodytext"><a href="http://www.moviquity.com/" title="Moviquity" target="_blank" class="external-link-new-window" >http://www.moviquity.com</a></p></td></tr>
+			<tr><td><p class="bodytext"><img src="images/exodus_01.gif.gif" style="width: 120px; height: 52px;" alt="" /></p></td><td><p class="bodytext">Exodus S.A., Greece</p></td><td><p class="bodytext"><a href="http://www.exodus.gr/" title="Exodus" target="_blank" class="external-link-new-window" >http://www.exodus.gr</a></p></td></tr>
+			<tr><td><p class="bodytext"><img src="images/dibo_02.jpg.jpg" style="width: 120px; height: 47px;" alt="" /></p></td><td><p class="bodytext">DIBO Diamantwerkzeuge, Austria</p></td><td><p class="bodytext"><a href="http://www.dibo.at/" title="DIBO" target="_blank" class="external-link-new-window" >http://www.dibo.at</a></p></td></tr>
+			<tr><td><p class="bodytext"><img src="images/Logo_AS_small.jpg" width="193" height="49" alt="" /></p></td><td><p class="bodytext">Automotive Solutions, Austria</p></td><td><p class="bodytext"><a href="http://www.automotive-solutions.at/" target="_blank" >http://www.automotive-solutions.at</a></p></td></tr>
+			<tr><td><p class="bodytext"><img src="images/schneegans_01.gif.gif" style="width: 120px; height: 86px;" alt="" /></p></td><td><p class="bodytext">Schneegans Silicon, Austria</p></td><td><p class="bodytext"><a href="http://www.schneegans.at/" title="Schneegans" target="_blank" class="external-link-new-window" >http://www.schneegans.at</a></p></td></tr>
+			<tr><td><p class="bodytext"><img src="images/logo_GW.jpg.jpg" style="width: 120px; height: 68px;" alt="" /></p></td><td><p class="bodytext">GWS Produktion Handel Service GmbH, Austria</p></td><td><p class="bodytext"><a href="http://gws.at/" title="ARGE Geschuetze Werkstaette" target="_blank" class="external-link-new-window" >http://gws.at</a></p></td></tr>
+			</tbody></table>
+
+	</ui:define>
+
+</ui:decorate>

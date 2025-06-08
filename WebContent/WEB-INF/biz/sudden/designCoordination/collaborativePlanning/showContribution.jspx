@@ -1,0 +1,84 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+     <ui:define name="nav2">
+     	<ice:form>
+			<table id="secondnav"><tr><td style="height: 25px;" colspan="3">#{msg.communication2}</td></tr><tr><td>
+				<ice:commandLink action="cpReceiveMessages" styleClass="#{(action=='cpReceiveMessages') ? 'selected' : ''}">#{msg.collabPlanningGetMessages}</ice:commandLink> </td><td > 
+				<ice:commandLink action="bulletinboard" styleClass="#{(action=='bulletinboard') ? 'selected' : ''}">#{msg.collabPlanningShowForum}</ice:commandLink> </td><td > 
+				<ice:commandLink action="showFeedback" styleClass="#{(action=='showFeedback') ? 'selected' : ''}">#{msg.trainingsImprovements}</ice:commandLink>
+			</td></tr></table>
+		</ice:form>
+	</ui:define>
+
+	<ui:define name="navigationPath">
+		<ice:form>
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Home" action="home" style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="BulletinBoards" action="bulletinboard"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Topics" action="showtopics"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Contributions" action="showcontributions"
+				style="margin-right:10px" />
+		</ice:form>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ice:form>
+
+			<ice:panelGrid columns="2" style="width:65%;border:1px solid black">
+				<ice:outputText value="Sender" />
+				<ice:inputText disabled="true" value="#{cpController.selectedContribution.sender.nickname}" />
+				<ice:outputText value="Subject" />
+				<ice:inputText  disabled="true" value="#{cpController.selectedContribution.subject}" />
+				<ice:outputText value="Message" />
+				<ice:inputTextarea disabled="true" value="#{cpController.selectedContribution.message}" style="width:100%;height:150px"/>
+				<ice:outputText value="" />
+				<ice:outputText value="" />
+				<ice:commandButton value="Send Answer" actionListener="#{cpController.openNewContribution}">
+					<f:param value="#{cpController.selectedContribution}" id="inreplyto" name="inreplyto"></f:param>
+				</ice:commandButton>
+				<ice:selectOneMenu id="selectOneMenu" value="#{rootLinkController.selectedItem}" valueChangeListener="#{rootLinkController.changeItem}"            	                        
+                        partialSubmit="true" immediate="true" binding="#{rootLinkController.selectOneMenu}" >
+					<f:param name="sourceObject" id="sourceObject" value="#{cpController.selectedContribution}" />	
+                    <f:selectItems id="selectedItem"
+                                   value="#{rootLinkController.linkentries}" />
+                </ice:selectOneMenu>
+
+				<ice:panelSeries value="#{rootLinkController.primitiveTypeValues}" var="linkentry" binding="#{rootLinkController.panelSeries}">
+							<ice:outputText value="#{linkentry.name} #{linkentry.value}"></ice:outputText><br />
+				</ice:panelSeries>			
+
+				<ice:commandButton value="Link" actionListener="#{rootLinkController.link}">
+					<f:param name="link" id="link" value="#{cpController.selectedContribution}" />
+				</ice:commandButton>
+
+			</ice:panelGrid>
+
+
+<!--  
+comm.setSubject(contributionSubject);
+		comm.setSender(getCurrentUser());
+		comm.setSendDate(new Date());
+		comm.setTopic(selectedTopic);
+		comm.setMessage(contributionMessage);
+-->
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

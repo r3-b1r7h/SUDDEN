@@ -1,0 +1,109 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:define name="content">
+
+		<ui:param name="action" value="competencesManagement" />
+
+		<ui:define name="navigationTopText">
+Competences Management allows for the modelling of competences required for business opportunities.
+      </ui:define>
+
+		<link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+
+		<h1>Competences Management Subsystem!</h1>
+
+		<h3>Initialize CM Service</h3>
+		<ice:panelGrid columns="1"
+			columnClasses="standardTable_ColumnCentered"
+			style="float:left;width:100%">
+			<ice:form>
+				<ice:commandButton value="Clean Databases"
+					action="${CMController.removeAll}" disabled="false" />
+				<ice:commandButton value="Insert DB Test Data"
+					action="${CMController.insertDBTestData}" disabled="false" />
+				<ice:commandButton value="Insert DB Data Random Suppliers"
+					action="${CMController.insertDBDataRandomSuppliers}"
+					disabled="false" />
+				<ice:commandButton value="Insert DB Data Real Suppliers"
+					action="${CMController.insertDBDataRealSuppliers}" disabled="false" />
+			</ice:form>
+			<ice:outputLabel
+				value="init; clean happens integrated with the kdm (DB view) init, clean" />
+		</ice:panelGrid>
+
+		<h3>Add New Entities</h3>
+		<p><ice:form>
+			<ice:commandLink value="Add New CVI"
+				action="${CMController.cmCVIController.navigateToAddNewCVI}" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Add New Dimension"
+				action="${CMController.cmDimensionController.navigateToAddNewDimension}" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Add New Competence"
+				action="${CMController.cmCompetenceController.navigateToAddNewCompetence}" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Add New Questionnaire"
+				action="${CMController.cmQuestionnaireController.navigateToAddNewQuestionnaire}" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Add New Role"
+				action="${CMController.cmRoleController.navigateToAddNewRole}" />
+		</ice:form></p>
+
+		<h3>Fill In Questionnaires</h3>
+		<p><ice:form>
+			<ice:commandLink value="Fill In Questionnaires"
+				action="${CMController.cmInstanceController.navigateToFillInQuestionnaires}" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink
+				value="Browse Questionnaire Instances by Organization"
+				action="${CMController.cmInstanceController.navigateToBrowseQuestionnaireInstancesNoCVIsTicks}" />
+		</ice:form></p>
+
+		<h3>Repositories of Entities</h3>
+		<p><ice:form>
+			<ice:commandLink value="Browse Repository of Categories"
+				action="browseCategories" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Browse Tree of Categories"
+				action="browseCategoriesTree" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Browse Repository of CVIs"
+				action="browseRepositoryCVI" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Browse Repository of Dimensions"
+				action="browseRepositoryDimensions" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Browse Repository of Competences"
+				action="browseRepositoryCompetences" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Browse Repository of Questionnaires"
+				action="browseRepositoryQuestionnaires" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Browse Repository of Competence Instances"
+				action="browseRepositoryCompetenceInstances" />
+		</ice:form></p>
+		<p><ice:form>
+			<ice:commandLink value="Browse Repository of Dimension Instances"
+				action="browseRepositoryDimensionInstances" />
+		</ice:form></p>
+
+		<!--  </f:view>-->
+	</ui:define>
+
+</ui:decorate>

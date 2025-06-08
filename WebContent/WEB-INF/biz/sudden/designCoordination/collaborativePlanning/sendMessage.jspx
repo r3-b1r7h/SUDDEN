@@ -1,0 +1,109 @@
+
+<!--  
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+-->
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+     <ui:param name="action" value="cpSendMessage"/>
+     <ui:define name="navigationTopText">
+     send a message  
+	 </ui:define>
+			
+
+	<ui:define name="content">
+	
+		<ice:messages />
+
+		<ice:form id="sendMessageID">
+
+				<ice:panelGrid columns="3">
+				
+				<ice:outputText value="" />
+
+				<ice:selectOneMenu value="#{cpController.selectedUser}" converter="#{cpController.userConverter}" partialSubmit="true">
+					<f:selectItems value="#{cpController.userItems}"/>
+				</ice:selectOneMenu>
+
+				<ice:commandButton value="Add user" actionListener="#{cpController.addUser}" />
+
+				<ice:outputText value="An " />
+
+				<ice:outputText value="#{cpController.stringUserList}" />
+
+				<ice:outputText value="" />
+
+				<ice:outputText value="Subject " />
+				<ice:inputText value="#{cpController.subject}" immediate="true" partialSubmit="true"/>
+
+				<ice:outputText value="" />
+
+				<ice:outputText value="Message " />
+				<ice:inputTextarea value="#{cpController.message}" immediate="true" partialSubmit="true"/>
+
+				<ice:outputText value="" />
+
+				<!--  
+
+				<ice:outputText value="ViewID " />
+				<ice:inputTextarea value="#{cpController.viewID}" immediate="true" partialSubmit="true"/>
+
+				<ice:outputText value="" />
+
+				<ice:outputText value="Controller " />
+				<ice:inputTextarea value="#{cpController.controller}" immediate="true" partialSubmit="true"/>
+
+				<ice:outputText value="" />
+
+				<ice:outputText value="Parameter " />
+				<ice:inputTextarea value="#{cpController.parameter}" immediate="true" partialSubmit="true"/>
+
+				<ice:outputText value="" />
+
+				<ice:outputText value="ParameterValue " />
+				<ice:inputTextarea value="#{cpController.parameterValue}" immediate="true" partialSubmit="true"/>
+
+				<ice:outputText value="" />
+				
+				-->
+
+				<ice:commandButton value="Message senden" action="#{cpController.submit}"/><br /><br />
+				
+			</ice:panelGrid>
+			<ice:outputText value="#{cpController.errorMessage}" style="color:red" />
+
+
+<!-- 
+				
+				<ice:selectInputText rows="10" width="300" valueChangeListener="#{cpJSFController.updateReceiverList}" required="true">
+                	<f:selectItems value="#{cpJSFController.matchesList}" />
+          		</ice:selectInputText>
+
+				<ice:outputText value="Message " />
+				<ice:inputTextarea value="#{cpJSFController.message}" />
+			</ice:panelGrid>
+			<p />
+			<ice:commandButton value="Message senden"
+				actionListener="#{cpJSFController.sendMessage}" /><br /><br />
+				
+				<ice:commandLink style="color:red" value="Back to home"
+				action="home" immediate="true" />  -->
+
+		</ice:form>
+
+		
+		
+		
+
+	</ui:define>
+
+</ui:decorate>

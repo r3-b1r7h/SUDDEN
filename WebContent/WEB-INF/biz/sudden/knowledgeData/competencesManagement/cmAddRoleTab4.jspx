@@ -1,0 +1,139 @@
+<f:view xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGrid columns="3" cellspacing="5">
+		<ice:commandButton value="REFRESH ROLE"
+			action="${CMController.cmRoleController.refreshRoleButtonListener}" />
+		<ice:commandButton value="DEFAULT WEIGHTS"
+			action="${CMController.cmRoleController.setDefaultRoleWeightsButtonListener}" />
+		<ice:commandButton value="AUTO DISTRIBUTE WEIGHTS"
+			action="${CMController.cmRoleController.autoDistributeRoleWeightsButtonListener}" />
+	</ice:panelGrid>
+
+	<ice:panelGroup styleClass="exampleBox dataScrollingContainer">
+
+		<!-- DataPaginator displaying information about the currently displayed page and location within the dataModel-->
+		<ice:panelGroup style="float:left;">
+			<ice:dataPaginator id="scroll_2" for="data" rowsCountVar="rowsCount"
+				displayedRowsCountVar="displayedRowsCountVar"
+				firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+				pageCountVar="pageCount" pageIndexVar="pageIndex">
+				<ice:outputFormat
+					value="{0} Records found, displaying {1} records from {2} to {3}. Page {4} / {5}"
+					styleClass="standard">
+					<f:param value="#{rowsCount}" />
+					<f:param value="#{displayedRowsCountVar}" />
+					<f:param value="#{firstRowIndex}" />
+					<f:param value="#{lastRowIndex}" />
+					<f:param value="#{pageIndex}" />
+					<f:param value="#{pageCount}" />
+				</ice:outputFormat>
+			</ice:dataPaginator>
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="clearer" />
+
+		<ice:dataTable id="data" rows="15"
+			value="#{CMController.cmRoleController.role.roleQuestionnaire.roleCompetences}"
+			var="roleCompetence" scrollHeight="250px"
+			style="float:left;font-size:11px;"
+			columnWidths="10px,10px,10px,10px,400px"
+			styleClass="dataPaginatorDataTable" cellpadding="0">
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText value="Name" />
+				</f:facet>
+				<ice:outputText value="#{roleCompetence.competence.name}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText value="WM" />
+				</f:facet>
+				<ice:outputText
+					value="#{roleCompetence.competence.weightMultiplier}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText value="W" />
+				</f:facet>
+				<ice:inputText id="roleName" size="4" maxlength="4"
+					value="#{roleCompetence.weight}" partialSubmit="true" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText value="Role Dimension" />
+				</f:facet>
+				<ice:dataTable id="dataCompetences" rows="100"
+					value="#{roleCompetence.roleDimensions}" var="roleDimension"
+					scrollHeight="250px" style="float:left"
+					columnWidths="300px,10px,10px,10px,10px"
+					styleClass="dataPaginatorDataTable" cellpadding="0">
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Name" />
+						</f:facet>
+						<ice:outputText value="#{roleDimension.dimension.name}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="WM" />
+						</f:facet>
+						<ice:outputText
+							value="#{roleDimension.dimension.weightMultiplier}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="W" />
+						</f:facet>
+						<ice:inputText id="roleName" size="4" maxlength="4"
+							value="#{roleDimension.weight}" partialSubmit="true" />
+					</ice:column>
+				</ice:dataTable>
+			</ice:column>
+		</ice:dataTable>
+
+		<ice:panelGroup style="float:left;width:auto;">
+			<center><ice:panelGrid columns="1"
+				styleClass="scrollerTable2"
+				columnClasses="standardTable_ColumnCentered" style="float:left;">
+				<ice:dataPaginator id="scroll_1" for="data" fastStep="10"
+					pageCountVar="pageCount" pageIndexVar="pageIndex" paginator="true"
+					paginatorMaxPages="9">
+					<f:facet name="first">
+						<ice:graphicImage
+							url="themes/default/style/xp/css-images/arrow-first.gif"
+							style="border:none;" />
+					</f:facet>
+					<f:facet name="last">
+						<ice:graphicImage
+							url="themes/default/style/xp/css-images/arrow-last.gif"
+							style="border:none;" />
+					</f:facet>
+					<f:facet name="previous">
+						<ice:graphicImage
+							url="themes/default/style/xp/css-images/arrow-previous.gif"
+							style="border:none;" />
+					</f:facet>
+					<f:facet name="next">
+						<ice:graphicImage
+							url="themes/default/style/xp/css-images/arrow-next.gif"
+							style="border:none;" />
+					</f:facet>
+					<f:facet name="fastforward">
+						<ice:graphicImage
+							url="themes/default/style/xp/css-images/arrow-ff.gif"
+							style="border:none;" />
+					</f:facet>
+					<f:facet name="fastrewind">
+						<ice:graphicImage
+							url="themes/default/style/xp/css-images/arrow-fr.gif"
+							style="border:none;" />
+					</f:facet>
+				</ice:dataPaginator>
+			</ice:panelGrid></center>
+		</ice:panelGroup>
+	</ice:panelGroup>
+
+</f:view>

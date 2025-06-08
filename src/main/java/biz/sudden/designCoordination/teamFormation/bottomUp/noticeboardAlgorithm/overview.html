@@ -1,0 +1,27 @@
+<html>
+<body>
+This set of classes comprise the algorithm which the noticeboard agent uses to perform extensions.
+
+It's far from the most efficient implementation possible but it seems to work.
+
+An important to bear in mind with these classes is that they ONLY (by design) work when
+used in an incremental manner (ie start from a initial and goal state and add in declared
+capabilities.). 
+There are no facilities for eg creating a partial solution with several
+states, declared capabilities etc - and even if you could keeping these keeping the
+various parts of the partial solution aligned would be distinctly non trivial.
+
+A further factor which might be initially confusing comes from the control being solely 
+within the hands of the process provider agents. This forces considerable design changes 
+over a centralised version of this algorithm.
+(and the sending of information through ACL messages.).
+
+If planning to change any of the classes within this package please take care - the 
+algorithm is (intrisically) non trivial and is not straightforward to work
+out what it is doing from the code alone.
+
+In particular if planning a major reimplementation or serious amount of bug fixing
+please contact martin.carpenter@manchester.ac.uk for a detailed technical write up of
+the algorithm.
+</body>
+</html>

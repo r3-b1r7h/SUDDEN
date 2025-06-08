@@ -1,0 +1,202 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:param name="action" value="showcontributionsratings"/>
+     <ui:define name="nav2">
+     	<ice:form>
+			<table id="secondnav"><tr><td style="height: 25px;" colspan="3">#{msg.communication2}</td></tr><tr><td>
+				<ice:commandLink action="cpReceiveMessages" styleClass="#{(action=='cpReceiveMessages') ? 'selected' : ''}">#{msg.collabPlanningGetMessages}</ice:commandLink> </td><td > 
+				<ice:commandLink action="bulletinboard" styleClass="#{(action=='bulletinboard') ? 'selected' : ''}">#{msg.collabPlanningShowForum}</ice:commandLink> </td><td > 
+				<ice:commandLink action="showFeedback" styleClass="#{(action=='showFeedback') ? 'selected' : ''}">#{msg.trainingsImprovements}</ice:commandLink>
+			</td></tr></table>
+		</ice:form>
+	</ui:define>
+
+	     <ui:define name="navigationTopText">
+     all messages (contributions) to a training
+	 </ui:define>
+
+	<ui:define name="navigationPath">
+		<ice:form>
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Home" action="home" style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Groups" action="showFeedback"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Trainings/Improvements" action="showtopicsrating"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Feedback" action="showcontributionsratings"
+				style="margin-right:10px" />
+		</ice:form>
+	</ui:define>
+
+	<ui:define name="content" >
+
+		
+		
+
+
+		
+ 
+		<ice:form>	
+	
+			<ice:panelGroup style="width:95%">
+
+			<ice:outputText value="Description: #{ratingController.selectedTopic.name}" /> <br/> <br/>
+
+			<ice:commandButton value="Save" action="#{ratingController.descriptionValueChanged}" renderedOnUserRole="ROLE_ADMIN" rendered = "#{ratingController.inputText}"></ice:commandButton>
+			<ice:commandButton value="Edit" action="#{ratingController.descriptionValueChanged}" renderedOnUserRole="ROLE_ADMIN" rendered = "#{!ratingController.inputText}"></ice:commandButton>
+
+			<ice:inputRichText toolbar="Basic" skin="silver"  id="richInputText1" saveOnSubmit="true" rendered = "#{ratingController.inputText}" value="#{ratingController.selectedTopic.description}">  </ice:inputRichText>
+
+			<ice:outputText escape="false" rendered = "#{!ratingController.inputText}" partialSubmit="true" immediate="true" value="#{ratingController.selectedTopic.description}"></ice:outputText>
+
+			<hr /> 
+			</ice:panelGroup> 
+	
+			
+			<ice:panelGroup rendered = "#{ratingController.editContribution}">
+						<ice:commandLink actionListener="#{ratingController.set1Star}">
+						<img id="star1" src="images/stern_voll.gif" onclick="javascript:clicked(this);" onmouseout="javascript:mouseOut(this);" onmouseover="javascript:mouseOver(this)" />
+						</ice:commandLink>
+						<ice:commandLink actionListener="#{ratingController.set2Stars}">
+						<img id="star2" src="images/stern_leer.gif" onclick="javascript:clicked(this);" onmouseout="javascript:mouseOut(this);" onmouseover="javascript:mouseOver(this)" />
+						</ice:commandLink>
+						<ice:commandLink actionListener="#{ratingController.set3Stars}">
+						<img id="star3" src="images/stern_leer.gif" onclick="javascript:clicked(this);" onmouseout="javascript:mouseOut(this);" onmouseover="javascript:mouseOver(this)" />
+						</ice:commandLink>
+						<ice:commandLink actionListener="#{ratingController.set4Stars}">
+						<img id="star4" src="images/stern_leer.gif" onclick="javascript:clicked(this);" onmouseout="javascript:mouseOut(this);" onmouseover="javascript:mouseOver(this)" />
+						</ice:commandLink>
+						
+						<ice:commandLink actionListener="#{ratingController.set5Stars}">
+							<img id="star5" src="images/stern_leer.gif" onclick="javascript:clicked(this);" onmouseout="javascript:mouseOut(this);" onmouseover="javascript:mouseOver(this)" />
+						</ice:commandLink>
+				
+			</ice:panelGroup>
+
+			<br /><br />
+
+			<ice:commandButton value="Add Contribution" action="#{ratingController.contributionValueChanged}" rendered = "#{!ratingController.editContribution}">  </ice:commandButton>
+			<ice:commandButton value="Save Contribution" action="#{ratingController.saveContribution}" rendered = "#{ratingController.editContribution}"> </ice:commandButton>
+
+			<ice:inputRichText toolbar="Basic" id="richInputText2" skin="silver"  saveOnSubmit="true" rendered = "#{ratingController.editContribution}" value="#{ratingController.contributionText}">   </ice:inputRichText>
+			
+
+			<ice:panelSeries value="#{ratingController.contributions}" var="contribution">
+
+					<ice:panelGroup style="border:1px solid grey;margin:1em;padding-left:5px">
+						
+
+						<br />
+						<ice:outputText escape="false" id="nickname" value="Von: #{contribution.sender.username}" /><br />
+						<ice:outputText escape="false" id="datum" value="Datum: #{contribution.sendDate.date}.#{contribution.sendDate.month}.#{contribution.sendDate.year-100+2000}   #{contribution.sendDate.hours}:#{contribution.sendDate.minutes}" />
+						
+						<br /><br />
+
+						<ice:graphicImage value="/images/stern_#{contribution.firstStar}.gif" />
+						<ice:graphicImage value="/images/stern_#{contribution.secondStar}.gif" />
+						<ice:graphicImage value="/images/stern_#{contribution.thirdStar}.gif" />
+						<ice:graphicImage value="/images/stern_#{contribution.fourthStar}.gif" />
+						<ice:graphicImage value="/images/stern_#{contribution.fifthStar}.gif" />
+						
+						<ice:outputText escape="false" id="message" value="#{contribution.message}" />
+					</ice:panelGroup>
+
+			</ice:panelSeries>
+
+
+
+
+		</ice:form>
+
+			<script language="JavaScript" type="text/javascript">
+		/* <![CDATA[ */
+		
+			var currentSelected = #{ratingController.rating};
+
+			mouseOut(currentSelected);
+
+			function setRating(commandlink) {
+				this.value=currentSelected;
+			}
+		
+			function clicked(image) {
+
+				
+				idString = image.id;
+				var id = 0;
+				if (idString == "star1")
+					id = 1;
+				if (idString == "star2")
+					id = 2;
+				if (idString == "star3")
+					id = 3;
+				if (idString == "star4")
+					id = 4;
+				if (idString == "star5")
+					id = 5;
+				
+				currentSelected = id;
+
+			}
+
+			function mouseOver(image) {
+	
+				idString = image.id;
+				var id = 0;
+				if (idString == "star1")
+					id = 1;
+				if (idString == "star2")
+					id = 2;
+				if (idString == "star3")
+					id = 3;
+				if (idString == "star4")
+					id = 4;
+				if (idString == "star5")
+					id = 5;
+
+				image.src='images/stern_voll.gif';
+				
+				for (var i = 1; i <= id; i++) {	
+					
+					document.getElementById('star'+i).src="images/stern_voll.gif";
+					
+				}
+
+				for (var i = id+1; i <= 5; i++) {
+					document.getElementById('star'+i).src="images/stern_leer.gif";
+				}
+				
+			}
+	
+			function mouseOut(image) {
+				
+				for (var i = 1; i <= currentSelected; i++) {	
+					document.getElementById('star'+i).src="images/stern_voll.gif";
+				}
+
+				for (var i = currentSelected+1; i <= 5; i++) {
+					document.getElementById('star'+i).src="images/stern_leer.gif";
+				}
+			}
+		/* ]]> */
+
+		</script>
+
+			
+
+	</ui:define>
+
+</ui:decorate>

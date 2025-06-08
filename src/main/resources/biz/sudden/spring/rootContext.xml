@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+
+	<!-- imports for context.xmls of subsystems -->
+	<import resource="userInterface/gui/context.xml" />
+	<import resource="baseAndUtility/context.xml" />
+	<import resource="userInterface/gui/context.xml" />
+	<import resource="designCoordination/collaborativePlanning/context.xml" />
+	<import resource="knowledgeData/serviceManagement/context.xml" />
+	<import resource="knowledgeData/competencesManagement/context.xml" />
+	<import resource="evaluation/performanceMeasurement/context.xml" />
+	<import resource="knowledgeData/kdm/context.xml" />
+	<import resource="designCoordination/teamFormation/context.xml" />
+	<import resource="evaluation/coordinationFit/context.xml" />
+	<import resource="knowledgeData/userOrganisationManagement/context.xml" />
+	<import resource="designCoordination/handleBO/context.xml" />
+	<import resource="designCoordination/coordination/context.xml" />
+	<!--
+		<import resource="designCoordination/handleBO/context.xml" /> 
+		<import	resource="evaluation/ranking/context.xml" />
+		<import resource="knowledgeData/templates/context.xml" />
+		<import resource="learningDevelopment/networkExploration/context.xml"/> 
+		<import resource="learningDevelopment/supplierDevelopment/context.xml" />
+		<import resource="legacySystems/executionFeedback/context.xml" />
+		<import resource="legacySystems/legacySystemsIntegration/contex.xml"/>
+	-->
+
+	<!-- Persistence import from separate file to allow easy switching -->
+	<!--  when changing the DB config also change hibernateProperties below field dialect -->
+		<import resource="databaseConfig/HSQLDB_InMemory.xml"/>
+<!--		<import resource="databaseConfig/MySQL.xml"/>-->
+<!--		<import resource="databaseConfig/Postgre.xml"/>-->
+
+	
+	<bean id="selectTemplate" class="datasource.SelectJSFTemplate" >
+		
+		<property name="decorateTemplate" value="/WEB-INF/main-template.jspx" />
+		<!--  
+		<property name="decorateTemplate" value="/WEB-INF/drehmomente-template.jspx" />
+		-->
+	</bean>
+	
+	<bean id="sessionFactoryBase"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+		abstract="true">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+<!--				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLMyISAMDialect</prop>-->
+<!--				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>-->
+				 <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+ 				<!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+ 				<prop key="hibernate.show_sql">false</prop>
+ 				<prop key="hibernate.connection.pool_size">4</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+<!--				0 disables EAGER for Collections-->
+<!--				<prop key="hibernate.max_fetch_depth">0</prop> -->
+<!--				<prop key="hibernate.default_batch_fetch_size">0</prop>-->
+
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>biz.sudden.baseAndUtility.web.controller.domain.JsfLink</value>
+				<value>biz.sudden.baseAndUtility.domain.Link</value>
+				<value>biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.ChatRoom</value>
+			
+				<!-- baseAndUtility -->
+				<value>biz.sudden.baseAndUtility.domain.PrimitiveType</value>
+				<value>biz.sudden.baseAndUtility.domain.Actor</value>
+				<value>biz.sudden.baseAndUtility.domain.BusinessOpportunity</value>
+				<value>biz.sudden.baseAndUtility.domain.CaseFile</value>
+				<value>biz.sudden.baseAndUtility.domain.Manufacturer</value>
+				<value>biz.sudden.baseAndUtility.domain.Process</value>
+				<value>biz.sudden.baseAndUtility.domain.SuddenUser</value>
+				<value>biz.sudden.baseAndUtility.domain.SimpleMessage</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.AssocType</value>
+				<value>biz.sudden.baseAndUtility.domain.Individual</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.AssocRoleType</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.AssociationRole</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.Association</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.BaseConnectable</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.Occurrence</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.OccurType</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.Scope</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.Statement</value>
+				<value>biz.sudden.baseAndUtility.domain.connectable.StringValue</value>
+
+				<!-- knowledgeData.serviceManagement -->
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.Thing</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.Function</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.ComplexProduct</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.Item</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.Machine</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.Material</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.Product</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.SimpleProduct</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.SupportingService</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.System</value>
+				<value>biz.sudden.knowledgeData.serviceManagement.domain.Technology</value>
+
+				<!-- further annotated Classes of subsystems.. -->
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.CP_Actor</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Communication</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.CommunicationRating</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.CommunicationContainer</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Topic</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.TopicRating</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.BulletinBoard</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.BulletinBoardRating</value>
+				<!--
+					<value>biz.sudden.designCoordination.collaborativePlanning.domain.CommunicationItem</value>
+				-->
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Contract</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.NegotiationIssue</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.NegotiationConstraint</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Valuation</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Negotiation</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.NegotiationItem</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Offer</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.CP_Process</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Relation</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Responsibility</value>
+				<value>biz.sudden.designCoordination.collaborativePlanning.domain.Valuation</value>
+				
+				
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.WeightedSumFunction</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.DivisionFunction</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.MaxFunction</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.MinFunction</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.MinusFunction</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.MultiplicationFunction</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.SumFunction</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.EvaluationProfile</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.CompetenceNeeded</value>
+				<value>biz.sudden.evaluation.performanceMeasurement.domain.CompetenceNeededByNetworkEvaluationProfile</value>
+				<value>biz.sudden.baseAndUtility.domain.NetworkEvaluationProfile</value>
+				<value>biz.sudden.baseAndUtility.domain.EnterpriseEvaluationProfile</value>
+
+				<!--
+					CaseFile & BO relevant (where CaseFile and BO are already above)
+				-->
+				<value>biz.sudden.knowledgeData.kdm.domain.FileContainer</value>
+				<value>biz.sudden.knowledgeData.kdm.domain.StoredFile</value>
+				<value>biz.sudden.designCoordination.handleBO.dataStructures.ASNNode</value>
+				<value>biz.sudden.designCoordination.handleBO.dataStructures.ASNComplexNode</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.ASNRoleNodeFixedSupplier</value>
+				<value>biz.sudden.designCoordination.handleBO.dataStructures.ASNBONode</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.ASNRoleNode</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.ASNInitialNode</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.ASNDependency</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.ASNMaterialDependency</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.ConcreteSupplyNetwork</value>
+				<value>biz.sudden.designCoordination.handleBO.dataStructures.AbstractSupplyNetwork</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.Supplier</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.QualificationProfile</value>
+				<value>biz.sudden.designCoordination.teamFormation.dataStructures.StringWithID</value>
+				<value>biz.sudden.evaluation.coordinationFit.service.CoordinationFitResult</value>
+				<value>biz.sudden.baseAndUtility.domain.Invitation</value>
+				
+				<!--
+					value> biz.sudden.baseAndUtility.service.impl.ScopeSessionImpl
+					</value
+				-->
+
+				<!-- designCoordination.handleBO -->
+				<!--
+					<value>
+					biz.sudden.designCoordination.handleBO.dataStructures.AbstractSupplyNetwork
+					</value>
+				-->
+				<!-- userOrganizationManagement.userManagement -->
+				<value>biz.sudden.userOrganizationManagement.userManagement.domain.UserAccount</value>
+				<value>biz.sudden.userOrganizationManagement.userManagement.domain.User2</value>
+				<value>biz.sudden.userOrganizationManagement.userManagement.domain.UsersList</value>
+				<value>biz.sudden.userOrganizationManagement.userManagement.domain.UserProfile</value>
+				<value>biz.sudden.userOrganizationManagement.userManagement.domain.UserTypes</value>
+				<!-- userOrganizationManagement.organizationManagement -->
+				<value>biz.sudden.userOrganizationManagement.organizationManagement.domain.Organization</value>
+				<value>biz.sudden.userOrganizationManagement.organizationManagement.domain.OrganizationsList</value>
+				<value>biz.sudden.userOrganizationManagement.organizationManagement.domain.OrganizationProfile</value>
+				<!--CompetencesManagement-->
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.Category</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.CVI</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.CVIInstance</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.Tick</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.TickInstance</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.Dimension</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.DimensionInstance</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.RoleDimension</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.Competence</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.CompetenceInstance</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.RoleCompetence</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.Questionnaire</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.QuestionnaireInstance</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.RoleQuestionnaire</value>
+				<value>biz.sudden.knowledgeData.competencesManagement.domain.Role</value>
+				 
+				<!--NEW CompetencesManagement -->
+
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.Tick</value>
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.AnswerTick</value>
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.TickTemplate</value>
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.Question</value>
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.Questionnaire</value>
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.Answer</value>
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.AnsweredQuestionnaire</value>
+				<value>biz.sudden.knowledgeData.questionnaireNew.domain.Competence</value>
+				 
+
+			</list>
+		</property>
+		<property name="annotatedPackages">
+			<list>
+				<value>biz.sudden</value>
+				<!--
+					<value>biz.sudden.designCoordination.collaborativePlanning.domain</value>
+					<value>biz.sudden.userOrganizationManagement.userManagement.domain</value>
+					<value>biz.sudden.userOrganizationManagement.organizationManagement.domain</value>
+				-->
+			</list>
+		</property>
+	</bean>
+
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+		parent="sessionFactoryBase" />
+		
+		<!-- 
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="openSessionInViewInterceptor" /> 
+			</list>
+		</property>
+	</bean>
+	<bean name="openSessionInViewInterceptor"
+		class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+		 -->
+
+	<!-- Transactions -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory" />
+		<!--
+			<property name="nestedTransactionAllowed" value="true"></property>
+		-->
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<!--  <tx:method name="delete*" propagation="REQUIRES_NEW" />-->
+			<!--
+				hot fix for deleting concrete Connectables and respective
+				Associations
+			-->
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<!--
+				<tx:method name="delete*" propagation="REQUIRES_NEW" /> funktioniert
+				fuer delete
+			-->
+			<tx:method name="retrieve*" propagation="REQUIRED"
+				read-only="true" /> <!-- FIXME:!! true -->
+			<tx:method name="get*" propagation="REQUIRED"
+				read-only="true" /> <!-- FIXME:!! true -->
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	<tx:advice id="txAdviceDomain" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="REQUIRED"
+				read-only="true" /> <!-- FIXME:!! true -->
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="serviceOperations"
+			expression="execution(* biz.sudden..service..*.*(..))" />
+		<aop:pointcut id="domainOperations"
+			expression="execution(* biz.sudden.designCoordination..domain..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperations" />
+		
+	</aop:config>
+	
+
+
+	<!-- Repositories -->
+	<bean id="repositoryTemplate"
+		class="org.springframework.orm.hibernate3.support.HibernateDaoSupport"
+		abstract="true">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="suddenGenericRepository" class="biz.sudden.baseAndUtility.repository.hibernate.SuddenGenericRepositoryImpl" parent="repositoryTemplate" />
+	
+	<bean id="rootLinkService" class="biz.sudden.baseAndUtility.service.RootLinkService">
+		<property name="targetServices">
+			<list>
+				<ref bean="baseAndUtility.targetService" />
+				<ref bean="designCoordination.collaborativePlanning.targetService" />
+				<ref bean="pm.enterpriseprofile.targetService" />
+				<ref bean="pm.enterpriseevaluation.targetService"/>
+				<ref bean="kdm.targetService" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="threadPoolExecutor"
+		class="edu.emory.mathcs.backport.java.util.concurrent.ThreadPoolExecutor">
+		<constructor-arg index="0" value="5"></constructor-arg>
+		<constructor-arg index="1" value="15"></constructor-arg>
+		<constructor-arg index="2" value="30"></constructor-arg>
+		<constructor-arg index="3">
+				<util:constant static-field="edu.emory.mathcs.backport.java.util.concurrent.TimeUnit.SECONDS"/>
+		</constructor-arg>
+		<constructor-arg index="4">
+			<bean class="edu.emory.mathcs.backport.java.util.concurrent.LinkedBlockingQueue">
+				<constructor-arg index="0" value="20"></constructor-arg>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!--
+		specify concrete beans for repositories in context.xml of subsystem
+	-->
+</beans>

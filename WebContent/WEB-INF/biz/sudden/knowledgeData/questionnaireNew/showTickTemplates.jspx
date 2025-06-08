@@ -1,0 +1,78 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+
+		<h2>Tick Template</h2> <br /><br />
+
+		<ice:form>
+
+						
+				<ice:commandButton value="Neues Template" action="#{tickController.createTickTemplate}" /><br />
+				<ice:inputText style="font-size:0.8em" value="#{tickController.tickTemplateName}"></ice:inputText>
+
+				<br /><br />
+		
+                <ice:dataTable var="singletickcontroller" id="singletickcontroller"
+					value="#{tickController.singleTickController}"
+					columnClasses="tableColFirst tableColFirst tableCol" scrollHeight="4" style="width:95%;border-collapse:collapse;font-size:9pt;">
+	
+	 
+					<ice:column style="width:35%">
+
+						<f:facet name="header">
+							 <ice:outputText value="Ticks" />   
+						</f:facet>
+
+						<ice:panelGrid columns="2" >
+
+								<ice:outputText value="Template Name:" />
+				
+								<ice:outputText value="#{singletickcontroller.tickTemplate.name}" />
+										
+								<ice:outputText value="Multiple Choice?  "/>
+
+								<ice:selectBooleanCheckbox value="#{singletickcontroller.tickTemplate.multipleChoice}" partialSubmit="true" valueChangeListener="#{singletickcontroller.multipleChoiceChanged}"/>
+		
+								<ice:inputText style="margin-right:1%" value="#{singletickcontroller.currentTickText}" immediate="true" partialSubmit="true"/>
+		
+								<ice:commandButton value="Fuege Tick dazu" actionListener="#{singletickcontroller.addTickToTemplate}">
+									<f:param name="ticktemplate" id="ticktemplate" value="#{singletickcontroller.tickTemplate}" />	
+								</ice:commandButton>
+
+						</ice:panelGrid>
+
+						<br /><br />
+							 <ice:dataTable var="tick" id="tick" 
+									value="#{singletickcontroller.allTicksOfTemplate}"
+									columnClasses="tableColFirst tableColFirst tableCol" scrollHeight="4" style="margin-left:10%;width:25%;border-collapse:collapse;font-size:9pt;">
+					
+				 
+									<ice:column style="width:100%">
+										<f:facet name="header">
+											<ice:outputText value="Ticks" />   
+										</f:facet>
+										<ice:outputText value="#{tick.tickText}" />
+			
+									</ice:column>
+				
+								</ice:dataTable>
+					
+
+					</ice:column>
+			
+					<ice:outputText value="trara" />
+					
+
+				</ice:dataTable>
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

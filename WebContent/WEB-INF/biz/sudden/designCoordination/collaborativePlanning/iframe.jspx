@@ -1,0 +1,14 @@
+<ice:form>
+
+<ice:outputText value="Users online: #{userController.nrOfUsers}" />
+			<br /><br />
+			<ice:selectOneListbox size="1">
+				<f:selectItems value="#{userController.userList}" />
+			</ice:selectOneListbox>
+
+			<br /><br />
+
+<ice:outputText style="color:white" value="Welcome #{userController.loggedInUsername}" />
+			<p />
+
+</ice:form>

@@ -1,0 +1,99 @@
+<jsp:root xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags">
+	<jsp:directive.page contentType='text/html; charset=UTF-8' />
+	<f:view>
+
+		<ice:outputDeclaration doctypeRoot="HTML"
+			doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+			doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<link rel="stylesheet" type="text/css"
+			href="../../../themes/default/style/style.css" />
+
+		<title>Process Box - Associate Process</title>
+		</head>
+		<body>
+		<h1>Associate Processes!</h1>
+
+		<ice:form>
+
+			<ice:outputLabel value="create new Association of Type" />
+			<ice:inputText id="input"
+				value="${createProcessJSFController.assocType}" partialSubmit="true"
+				required="true">
+				<!-- <f:validateLongRange minimum="1" maximum="10"/> -->
+				<!--  <f:validator validatorId="dropletValidator" /> -->
+				<f:attribute name="fieldRef" value="Darf nicht leer sein" />
+			</ice:inputText>
+			<ice:message id="error" for="input" showDetail="false"
+				showSummary="true" style="color: red" />
+			<br />
+
+			<ice:outputLabel value="Role 1" />
+			<ice:inputText id="inputRole"
+				value="${createProcessJSFController.role}" partialSubmit="true"
+				required="true">
+			</ice:inputText>
+			<br />
+
+			<ice:outputLabel value="Process which takes Role 1" />
+			<ice:inputText id="inputP1" value="${createProcessJSFController.p1}"
+				partialSubmit="true" required="true">
+			</ice:inputText>
+			<br />
+
+			<ice:outputLabel value="Role 2" />
+			<ice:inputText id="inputRole1"
+				value="${createProcessJSFController.role2}" partialSubmit="true"
+				required="true">
+			</ice:inputText>
+			<br />
+
+			<ice:outputLabel value="Process which takes Role 2" />
+			<ice:inputText id="inputP2" value="${createProcessJSFController.p2}"
+				partialSubmit="true" required="true">
+			</ice:inputText>
+			<br />
+
+			<ice:commandButton value="New"
+				action="${createProcessJSFController.associate}" />
+			<br />
+
+		</ice:form>
+
+
+		<!--  <ice:outputText value="New Association:"
+		rendered="${empty createProcessJSFController.assocType}" />
+		-->
+		<!--  
+	<ice:dataTable id="allRoles" var="arole"
+		value="${createProcessJSFController.conInRoles}"
+		rendered="${! empty createProcessJSFController.conInRoles}">
+
+		<ice:column>
+			<f:facet name="header">
+				<ice:outputText id="column1" value="Role" />
+			</f:facet>
+			<ice:outputText id="message" value="#{arole.}" />
+		</ice:column>
+		<ice:column>
+			<f:facet name="header2">
+				<ice:outputText id="column2" value="ID" />
+			</f:facet>
+			<ice:outputText id="message2" value="#{process.id}" />
+		</ice:column>
+		
+	</ice:dataTable>
+	-->
+		</body>
+		</html>
+	</f:view>
+</jsp:root>

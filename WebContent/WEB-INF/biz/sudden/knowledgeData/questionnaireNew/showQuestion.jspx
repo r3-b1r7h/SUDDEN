@@ -1,0 +1,111 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+		<ice:form>
+					<ice:commandLink value="Zurueck zu Fragebogen" action="showSingleQuestionnaire" />
+		</ice:form>
+		<br/>
+		
+		<h2>Frage: </h2> 
+			<ice:form>
+				<ice:inputTextarea  style="width: 60; height: 10" immediate="true" partialSubmit="true" value="#{questionnaireController.currentQuestion.question}" valueChangeListener="#{questionnaireController.questionChanged}">
+				</ice:inputTextarea>
+			</ice:form>
+		<h2>Antwort: </h2> 
+				<ice:outputText value="Art der Frage: " />
+				<ice:outputText value="#{questionnaireController.questionNature}" rendered="#{fn:length(questionnaireController.currentQuestion.availableTicks) > 0 }"/>
+				<ice:panelGroup rendered="#{fn:length(questionnaireController.currentQuestion.availableTicks) == 0}">
+				<ice:form>
+					<ice:selectOneMenu value="Freitext" immediate="true" partialSubmit="true" valueChangeListener="#{questionnaireController.selectOneMenuChanged}">
+						<f:selectItem itemLabel="Freitext" itemValue="freitext" />
+						<f:selectItem itemLabel="Multiple Choice" itemValue="multiplechoice" />
+						<f:selectItem itemLabel="Single Choice" itemValue="singlechoice" />
+					</ice:selectOneMenu>
+				</ice:form>
+
+					<br /><br />
+				</ice:panelGroup>
+				
+				<br /><br />
+				<ice:panelGroup rendered="#{!questionnaireController.currentQuestion.onlyFreeText}">
+					<ice:form >
+		
+						<ice:panelGrid columns="2">
+	
+						<ice:commandButton value="Fuege Antwort hinzu" action="#{questionnaireController.addTick}" />
+						
+						<ice:inputTextarea style="width: 40; height: 2" value="#{questionnaireController.tickText}" />				
+	
+						<ice:commandButton value="Fuege Antworten aus Template hinzu" immediate="true" partialSubmit="true" action="#{questionnaireController.addTicksFromTemplate}" />
+						
+						<ice:selectOneMenu value="#{questionnaireController.selectedTemplateID}" immediate="true" partialSubmit="true">
+							<f:selectItems value="#{questionnaireController.availableTickTemplates}" />
+						</ice:selectOneMenu>
+	
+						</ice:panelGrid>
+					</ice:form>
+				</ice:panelGroup>
+
+				
+
+
+				<ice:form>
+
+				<!--<ice:panelGroup rendered="#{questionnaireController.freeText}">
+							
+				</ice:panelGroup>
+
+				<ice:panelGroup rendered="#{questionnaireController.multipleChoice}">
+							
+				</ice:panelGroup>
+
+				<ice:panelGroup rendered="#{questionnaireController.singleChoice}">
+							
+				</ice:panelGroup>                -->
+				
+				<ice:dataTable var="tick" id="tickTable"
+					value="#{questionnaireController.currentQuestion.availableTicks}"
+					columnClasses="tableColFirst tableColFirst tableCol" scrollHeight="4" style="width:25%;border-collapse:collapse;font-size:9pt;">
+	
+	 
+					<ice:column style="width:35%">
+						<f:facet name="header">
+							<ice:outputText value="Antwortmoeglichkeit(en)" />   
+						</f:facet>
+						<ice:inputTextarea  style="width: 40;" immediate="true" partialSubmit="true" value="#{tick.tickText}" valueChangeListener="#{questionnaireController.tickTextChanged}">
+							<f:param name="thistick" id="thistick" value="#{tick}" />
+						</ice:inputTextarea>
+					</ice:column>
+
+					<ice:column style="width:5%" rendered="#{!questionnaireController.currentQuestion.onlyFreeText}">
+						<f:facet name="header">
+							<ice:outputText value="Zusatztext?" />   
+						</f:facet>
+						<ice:selectBooleanCheckbox value="#{tick.freeText}" immediate="true" partialSubmit="true" valueChangeListener="#{questionnaireController.additionalFreeTextChanged}">
+							<f:param name="thistick" id="thistick" value="#{tick}" />
+						</ice:selectBooleanCheckbox>
+						
+					</ice:column>
+
+					<ice:column style="width:5%">
+						<f:facet name="header">
+							<ice:outputText value="  " />   
+						</f:facet>
+						<ice:commandButton value="Loeschen" actionListener="#{questionnaireController.deleteTick}">
+							<f:param name="tick" id="thistick" value="#{tick}" />	
+						</ice:commandButton>
+					</ice:column>
+
+				</ice:dataTable>
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

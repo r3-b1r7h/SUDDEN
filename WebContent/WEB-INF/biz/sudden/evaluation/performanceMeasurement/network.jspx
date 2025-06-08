@@ -1,0 +1,360 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+    <ui:param name="action" value="performanceMeasurementNetwork"/>
+     <ui:define name="navigationTopText">
+     design a performance measurement system for your supply network
+	 </ui:define>
+
+	<ui:define name="content">
+		<ice:panelGroup>
+			<!-- 
+			<ice:form partialSubmit="true">
+				<ice:outputText value="Scope To Use: " />
+				<ice:selectOneMenu value="#{scopeController.userScopeID}"
+					valueChangeListener="#{scopeController.selectedUserScopeChanged}"
+					immediate="true">
+					<f:selectItems value="#{scopeController.listOfScopes}" />
+				</ice:selectOneMenu>
+			</ice:form>
+	 -->
+			<center><i>Create Network Evaluation Profile</i></center>
+			<ice:outputText style="font-weight: lighter; font-size: small">
+			Please select the appropriate Case File for your Business Opportunity and the appropriate Abstract Supply Network (ASN) above. <br/> 
+			Design an Network Evaluation profile, by selecting a single Enterprise Profile in the left selection box.   <br/>
+			Assign it to one or more nodes of your ASN (second selection box). <br/>
+			You can also assign one or more Enterprise Evaluation Profiles on network level. <br/>
+			Please also specify which values you would like to the enterprises to have. <br/>
+			</ice:outputText>
+			<ice:form partialSubmit="true">
+				<ice:outputText value="Case Files: " />
+				<ice:selectOneMenu value="#{pmNetworkDesignController.caseFileId}"
+					valueChangeListener="#{pmNetworkDesignController.selectedCaseFileChanged}"
+					immediate="true">
+					<f:selectItems
+						value="#{pmNetworkDesignController.listOfCaseFiles}" />
+				</ice:selectOneMenu>
+				<ice:outputText value="Abstract Supply Netwok: " />
+				<ice:selectOneMenu value="#{pmNetworkDesignController.ASNSelect}"
+					valueChangeListener="#{pmNetworkDesignController.selectedASNChanged}"
+					immediate="true">
+					<f:selectItems value="#{pmNetworkDesignController.listOfASNs}" />
+				</ice:selectOneMenu>
+				<br/>
+					<ice:panelGroup>
+							<ice:commandButton value="Link"
+								actionListener="#{rootLinkController.link}">
+								<f:param name="link" id="link"
+									value="#{pmNetworkDesignController.selectedCaseFile}" />
+							</ice:commandButton>
+							<ice:selectOneMenu id="selectOneMenu"
+								value="#{rootLinkController.selectedItem}"
+								valueChangeListener="#{rootLinkController.changeItem}"
+								partialSubmit="true" immediate="true"
+								binding="#{rootLinkController.selectOneMenu}">
+								<f:param name="sourceObject" id="sourceObject"
+									value="#{pmNetworkDesignController.selectedCaseFile}" />
+								<f:selectItems id="selectedItem"
+									value="#{rootLinkController.linkentries}" />
+							</ice:selectOneMenu>
+							<ice:panelSeries
+								value="#{rootLinkController.primitiveTypeValues}"
+								var="linkentry" binding="#{rootLinkController.panelSeries}">
+								<ice:outputText value="#{linkentry.name}: #{linkentry.value}" />
+							</ice:panelSeries>
+					</ice:panelGroup>
+			</ice:form>
+		</ice:panelGroup>
+		
+		<ice:form>
+			<ice:panelBorder width="95%">
+				<f:facet name="north">
+					
+				</f:facet>
+				<f:facet name="west">
+					<ice:panelGroup style="left: 2px;">
+						<ice:outputLabel for="profiles" id="lableprof"
+							value="Available Enterprise Performance Evaluation Profiles" />
+						<br/>
+						<ice:selectManyListbox id="profiles"
+							value="#{pmNetworkDesignController.selectedProfiles}"
+							valueChangeListener="#{pmNetworkDesignController.selectedProfilesChanged}"
+							size="15" title="Available Profiles">
+							<f:selectItems
+								value="#{pmNetworkDesignController.availableEnterpriseProfiles}" />
+						</ice:selectManyListbox>
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="center">
+					<ice:panelGroup style="left: 2px;">
+						<ice:outputText>Assign enterprise evaluation profile (EEP - left) on Network level </ice:outputText>
+						<br/>
+						<ice:commandButton value="Add to Competences All Have"
+							actionListener="#{pmNetworkDesignController.addCompetencesAllHave}"
+							style="left: 2px;" />
+						<br />
+						<ice:commandButton value="Add to Competences One Or More Have"
+							actionListener="#{pmNetworkDesignController.addCompetencesOneOrMoreHave}"
+							style="left: 2px;" />
+						<br />
+						
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="south">
+					<ice:panelGroup style="left: 2px;">
+						<ice:outputText>Set one enterprise evaluation profile (EEP - above) for selected supply network role(s) (below)</ice:outputText>
+						<br/>
+						<ice:selectManyListbox id="profilesForASNRole"
+							value="#{pmNetworkDesignController.selectedASNRoles}"
+							valueChangeListener="#{pmNetworkDesignController.selectedASNRolesChanged}"
+							title="Available Roles in the Supplier Network"
+							style="left: 2px;">
+							<f:selectItems value="#{pmNetworkDesignController.ASNRoles}" />
+						</ice:selectManyListbox>
+						<ice:commandButton value="Assign EEP to Role(s)"
+							actionListener="#{pmNetworkDesignController.assignCompetences2Roles}"
+							style="left: 2px;" />
+						<br />
+						
+						<br/>
+						<ice:outputText  style="font-weight: lighter; font-size: small">
+							Having assigned the evaluation profiles and determined the desired min/max values the supply network participants should exhibit search for potential concrete teams.
+						</ice:outputText>
+						<ice:commandButton
+							value="Search Supply Networks for Prototype"
+							action="#{pmNetworkDesignController.triggerGeneratePrototypeTeam}"
+							rendered="#{pmNetworkDesignController.showPrototypeTeamButton}"></ice:commandButton>
+
+						<ice:commandButton
+							value="Search Supply Networks for Product"
+							action="#{pmNetworkDesignController.triggerGenerateFinalTeam}"
+							rendered="#{pmNetworkDesignController.showFinalTeamButton}"></ice:commandButton>
+					</ice:panelGroup>
+				</f:facet>
+				
+			</ice:panelBorder>
+		</ice:form>
+
+		<ice:form>
+		
+		
+			<!--                  COMPETENCES ALL HAVE                             
+			
+			
+			<ice:tree
+				value="#{pmNetworkDesignController.competenceAllHave}"
+				var="dragNode" hideRootNode="false" hideNavigation="false"  >
+				<ice:treeNode>
+					<f:facet name="content">
+						<ice:panelGroup dragValue="#{dragNode}" draggable="true"
+							style="display:inline;width:30px; border: 1px solid silver; cursor:move;"
+							dragMask="hover_start, dragging, hover_end, drag_cancel"
+							dragOptions="dragGhost">
+							<ice:commandLink
+								actionListener="#{dragNode.userObject.nodeClicked}"
+								value="#{dragNode.userObject.text}" escape="true" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:treeNode>
+			</ice:tree>
+			
+			-->
+			
+			<ice:panelGroup style="border-width: thin; padding: 3px;">
+				<ice:outputLabel for="competencesAllRequire">List of competences   <strong>all</strong>   supply network partners need to have:</ice:outputLabel>
+				<ice:dataTable id="competencesAllRequire"
+					value="#{pmNetworkDesignController.competenceAllHave}" var="comp">
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Competence, Performance Profile" />
+						</f:facet>
+						<ice:outputText value="#{comp.nameOfCompetenceProfile}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Min" />
+						</f:facet>
+						<ice:inputText id="compAll_Min" value="#{comp.minValue}"
+							actionListener="#{pmNetworkDesignController.updateCompetenceAllHave}">
+						</ice:inputText>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Max" />
+						</f:facet>
+						<ice:inputText id="compAll_Max" value="#{comp.maxValue}"
+							actionListener="#{pmNetworkDesignController.updateCompetenceAllHave}">
+						</ice:inputText>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value=" " />
+						</f:facet>
+						<ice:panelGroup styleClass="removeElementButton"
+							id="updateCompAll"
+							style="border-width:thin;  border-style: groove">
+							<ice:commandButton id="UPDATECompetenceAllHave"
+								actionListener="#{pmNetworkDesignController.updateCompetenceAllHave}"
+								value="update">
+							</ice:commandButton>
+							<ice:commandButton id="REMOVECompetenceAllHave"
+								actionListener="#{pmNetworkDesignController.removeCompetenceAllHave}"
+								value="remove">
+								<f:attribute name="removeElementId" value="#{comp.id}" />
+							</ice:commandButton>
+						</ice:panelGroup>
+					</ice:column>
+				</ice:dataTable>
+			</ice:panelGroup>
+		</ice:form>
+
+
+		<!--                  COMPETENCES ONE OR MORE HAVE                             -->
+		<ice:form>
+			<ice:panelGroup style="border-width: thin; padding: 3px;">
+				<ice:outputLabel for="competencesOneOrMoreHave" escape="false">List of competences  <strong>one
+					or more have</strong>  supply network partners need to have:</ice:outputLabel>
+				<ice:dataTable id="competencesOneOrMoreHave"
+					value="#{pmNetworkDesignController.competenceOneOrMoreHave}"
+					var="comp">
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Competence, Performance Profile" />
+						</f:facet>
+						<ice:outputText value="#{comp.nameOfCompetenceProfile}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Min" />
+						</f:facet>
+						<ice:inputText id="compMore_Min" value="#{comp.minValue}"
+							actionListener="#{pmNetworkDesignController.updateCompetenceOneOrMoreHave}">
+						</ice:inputText>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Max" />
+						</f:facet>
+						<ice:inputText id="compMore_Max" value="#{comp.maxValue}"
+							actionListener="#{pmNetworkDesignController.updateCompetenceOneOrMoreHave}">
+						</ice:inputText>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Number" />
+						</f:facet>
+						<ice:inputText id="compAll_Number"
+							value="#{comp.numberOfSuppliersNeedCompetence}"
+							actionListener="#{pmNetworkDesignController.updateCompetenceOneOrMoreHave}">
+						</ice:inputText>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value=" " />
+						</f:facet>
+						<ice:panelGroup styleClass="removeElementButton"
+							id="updateComp1OrMore"
+							style="border-width:thin;  border-style: groove">
+							<ice:commandButton id="UPDATECompetence1orMoreHave"
+								actionListener="#{pmNetworkDesignController.updateCompetenceOneOrMoreHave}"
+								value="update">
+							</ice:commandButton>
+							<ice:commandButton id="REMOVECompetence1orMoreHave"
+								actionListener="#{pmNetworkDesignController.removeCompetenceOneOrMoreHave}"
+								value="remove">
+								<f:attribute name="removeElementId" value="#{comp.id}" />
+							</ice:commandButton>
+						</ice:panelGroup>
+					</ice:column>
+				</ice:dataTable>
+			</ice:panelGroup>
+		</ice:form>
+
+
+		<!--                  COMPETENCES FOR ASN                              -->
+		<ice:form>
+			<ice:panelGroup>
+				<ice:outputLabel for="competencesASN">
+					<strong> Assign one performance evaluation profile for
+					each role </strong> in the abstract supply network
+				</ice:outputLabel>
+				<ice:dataTable id="competencesASN"
+					value="#{pmNetworkDesignController.ASNRoleNodes}" var="node"
+					width="100%" style="padding: 1px; margin: 0px;" border="1">
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Supplier Network Node" />
+						</f:facet>
+						<ice:panelGroup style="border: medium,dotted;">
+							<ice:outputText
+								value="#{node.qualificationProfile.firstProductName}" />
+						</ice:panelGroup>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Competence, Performance Profile" />
+						</f:facet>
+						<ice:panelGroup style="border: medium,dotted;">
+							<ice:outputText rendered="#{node.competenceNeeded != null}"
+								value="#{node.competenceNeeded.nameOfCompetenceProfile}" />
+							<ice:outputText rendered="#{node.competenceNeeded == null}"
+								value="Assign a Performance Profile to this Role" />
+						</ice:panelGroup>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Min" />
+						</f:facet>
+						<ice:panelGroup style="border: medium,dotted;">
+							<ice:inputText id="compAll_Min"
+								rendered="#{node.competenceNeeded != null}"
+								value="#{node.competenceNeeded.minValue}"
+								actionListener="#{pmNetworkDesignController.updateASNEnterpriseProfile}">
+							</ice:inputText>
+						</ice:panelGroup>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Max" />
+						</f:facet>
+						<ice:panelGroup style="border: medium,dotted;">
+							<ice:inputText id="compAll_Max"
+								rendered="#{node.competenceNeeded != null}"
+								value="#{node.competenceNeeded.maxValue}"
+								actionListener="#{pmNetworkDesignController.updateASNEnterpriseProfile}">
+							</ice:inputText>
+						</ice:panelGroup>
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Remove" />
+						</f:facet>
+						<ice:panelGroup styleClass="removeElementButton"
+							id="updateCompASN" rendered="#{node.competenceNeeded != null}"
+							style="border-width:thin;  border-style: groove">
+							<ice:commandButton id="UPDATEASNProfile"
+								actionListener="#{pmNetworkDesignController.updateASNEnterpriseProfile}"
+								rendered="#{node.competenceNeeded != null}" value="update">
+							</ice:commandButton>
+							<ice:commandButton id="REMOVEASNProfile"
+								actionListener="#{pmNetworkDesignController.removeASNEnterpriseProfile}"
+								value="remove">
+								<f:attribute name="updateElementRemove" value="#{comp.id}" />
+							</ice:commandButton>
+						</ice:panelGroup>
+					</ice:column>
+				</ice:dataTable>
+			</ice:panelGroup>
+		</ice:form>
+
+		<ice:form>
+			<ice:commandLink value="home" action="home" />
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

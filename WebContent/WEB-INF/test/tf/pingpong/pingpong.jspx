@@ -1,0 +1,115 @@
+<!-- 
+    Document   : jade
+    Created on : 11-Jul-2008, 22:39:04
+    Author     : gweich
+-->
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+
+
+	<ui:define name="content">
+        <h1>Welcome to PingPong!</h1>
+        <br />
+        Agents present:
+        <br />
+        <ice:outputText value="No-one is here :("
+                        rendered="${empty pingpongJSFController.agents}" />
+        
+        <ice:dataTable id="allAgents" var="agent"
+                       value="${pingpongJSFController.agents}"
+                       rendered="${! empty pingpongJSFController.agents}">
+          <ice:column>
+            <f:facet name="header">
+              <ice:outputText value="Agent" />
+            </f:facet>
+            <ice:outputText value="#{agent.name}" />
+          </ice:column>
+          <ice:column>
+            <f:facet name="header">
+              <ice:outputText value="State" />
+            </f:facet>
+            <ice:outputText value="#{agent.state}" />
+          </ice:column>
+        </ice:dataTable>
+        
+        <br />
+        <p>Start Agents:</p>
+        <br />
+        
+        <ice:form>
+          <ice:commandButton value="start RMA"
+                             action="${pingpongJSFController.startRMA}" />
+        </ice:form>
+        <br/><br/>
+        <ice:form>
+          <ice:commandButton value="start 1 PingPong Agent"
+                             action="${pingpongJSFController.startPingPongAgent}" />
+        </ice:form>
+        <br/><br/>
+        <ice:form>
+          <ice:commandButton value="Start N PingPong Agents"
+                             action="${pingpongJSFController.startNPingPongAgents}" />
+          <ice:outputText
+            value="&lt;i&gt;N &lt;/i&gt; = " escape="false" /> <ice:inputText
+            title="# of Agents "
+            value="#{pingpongJSFController.numberOfPPAgentsToStart}" />  
+        </ice:form>
+        <br/><br/>
+        <ice:form>
+          <ice:commandButton
+            value="start this type of agent:"
+            action="${pingpongJSFController.startAgent}" /> 
+          <ice:outputText value="Agent Name " /> <ice:inputText
+            title="Agent Name" value="#{pingpongJSFController.agentName}" />
+          <ice:outputText value="Agent Class Name " /> <ice:inputText
+            title="Agent Class Name"
+            value="#{pingpongJSFController.agentType}" />
+          <ice:outputText value="Parameter " /> <ice:inputText
+            title="Parameter" value="#{pingpongJSFController.agentParam}" />
+        </ice:form>
+        <br />
+        <hr />
+        <br />
+				<ice:form id="clear" >
+					<ice:commandButton value="Clear Message List"
+                             action="${pingpongJSFController.clearAgentCommunications}" />
+				</ice:form>
+        <ice:dataTable id="allCommunication" var="co"
+                       value="${pingpongJSFController.agentCommunications}"
+                       rendered="${! empty pingpongJSFController.agentCommunications}"
+                       border="1" cellspacing="3">
+          <ice:column>
+            <f:facet name="header">
+              <ice:outputText value="Agent" />
+            </f:facet>
+            <ice:outputText value="#{co.agentName}" />
+          </ice:column>
+          <ice:column>
+            <f:facet name="header">
+              <ice:outputText value="Message" />
+            </f:facet>
+            <ice:outputText rendered="${null != co.question}"
+                            value="#{co.question}" />
+            <ice:outputText rendered="${null != co.question}" escape="false"
+                            value=" &lt;br /&gt; Please Answer: yes/no" />
+            <ice:outputText rendered="${null == co.question}"
+                            value="#{co.statement}" />
+            <ice:form>
+              <ice:selectBooleanCheckbox rendered="${null != co.question}"
+                                         value="#{co.statement}" />
+              <ice:commandButton rendered="${null != co.question}"
+                                 value="Submit Answer" action="${co.updateAgent}" />
+            </ice:form>
+          </ice:column>
+        </ice:dataTable>
+	</ui:define>
+</ui:decorate>
+

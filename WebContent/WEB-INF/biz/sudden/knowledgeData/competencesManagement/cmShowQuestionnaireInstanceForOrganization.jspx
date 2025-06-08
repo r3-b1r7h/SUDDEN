@@ -1,0 +1,237 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:define name="content">
+		<ice:form>
+			<ice:panelGrid columns="2" cellspacing="5">
+				<ice:outputLabel for="orgName" value="Organization: " />
+				<ice:outputText
+					value="#{CMController.cmInstanceController.selectedQuestionnaireInstance.organization.name}" />
+				<ice:outputLabel for="qName" value="Questionnaire: " />
+				<ice:outputText
+					value="#{CMController.cmInstanceController.selectedQuestionnaireInstance.questionnaire.name}" />
+				<ice:outputLabel for="qValue" value="Questionnaire Points: " />
+				<ice:outputText
+					value="#{CMController.cmInstanceController.selectedQuestionnaireInstance.value}" />
+				<ice:commandButton value="BACK"
+					action="browseQuestionnaireInstancesNoCVIsTicks" />
+			</ice:panelGrid>
+		</ice:form>
+
+		<ice:form>
+			<ice:panelGroup styleClass="exampleBox dataScrollingContainer">
+
+				<!-- DataPaginator displaying information about the currently displayed page and location within the dataModel-->
+				<ice:panelGroup style="float:left;">
+					<ice:dataPaginator id="scroll_2" for="data"
+						rowsCountVar="rowsCount"
+						displayedRowsCountVar="displayedRowsCountVar"
+						firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+						pageCountVar="pageCount" pageIndexVar="pageIndex">
+						<ice:outputFormat
+							value="{0} Records found, displaying {1} records from {2} to {3}. Page {4} / {5}"
+							styleClass="standard">
+							<f:param value="#{rowsCount}" />
+							<f:param value="#{displayedRowsCountVar}" />
+							<f:param value="#{firstRowIndex}" />
+							<f:param value="#{lastRowIndex}" />
+							<f:param value="#{pageIndex}" />
+							<f:param value="#{pageCount}" />
+						</ice:outputFormat>
+					</ice:dataPaginator>
+				</ice:panelGroup>
+
+				<ice:panelGroup styleClass="clearer" />
+
+				<ice:dataTable id="data" rows="1"
+					value="#{CMController.cmInstanceController.selectedQuestionnaireInstance.competenceInstances}"
+					var="competenceInstance" scrollHeight="250px"
+					style="float:left;font-size:11px;"
+					styleClass="dataPaginatorDataTable" cellpadding="0">
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Name" />
+						</f:facet>
+						<ice:outputText value="#{competenceInstance.competence.name}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="WM" />
+						</f:facet>
+						<ice:outputText
+							value="#{competenceInstance.competence.weightMultiplier}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="W" />
+						</f:facet>
+						<ice:outputText value="#{competenceInstance.weight}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="WV" />
+						</f:facet>
+						<ice:outputText value="#{competenceInstance.value}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="ACV" />
+						</f:facet>
+						<ice:outputText value="#{competenceInstance.autoCalcValue}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Dimension Instances" />
+						</f:facet>
+						<ice:dataTable id="dataCompetences" rows="100"
+							value="#{competenceInstance.dimensionInstances}"
+							var="dimensionInstance" scrollHeight="250px" style="float:left"
+							styleClass="dataPaginatorDataTable" cellpadding="0">
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="Name" />
+								</f:facet>
+								<ice:outputText value="#{dimensionInstance.dimension.name}" />
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="WM" />
+								</f:facet>
+								<ice:outputText
+									value="#{dimensionInstance.dimension.weightMultiplier}" />
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="W" />
+								</f:facet>
+								<ice:outputText value="#{dimensionInstance.weight}" />
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="WV" />
+								</f:facet>
+								<ice:outputText value="#{dimensionInstance.value}" />
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="ACV" />
+								</f:facet>
+								<ice:outputText value="#{dimensionInstance.autoCalcValue}" />
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">
+									<ice:outputText value="CVI Instance" />
+								</f:facet>
+								<ice:dataTable id="dataDimensions" rows="100"
+									value="#{dimensionInstance.cviInstance}" var="cviInstance"
+									scrollHeight="250px" style="float:left"
+									styleClass="dataPaginatorDataTable" cellpadding="0">
+									<ice:column>
+										<f:facet name="header">
+											<ice:outputText value="NRV" />
+										</f:facet>
+										<ice:outputText value="#{cviInstance.value}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:outputText value="ACV" />
+										</f:facet>
+										<ice:outputText value="#{cviInstance.autoCalcValue}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<ice:outputText value="Tick Instances" />
+										</f:facet>
+										<ice:dataTable id="dataTicks" rows="100"
+											value="#{cviInstance.ticks}" var="tickInstance"
+											scrollHeight="250px" style="float:left"
+											styleClass="dataPaginatorDataTable" cellpadding="0">
+											<ice:column>
+												<f:facet name="header">
+													<ice:outputText value="T" />
+												</f:facet>
+												<ice:outputText value="#{tickInstance.tick.type}" />
+											</ice:column>
+											<ice:column>
+												<f:facet name="header">
+													<ice:outputText value="Text" />
+												</f:facet>
+												<ice:outputText value="#{tickInstance.tick.TTextValue}" />
+											</ice:column>
+											<ice:column>
+												<f:facet name="header">
+													<ice:outputText value="Val" />
+												</f:facet>
+												<ice:outputText value="#{tickInstance.value}" />
+											</ice:column>
+											<ice:column>
+												<f:facet name="header">
+													<ice:outputText value="ACV" />
+												</f:facet>
+												<ice:outputText value="#{tickInstance.autoCalcValue}" />
+											</ice:column>
+											<ice:column>
+												<f:facet name="header">
+													<ice:outputText value="Q" />
+												</f:facet>
+												<ice:outputText value="#{tickInstance.tick.quantifiable}" />
+											</ice:column>
+										</ice:dataTable>
+									</ice:column>
+								</ice:dataTable>
+							</ice:column>
+						</ice:dataTable>
+					</ice:column>
+				</ice:dataTable>
+
+				<ice:panelGroup style="float:left;width:auto;">
+					<center><ice:panelGrid columns="1"
+						styleClass="scrollerTable2"
+						columnClasses="standardTable_ColumnCentered" style="float:left;">
+						<ice:dataPaginator id="scroll_1" for="data" fastStep="10"
+							pageCountVar="pageCount" pageIndexVar="pageIndex"
+							paginator="true" paginatorMaxPages="9">
+							<f:facet name="first">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-first.gif"
+									style="border:none;" />
+							</f:facet>
+							<f:facet name="last">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-last.gif"
+									style="border:none;" />
+							</f:facet>
+							<f:facet name="previous">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-previous.gif"
+									style="border:none;" />
+							</f:facet>
+							<f:facet name="next">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-next.gif"
+									style="border:none;" />
+							</f:facet>
+							<f:facet name="fastforward">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-ff.gif"
+									style="border:none;" />
+							</f:facet>
+							<f:facet name="fastrewind">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-fr.gif"
+									style="border:none;" />
+							</f:facet>
+						</ice:dataPaginator>
+					</ice:panelGrid></center>
+				</ice:panelGroup>
+			</ice:panelGroup>
+
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

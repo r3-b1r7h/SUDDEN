@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- define bean for Messages -->
+	
+	<bean id="kdm.fileContainerRepository" class="biz.sudden.knowledgeData.kdm.repository.hibernate.FileContainerRepositoryImpl" parent="repositoryTemplate" />
+
+
+	<!-- Services -->
+
+	<bean id="kdm.CaseService"
+		class="biz.sudden.knowledgeData.kdm.service.impl.CaseServiceImpl">
+		<property name="businessOpportunityRepository" ref="baseAndUtility.businessOpportunityRepository" />
+		<property name="caseFileRepository" ref="baseAndUtility.caseFileRepository" />
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+		<property name="genericRepository" ref="suddenGenericRepository" />
+    	<property name="hboService" ref="handleBOService" />
+	</bean>
+
+	<bean id="kdm.KDMService"
+		class="biz.sudden.knowledgeData.kdm.service.impl.KdmServiceImpl">
+		<property name="rootLinkService" ref="rootLinkService" />
+		<property name="linkService" ref="baseAndUtility.linkService" />
+		<property name="ratingService" ref="designCoordination.collaborativePlanning.bulletinBoardService" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+		<property name="serviceManagementService" ref="baseAndUtility.smService" />
+		<property name="enterpriseEvaluationService" ref="pm.enterpriseService" />
+		<property name="productMaterialSupportingServices_Service"
+			ref="serviceManagement.ProductMaterialSupportingServices" />
+		<property name="technologyService" ref="serviceManagement.TechnologyService" />
+		<property name="machineService" ref="serviceManagement.MachineryTypeServices" />
+		<property name="caseService" ref="kdm.CaseService" />
+		<property name="organisationService" ref="userOrganizationManagement.organizationManagement.service.Organization" />
+		<property name="coordinationFitService" ref="evaluation.coordinationFitService" />
+		<property name="organizationRepository" ref="userOrganizationManagement.UserManagement.OrganizationsRepository" />
+		<property name="userService" ref="baseAndUtility.userService" />
+		<property name="sendMessageService" ref="designCoordination.collaborativePlanning.sendMessageService" />
+		<property name="scopeService" ref="baseAndUtility.scopeService" />
+		<property name="bulletinBoardService" ref="designCoordination.collaborativePlanning.bulletinBoardService" />
+		<property name="individualService" ref="baseAndUtility.individualService" />
+		<property name="thingRepository" ref="serviceManagement.thingRepository" />
+		<property name="manufacturingProcessService" ref="serviceManagement.ManufacturingProcessTypeService" />
+		<property name="cmInstancesService" ref="competencesManagement.InstancesManagementService" />
+		<property name="cmManagementService" ref="competencesManagement.CompetencesManagementService" />
+	</bean>
+	
+	<bean id="kdm.FileRepository"
+       class="biz.sudden.knowledgeData.kdm.repository.hibernate.FileRepositoryImpl" parent="repositoryTemplate" />
+    
+   
+	<bean id="kdm.FileUploadService" 
+	   class="biz.sudden.knowledgeData.kdm.service.impl.FileUploadServiceImpl">
+	   <property name="fileContainerRepository" ref="kdm.fileContainerRepository" />
+	   <property name="fileRepository" ref="kdm.FileRepository" />
+	</bean>
+	
+	<bean id="kdm.targetService"
+          class="biz.sudden.designCoordination.collaborativePlanning.service.CollaborativePlanningTargetService" >
+	  <property name="targetTypes">
+	   <list>
+	     <bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+	        <property name="domainClass" value="biz.sudden.baseAndUtility.domain.CaseFile" />
+	        <property name="controllerBeanName" value="caseFileController" />
+	        <property name="description" value="CaseFiles" />
+	        <property name="viewID" value="browseCaseFiles" />
+	        <property name="parameterValuesPairs">
+	          <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+	             <property name="parameter" value="currentCaseFile" />
+	             <property name="parameterValue" value="" />
+	          </bean>
+	        </property>		      
+	     </bean>
+	    </list>
+	  </property>
+	</bean>
+	
+	
+</beans>

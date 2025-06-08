@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd ">
+
+	<!-- get the base config -->
+	<import resource="rootContext.xml" />
+	<import resource="tf/pingpong/context.xml" />
+    <import resource="knowledgeData/kdm/testcontext.xml"/>
+	
+	<bean id="dataSource" class="datasource.HsqldbDataSource">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+        <!--  
+        <property name="url" value="jdbc:hsqldb:hsql://140.78.73.54" />
+        <property name="username" value="sa" />
+        <property name="password" value="jkuce" />
+        -->
+        <!--     
+        <property name="url" value="jdbc:hsqldb:hsql://140.78.73.129" />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+       -->
+        
+        
+        <property name="url" value="jdbc:hsqldb:file:./database/sudden" />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+        
+    </bean> 
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" parent="sessionFactoryBase">    
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.jdbc.batch_size">0</prop>
+            </props>
+        </property>
+    </bean>
+
+  <!--    -->
+	<bean id="pingpongJSFController" class="biz.sudden.jade.pingpong.PingPongjsfControllerImpl" scope="session">
+		<property name="jadeService" ref="pingpongService" />
+    <property name="renderManager" ref="userInterface.gui.renderManager" />  
+	</bean>
+  
+
+</beans>

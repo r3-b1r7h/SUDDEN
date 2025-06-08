@@ -1,0 +1,62 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGrid columns="2" cellspacing="5">
+
+		<!-- first column, for tree navigation -->
+		<ice:panelGroup style="border: 1px solid gray; height: auto;">
+			<!--
+                    This is a very links tree comprising of only text nodes.  The
+                    expand and contract images are rendered because the "imageDir"
+                    attribute on the tree component has been set to a known path.
+                -->
+			<ice:tree id="tree"
+				value="#{CMController.cmQuestionnaireController.questionnaireController.categoryTreeController.model}"
+				var="item" hideRootNode="false" hideNavigation="false"
+				imageDir="./xmlhttp/css/xp/css-images/">
+				<ice:treeNode>
+					<f:facet name="icon">
+						<ice:panelGroup style="display: inline">
+							<h:graphicImage value="#{item.userObject.icon}" />
+						</ice:panelGroup>
+					</f:facet>
+					<f:facet name="content">
+						<ice:panelGroup style="display: inline">
+							<ice:commandLink actionListener="#{item.userObject.nodeSelected}"
+								value="#{item.userObject.text}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:treeNode>
+			</ice:tree>
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="border: 1px solid gray; height: 300px;">
+			<ice:commandButton value="Build Tree"
+				action="${CMController.cmQuestionnaireController.buildEntityTree}" />
+			<h4>Selected Questionnaire</h4>
+			<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+				rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+				<ice:outputLabel for="questionnaireID" value="ID: " />
+				<ice:outputText id="questionnaireID"
+					value="#{CMController.cmQuestionnaireController.questionnaire.id}"
+					cols="20" />
+				<ice:outputLabel for="questionnaireName" value="Name: " />
+				<ice:outputText id="questionnaireName" size="25" maxlength="25"
+					value="#{CMController.cmQuestionnaireController.questionnaire.name}" />
+				<ice:outputLabel for="questionnaireDescription"
+					value="Description: " />
+				<ice:outputText id="questionnaireDescription"
+					value="#{CMController.cmQuestionnaireController.questionnaire.description}"
+					cols="20" />
+				<ice:outputLabel for="questionnaireCategoryID" value="Category ID: " />
+				<ice:outputText id="questionnaireCategoryID"
+					value="#{CMController.cmQuestionnaireController.questionnaire.categoryId}"
+					cols="20" />
+			</ice:panelGrid>
+		</ice:panelGroup>
+
+	</ice:panelGrid>
+
+</ice:panelGroup>

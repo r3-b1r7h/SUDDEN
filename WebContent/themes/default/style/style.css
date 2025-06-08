@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: medium;
+}
+
+html {
+	margin:0 1em;
+	padding-bottom: 275px;
+	background-image: url("../img/dropbox_large.png");
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	background-image: url("../img/dropbox_large.png");
+}
+
+body {
+	padding: 0 1em;
+	font-family: sans-serif;
+	font-size: 100.1%;
+	line-height: 1.5;
+}
+
+p {
+	margin: .5em 0;
+}
+
+h1,h2,h3 {
+	margin: 2em 0 1em;
+	color: #039;
+}
+
+h1 {
+	font-size: 120%;
+}
+
+h2 {
+	font-size: 110%;
+}
+
+h3 {
+	font-size: 105%;
+}
+
+a {
+	color: #039;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+tr,td,th {
+	text-align: left;
+	padding: .25em;
+}
+
+label {
+	padding-right: .5em;
+	font-weight: bold;
+}
+
+.error {
+	padding-left: 1em;
+	color: #099;
+	font-weight: bold;
+	font-size: small;
+}

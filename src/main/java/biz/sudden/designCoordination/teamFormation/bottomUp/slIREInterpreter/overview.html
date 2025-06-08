@@ -1,0 +1,26 @@
+<html>
+<body>
+This folder contains a simple generic SL IRE intepreter.
+
+Writing a 'proper' one would almost certainly best use Prolog or some form of logic programming.
+(Since this is how IRE's are defined.).
+
+The interpreter currently works only on IRE's of the form ?x P(x) ^ Q(x) || Q'(x) etc.
+
+Essentially it compiles the predicates in the proposition of the IRE into Java (using predefined rules) to 
+produce a single call which will match a given object (of a specific type) vs the IRE to see if it matches
+or not.
+This then allows execution of the query.
+
+As mentioned above this isn't elegant merely reasonably functional. 
+
+While JADE's variables are themselves typed these IRE interpreters don't strictly check them.
+
+This code is used within the NoticeboardFactory and Noticeboard agents to provide querying
+for Noticeboards/Potential Extensions.
+
+NOTE: this is the old single variable IRE interpreter.
+See package below (UpdatedIREInterpreter) for a more general one.
+
+</body>
+</html>

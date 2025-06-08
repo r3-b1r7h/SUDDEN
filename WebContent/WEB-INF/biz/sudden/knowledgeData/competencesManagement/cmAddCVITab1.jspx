@@ -1,0 +1,38 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="synopsisBox textEntryContainer">
+		<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+			rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+			<ice:outputLabel for="cviName" value="Name: " />
+			<ice:inputText id="cviName" size="25" maxlength="25"
+				value="#{CMController.cmCVIController.cvi.name}"
+				partialSubmit="true" />
+			<ice:outputLabel for="cviDescription" value="Description: " />
+			<ice:inputTextarea id="cviDescription"
+				value="#{CMController.cmCVIController.cvi.description}" cols="20"
+				rows="4" partialSubmit="true"
+				style="width:280px;height:80px;overflow: auto;" />
+			<ice:outputLabel for="cviMinRange" value="Minimum Range Value: " />
+			<ice:inputText id="cviMinRange" size="25" maxlength="25"
+				value="#{CMController.cmCVIController.cvi.minRange}"
+				partialSubmit="true" />
+			<ice:outputLabel for="cviMaxRange" value="Maximum Range Value: " />
+			<ice:inputText id="cviMaxRange" size="25" maxlength="25"
+				value="#{CMController.cmCVIController.cvi.maxRange}"
+				partialSubmit="true" />
+			<ice:outputLabel for="cviTickMultiple" value="Multiple Choice: " />
+			<ice:selectBooleanCheckbox id="cviTickMultiple"
+				value="#{CMController.cmCVIController.cvi.multipleChoice}" />
+			<ice:outputLabel for="cviMultipleChoiceValues"
+				value="Multiple Choice Values (separated by ';'): " />
+			<ice:inputText id="cviMultipleChoiceValues" size="25" maxlength="25"
+				value="#{CMController.cmCVIController.cvi.multipleChoiceValues}"
+				partialSubmit="true" />				
+		</ice:panelGrid>
+	</ice:panelGroup>
+</ice:panelGroup>
+
+

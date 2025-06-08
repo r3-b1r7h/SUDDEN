@@ -1,0 +1,138 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+	<ui:define name="content">
+	<f:view>
+		<h1>Welcome to Process Box!</h1>
+
+		<br />
+		<br />
+		<p><i> Process Box is a simple (UI) example for the
+		baseAndUtility.connectable package. It allows creating Processes and
+		associating them via Associations. </i></p>
+		<br />
+		<br />
+		<p>
+		<ice:form>
+				<ice:outputText value="Current User Scope " />
+				<ice:outputText value="#{scopeJSFController.userScope.name}" />
+			<ice:commandLink value="Manage Scopes" action="manageScopes" />
+		</ice:form></p>
+
+
+		<p><i> Defined processes: </i></p>
+
+		<ice:outputText value="No Process available"
+			rendered="${empty createProcessJSFController.allProcesses}" />
+
+		<ice:dataTable id="allProcesses" var="process"
+			value="${createProcessJSFController.allProcesses}"
+			rendered="${! empty createProcessJSFController.allProcesses}">
+
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column1" />
+				</f:facet>
+				<ice:outputText id="message" value="#{process.name}" />
+			</ice:column>
+		</ice:dataTable>
+
+
+		<!--  
+	<ice:form>
+		<ice:commandButton value="addInput(1,1)" action="${JSFController.addInput}" /> <br />
+	</ice:form>	
+	-->
+
+		<br />
+		<br />
+		<i> <b> --- Process Box functions --- </b> </i>
+		<br />
+
+		<p><ice:form>
+			<ice:commandLink value="Create a new Process"
+				action="${createProcessJSFController.navigateToCreate}" />
+		</ice:form></p>
+
+		<p><ice:form>
+			<ice:commandLink value="Search a Process"
+				action="${createProcessJSFController.navigateToFind}" />
+		</ice:form></p>
+
+		<p><ice:form>
+			<ice:commandLink value="Associate Processes"
+				action="${createProcessJSFController.navigateToAssociate}" />
+		</ice:form></p>
+
+		<p><ice:form>
+			<ice:commandLink value="Find Associations"
+				action="${createProcessJSFController.navigateToFindAssoc}" />
+		</ice:form></p>
+
+		<p><ice:form>
+			<ice:commandLink value="Find Associations of a Process"
+				action="${createProcessJSFController.navigateToFindAssoc4C}" />
+		</ice:form></p>
+
+		<p><ice:form>
+			<ice:commandLink
+				value="Find Associations by Association type and  Process name"
+				action="${createProcessJSFController.navigateToFindAssocByAt_P}" />
+		</ice:form></p>
+
+
+		<p><ice:form>
+			<ice:commandLink value="GO to ServiceManagement"
+				action="${sMController.navigateToSM}" />
+		</ice:form></p>
+		
+		<p><ice:form>
+		<ice:commandButton value="Call test_create method!"
+				action="${createProcessJSFController.test_create}" />
+		</ice:form></p>
+		
+		<p><ice:form>
+		<ice:commandButton value="Call test_getAssoc method!"
+				action="${createProcessJSFController.test_getAssoc}" />
+		</ice:form></p>
+		
+		<p><ice:form>
+		<ice:commandButton value="Call test_directedSearch method!"
+				action="${sMController.test_directedSearch}" />
+		</ice:form></p>
+		
+		<p><ice:form>
+		<ice:commandButton value="Call test_Occurrences method!"
+				action="${createProcessJSFController.test_Occurrences}" />
+		</ice:form></p>
+		
+		<p><ice:form>
+		<ice:commandButton value="Call test_OccurrenceAndScope method!"
+				action="${createProcessJSFController.test_OccurrencesAndScope}" />
+		</ice:form></p>
+		
+		<p><ice:form>
+		<!-- <ice:commandLink value="ShowTree"	action="toTree"></ice:commandLink>-->
+		<!--  <ice:commandButton value="Drag and Drop Tree Example"
+				action="${sMController.navigateToTree}" />-->
+		<ice:commandButton value="Drag and Drop Tree Example"
+				action="${sMController.navigateToTree}" />
+		</ice:form></p>
+		
+		<!--  
+	<p><ice:form>
+		<ice:commandLink value="Show Connectables" action="${createProcessJSFController.navigateToShowC}" />
+	</ice:form></p>
+	-->
+		<!--  
+	<A href="../knowledgeData/serviceManagement/sm_overview.jspx">Go to Service Management</A>
+	-->
+	</f:view>
+	</ui:define>
+
+</ui:decorate>

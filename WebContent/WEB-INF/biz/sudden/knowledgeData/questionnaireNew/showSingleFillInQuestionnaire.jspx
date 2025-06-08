@@ -1,0 +1,65 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+
+		<h2>Willkommen</h2> <br /><br />
+
+		<ice:form>
+
+		<ice:outputText value="Name" /> <ice:inputText value="#{fillinController.organisation}" immediate="true" partialSubmit="true"></ice:inputText>
+
+		<ice:commandButton value="ok" action="#{fillinController.startQuestionnaire}" />
+
+		</ice:form>
+		<!--  
+
+		
+
+				<ice:commandButton value="Neue Frage" action="#{questionnaireController.createQuestion}" /><br />
+				<ice:inputTextarea style="width:70%;height:100px;font-size:0.8em" value="#{questionnaireController.questionName}"></ice:inputTextarea>
+
+				
+		
+				<br /><br />
+			
+				<ice:commandButton value="Fuege Antworten aus Template hinzu" immediate="true" partialSubmit="true" action="#{questionnaireController.addTicksFromTemplateToSelectedQuestions}" />
+		
+				<ice:selectOneMenu value="#{questionnaireController.selectedTemplateID}" immediate="true" partialSubmit="true">
+					 <f:selectItems value="#{questionnaireController.availableTickTemplates}" />
+				</ice:selectOneMenu>
+
+                <ice:dataTable var="question" id="question"
+					value="#{questionnaireController.currentQuestionnaire.questionList}"
+					columnClasses="tableColFirst tableColFirst tableCol" scrollHeight="4" style="width:95%;border-collapse:collapse;font-size:9pt;">
+	
+	 
+					<ice:column style="width:35%">
+						<f:facet name="header">
+							<ice:outputText value="Name" />   
+						</f:facet>
+						<ice:commandLink value="#{question.question}" actionListener="#{questionnaireController.openQuestion}">
+							<f:param name="question" id="thisquestion" value="#{question}" />	
+						</ice:commandLink>
+					</ice:column>
+
+					<ice:column style="width:5%">
+							<ice:selectBooleanCheckbox value="#{question.selected}" valueChangeListener="#{questionnaireController.selectedChangeListener}" immediate="true" partialSubmit="true">
+								<f:param name="selectedquestion" id="selectedquestion" value="#{question}" />
+							</ice:selectBooleanCheckbox>
+					</ice:column>
+
+				</ice:dataTable>
+		</ice:form>
+		
+		-->
+
+	</ui:define>
+
+</ui:decorate>

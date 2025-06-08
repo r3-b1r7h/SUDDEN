@@ -1,0 +1,14 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:define name="content">
+
+		<h3>THE COMPETENCE HAS BEEN SUCESSFULLY ADDED TO THE REPOSITORY</h3>
+
+	</ui:define>
+
+</ui:decorate>

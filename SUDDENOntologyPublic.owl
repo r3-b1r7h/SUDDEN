@@ -1,0 +1,4711 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY SuddenOntology "http://www.Sudden-ontologies.com/SuddenOntology.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.Sudden-ontologies.com/SuddenOntology.owl#"
+     xml:base="http://www.Sudden-ontologies.com/SuddenOntology.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:SuddenOntology="http://www.Sudden-ontologies.com/SuddenOntology.owl#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about=""/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#AllowedMaterials -->
+
+    <owl:ObjectProperty rdf:about="#AllowedMaterials">
+        <owl:inverseOf rdf:resource="#ProcessedThrough"/>
+        <rdfs:domain rdf:resource="#Processing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#AssembledUsingTechnique -->
+
+    <owl:ObjectProperty rdf:about="#AssembledUsingTechnique">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >OWLObjectProperty_00000019972229953208</rdfs:label>
+        <rdfs:domain rdf:resource="#ComplexPart"/>
+        <rdfs:range rdf:resource="#Processing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#CanBeMadeFrom -->
+
+    <owl:ObjectProperty rdf:about="#CanBeMadeFrom">
+        <rdfs:domain rdf:resource="#ComplexPart"/>
+        <rdfs:range rdf:resource="#Potential_Decomposition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Handles -->
+
+    <owl:ObjectProperty rdf:about="#Handles">
+        <rdfs:domain rdf:resource="#Maschinen_und_Anlagen_fuer_die_Fahrzeugindustrie"/>
+        <rdfs:range rdf:resource="#Process"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#HasSetupCost -->
+
+    <owl:ObjectProperty rdf:about="#HasSetupCost">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >OWLObjectProperty_00000012430606209069</rdfs:label>
+        <rdfs:domain rdf:resource="#Processing"/>
+        <rdfs:range rdf:resource="#SetupCost"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Has_Overall_Weight -->
+
+    <owl:ObjectProperty rdf:about="#Has_Overall_Weight">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This property tries to measure how heavy the given individual of a class is when judged against the &#39;typical&#39; weight for a component of said class. Where an individual is complex and has multiple decompositions its obviously a bit trickier :)</rdfs:comment>
+        <rdfs:range rdf:resource="#MaterialWeight"/>
+        <rdfs:domain rdf:resource="#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#IsLocated -->
+
+    <owl:ObjectProperty rdf:about="#IsLocated">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="#Location"/>
+        <rdfs:domain rdf:resource="#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#MadeOfMaterial -->
+
+    <owl:ObjectProperty rdf:about="#MadeOfMaterial">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Stores the set of all material types which can be used to make a specific sort of part. 
+You can place restrictions on this at the relevant part classes to specify that that sort of part can only be made from certain materials.</rdfs:comment>
+        <rdfs:range rdf:resource="#Material"/>
+        <rdfs:domain rdf:resource="#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Name -->
+
+    <owl:ObjectProperty rdf:about="#Name">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Name of material informing the user</rdfs:comment>
+        <rdfs:domain rdf:resource="#Material"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#PotentialDecompositionContains -->
+
+    <owl:ObjectProperty rdf:about="#PotentialDecompositionContains">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Basically just a way to get multiple, distinct sets of products into the decompositions</rdfs:comment>
+        <rdfs:range rdf:resource="#Part"/>
+        <rdfs:domain rdf:resource="#Potential_Decomposition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#ProcessedThrough -->
+
+    <owl:ObjectProperty rdf:about="#ProcessedThrough">
+        <rdfs:domain rdf:resource="#Material"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#ProvidesFunction -->
+
+    <owl:ObjectProperty rdf:about="#ProvidesFunction">
+        <rdfs:range rdf:resource="#Function"/>
+        <rdfs:domain rdf:resource="#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#inverse_of_Flow -->
+
+    <owl:ObjectProperty rdf:about="#inverse_of_Flow">
+        <rdfs:range rdf:resource="#Process"/>
+        <rdfs:domain rdf:resource="#Process"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#modusOperandi -->
+
+    <owl:ObjectProperty rdf:about="#modusOperandi">
+        <rdfs:range rdf:resource="#ModeOfOperation"/>
+        <rdfs:domain rdf:resource="#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#part_of -->
+
+    <owl:ObjectProperty rdf:about="#part_of">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="#Part"/>
+        <rdfs:range rdf:resource="#Part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#part_of_Frontend -->
+
+    <owl:ObjectProperty rdf:about="#part_of_Frontend">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#part_of_Frontklappe -->
+
+    <owl:ObjectProperty rdf:about="#part_of_Frontklappe">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#part_of_Heckklappe -->
+
+    <owl:ObjectProperty rdf:about="#part_of_Heckklappe">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#part_of_Karosserie -->
+
+    <owl:ObjectProperty rdf:about="#part_of_Karosserie">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#part_of_Rearend -->
+
+    <owl:ObjectProperty rdf:about="#part_of_Rearend">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#part_of_Tuer -->
+
+    <owl:ObjectProperty rdf:about="#part_of_Tuer">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#resourceSet -->
+
+    <owl:ObjectProperty rdf:about="#resourceSet">
+        <rdfs:range rdf:resource="#Resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#sourceProcess -->
+
+    <owl:ObjectProperty rdf:about="#sourceProcess">
+        <rdfs:range rdf:resource="#Process"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#targetProcess -->
+
+    <owl:ObjectProperty rdf:about="#targetProcess">
+        <rdfs:range rdf:resource="#Process"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Anschluesse -->
+
+    <owl:Class rdf:about="#Anschluesse">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Beschichten -->
+
+    <owl:Class rdf:about="#Beschichten">
+        <rdfs:subClassOf rdf:resource="#Processing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#ComplexPart -->
+
+    <owl:Class rdf:about="#ComplexPart">
+        <rdfs:subClassOf rdf:resource="#Part"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A part which contains subparts.
+Note that the subparts property of this might still be empty.
+That indicates a part which which has a decomposition which we don&#39;t yet know about</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#DevelopmentPhase -->
+
+    <owl:Class rdf:about="#DevelopmentPhase">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Serienfertigung"/>
+                    <rdf:Description rdf:about="#Prototypenbau"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Enumerated_Data_Types -->
+
+    <owl:Class rdf:about="#Enumerated_Data_Types">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Just to keep the enumerated classes in one tidy place
+Note that these classes are now constrained to ONLY take values from the individuals given here. For instance the Location class defines precisely the set of locations that *any* part could be found in.
+Subclasses can then restrict themselves to use a subset of these- for instance an engine cna say that it&#39;s onlyt ever found inside</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Fuegen -->
+
+    <owl:Class rdf:about="#Fuegen">
+        <rdfs:subClassOf rdf:resource="#Processing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Function -->
+
+    <owl:Class rdf:about="#Function">
+        <rdfs:subClassOf rdf:resource="#Goal"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A subclass of goal to allow the expression of ideas like wanting to build something relating to car safety</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Goal -->
+
+    <owl:Class rdf:about="#Goal">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Introduced in line with Nikolay&#39;s overarching conceptual model for Sudden.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hoehenvector -->
+
+    <owl:Class rdf:about="#Hoehenvector">
+        <rdfs:subClassOf rdf:resource="#Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Location -->
+
+    <owl:Class rdf:about="#Location">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Innen"/>
+                    <rdf:Description rdf:about="#Auszen"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >An enumerated class listing all possible locations for any car part.
+Actual car parts can be restricted to be only found in a subset of these locations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftdruckleitungen -->
+
+    <owl:Class rdf:about="#Luftdruckleitungen">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftfilter -->
+
+    <owl:Class rdf:about="#Luftfilter">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftfuehrungen_Ladeluft -->
+
+    <owl:Class rdf:about="#Luftfuehrungen_Ladeluft">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftkompressor -->
+
+    <owl:Class rdf:about="#Luftkompressor">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftkonditionierung -->
+
+    <owl:Class rdf:about="#Luftkonditionierung">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftleitungen -->
+
+    <owl:Class rdf:about="#Luftleitungen">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftmengenmesser -->
+
+    <owl:Class rdf:about="#Luftmengenmesser">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftversorgung -->
+
+    <owl:Class rdf:about="#Luftversorgung">
+        <rdfs:subClassOf rdf:resource="#Simple_Part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Maschinen_und_Anlagen_fuer_die_Fahrzeugindustrie -->
+
+    <owl:Class rdf:about="#Maschinen_und_Anlagen_fuer_die_Fahrzeugindustrie">
+        <rdfs:subClassOf rdf:resource="#Resource"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Machines and something else</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Massivwerkstoff -->
+
+    <owl:Class rdf:about="#Massivwerkstoff">
+        <rdfs:subClassOf rdf:resource="#Werkstoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Material -->
+
+    <owl:Class rdf:about="#Material">
+        <rdfs:subClassOf rdf:resource="#Resource"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ProcessedThrough"/>
+                <owl:someValuesFrom rdf:resource="#Processing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Werkstoffe not included in name above since Owl doesn&#39;t like brackets in class names!</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#MaterialWeight -->
+
+    <owl:Class rdf:about="#MaterialWeight">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#HeavyWeightMaterial"/>
+                    <rdf:Description rdf:about="#LowWeightMaterial"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >&lt;p style=&quot;margin-top: 0&quot;&gt;
+      This is enumerated rather than anything more complex as not concerned 
+      with the *precise* weight of components, just a simple heavy or not check
+    &lt;/p&gt;</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Mechatronik -->
+
+    <owl:Class rdf:about="#Mechatronik">
+        <rdfs:subClassOf rdf:resource="#Material"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#ModeOfOperation -->
+
+    <owl:Class rdf:about="#ModeOfOperation">
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Modus -->
+
+    <owl:Class rdf:about="#Modus">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#mechanisch"/>
+                    <rdf:Description rdf:about="#hydraulisch"/>
+                    <rdf:Description rdf:about="#elektrisch"/>
+                    <rdf:Description rdf:about="#pneumatisch"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Naturstoff -->
+
+    <owl:Class rdf:about="#Naturstoff">
+        <rdfs:subClassOf rdf:resource="#Werkstoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#NormedPart -->
+
+    <owl:Class rdf:about="#NormedPart">
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Um what&#39;s a normed part in this context?</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Part -->
+
+    <owl:Class rdf:about="#Part">
+        <rdfs:subClassOf rdf:resource="#ValueCreation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Potential_Decomposition -->
+
+    <owl:Class rdf:about="#Potential_Decomposition">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >A class which is used to allow for expressing multiple distinct decompositions of a single complex part.
+Essentially it just contains an attribute which contains a complete list of the subparts needed to make a complex part. 
+Each potential decomposition then covers one of these.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Primaervector -->
+
+    <owl:Class rdf:about="#Primaervector">
+        <rdfs:subClassOf rdf:resource="#Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Process -->
+
+    <owl:Class rdf:about="#Process">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This represents either a process or a process step</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Processing -->
+
+    <owl:Class rdf:about="#Processing">
+        <rdfs:subClassOf rdf:resource="#Process"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#AllowedMaterials"/>
+                <owl:someValuesFrom rdf:resource="#Material"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >So how does this differ from the processing listed under process?</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Resource -->
+
+    <owl:Class rdf:about="#Resource">
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Things which are &#39;used up&#39; in fufilling goals. Or something like that anyway :)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sauerstoffsystem -->
+
+    <owl:Class rdf:about="#Sauerstoffsystem">
+        <rdfs:subClassOf rdf:resource="#ComplexPart"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sauerstoffsystem_Decomposition -->
+
+    <owl:Class rdf:about="#Sauerstoffsystem_Decomposition">
+        <rdfs:subClassOf rdf:resource="#Potential_Decomposition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Seitenvector -->
+
+    <owl:Class rdf:about="#Seitenvector">
+        <rdfs:subClassOf rdf:resource="#Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Service -->
+
+    <owl:Class rdf:about="#Service">
+        <rdfs:subClassOf rdf:resource="#ValueCreation"/>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >This no doubt needs a few properties - not sure what they should be though :)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#SetupCost -->
+
+    <owl:Class rdf:about="#SetupCost">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >OWLClass_00000012444115470576</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#HighCost"/>
+                    <rdf:Description rdf:about="#LowCost"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sicherheit_Komfort -->
+
+    <owl:Class rdf:about="#Sicherheit_Komfort">
+        <rdfs:subClassOf rdf:resource="#Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Simple_Part -->
+
+    <owl:Class rdf:about="#Simple_Part">
+        <rdfs:subClassOf rdf:resource="#Part"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#MadeOfMaterial"/>
+                <owl:someValuesFrom rdf:resource="#Material"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string"
+            >Or atomic in planning terms - a part with no subpart(s)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Steuerungseinheit -->
+
+    <owl:Class rdf:about="#Steuerungseinheit">
+        <rdfs:subClassOf rdf:resource="#Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Tempering -->
+
+    <owl:Class rdf:about="#Tempering">
+        <rdfs:subClassOf rdf:resource="#Enumerated_Data_Types"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Trennen -->
+
+    <owl:Class rdf:about="#Trennen">
+        <rdfs:subClassOf rdf:resource="#Processing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Urformen -->
+
+    <owl:Class rdf:about="#Urformen">
+        <rdfs:subClassOf rdf:resource="#Processing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#ValueCreation -->
+
+    <owl:Class rdf:about="#ValueCreation">
+        <rdfs:subClassOf rdf:resource="#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verbundanlagen -->
+
+    <owl:Class rdf:about="#Verbundanlagen">
+        <rdfs:subClassOf rdf:resource="#Maschinen_und_Anlagen_fuer_die_Fahrzeugindustrie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verbundwerkstoff -->
+
+    <owl:Class rdf:about="#Verbundwerkstoff">
+        <rdfs:subClassOf rdf:resource="#Werkstoff"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Veredlen -->
+
+    <owl:Class rdf:about="#Veredlen">
+        <rdfs:subClassOf rdf:resource="#Processing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Werkstoff -->
+
+    <owl:Class rdf:about="#Werkstoff">
+        <rdfs:subClassOf rdf:resource="#Material"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing">
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abgaskruemmer_Individual -->
+
+    <rdf:Description rdf:about="#Abgaskruemmer_Individual">
+        <MadeOfMaterial rdf:resource="#Hartguss_Individual"/>
+        <MadeOfMaterial rdf:resource="#Warmfester_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abgasrohre_Individual -->
+
+    <rdf:Description rdf:about="#Abgasrohre_Individual">
+        <MadeOfMaterial rdf:resource="#Einsatzstahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abgassammelrohre_Individual -->
+
+    <rdf:Description rdf:about="#Abgassammelrohre_Individual">
+        <MadeOfMaterial rdf:resource="#Einsatzstahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abgassystem_Brennstoffzelle_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Abgassystem_Brennstoffzelle_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Abgasrohre_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Druckregelventil_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#H2-Sensor_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Katalytische_Nachverbrennung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Schalldaempfer_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Verbindungselemente_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abgassystem_Brennstoffzelle_Individual -->
+
+    <rdf:Description rdf:about="#Abgassystem_Brennstoffzelle_Individual">
+        <CanBeMadeFrom rdf:resource="#Abgassystem_Brennstoffzelle_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abgassystem_Verbrennungsmoror_Individual -->
+
+    <rdf:Description rdf:about="#Abgassystem_Verbrennungsmoror_Individual">
+        <CanBeMadeFrom rdf:resource="#Abgassystem_Verbrennungsmotor_Decomopsition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abgassystem_Verbrennungsmotor_Decomopsition_Individual -->
+
+    <rdf:Description rdf:about="#Abgassystem_Verbrennungsmotor_Decomopsition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Abgaskruemmer_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Abgasrohre_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Abgassammelrohre_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Katalysatoren_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Lambdasonden_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Schalldaempfer_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Turbolader_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abloeten_Mechatronik -->
+
+    <rdf:Description rdf:about="#Abloeten_Mechatronik">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Abscheider_Individual -->
+
+    <rdf:Description rdf:about="#Abscheider_Individual">
+        <MadeOfMaterial rdf:resource="#Einsatzstahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Elastomer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aetzen_von_Edelmetalllegierungen -->
+
+    <rdf:Description rdf:about="#Aetzen_von_Edelmetalllegierungen">
+        <AllowedMaterials rdf:resource="#Edelmetalllegierung_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aetzen_von_Glas -->
+
+    <rdf:Description rdf:about="#Aetzen_von_Glas">
+        <AllowedMaterials rdf:resource="#Glas_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aetzen_von_Kupfer -->
+
+    <rdf:Description rdf:about="#Aetzen_von_Kupfer">
+        <AllowedMaterials rdf:resource="#Kupferlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aetzen_von_Naturstein -->
+
+    <rdf:Description rdf:about="#Aetzen_von_Naturstein">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Naturstein_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aetzen_von_Stahl -->
+
+    <rdf:Description rdf:about="#Aetzen_von_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aetzen_von_Zink -->
+
+    <rdf:Description rdf:about="#Aetzen_von_Zink">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Zink-Cadmiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aktuatoren_Individual -->
+
+    <rdf:Description rdf:about="#Aktuatoren_Individual">
+        <MadeOfMaterial rdf:resource="#Duroplast_Individual"/>
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aluminium_Stranggiessen -->
+
+    <rdf:Description rdf:about="#Aluminium_Stranggiessen">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aluminium_Thixoforming -->
+
+    <rdf:Description rdf:about="#Aluminium_Thixoforming">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aluminiumdruckguss -->
+
+    <rdf:Description rdf:about="#Aluminiumdruckguss">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aluminiumlegierung_Individual -->
+
+    <rdf:Description rdf:about="#Aluminiumlegierung_Individual">
+        <ProcessedThrough rdf:resource="#Aluminium_Stranggiessen"/>
+        <ProcessedThrough rdf:resource="#Aluminium_Thixoforming"/>
+        <ProcessedThrough rdf:resource="#Aluminiumdruckguss"/>
+        <ProcessedThrough rdf:resource="#Chromatieren_von_Aluminiumlegierungen"/>
+        <ProcessedThrough rdf:resource="#Eloxieren_von_Aluminium"/>
+        <ProcessedThrough rdf:resource="#Gesenkformen_Aluminium"/>
+        <ProcessedThrough rdf:resource="#Phosphatieren_von_Aluminium"/>
+        <ProcessedThrough rdf:resource="#Sputtern_von_Auminium"/>
+        <ProcessedThrough rdf:resource="#Ultraschallschweiszen_von_Aluminium"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aluminothermisches_Schweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Aluminothermisches_Schweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aluminothermisches_Schweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Aluminothermisches_Schweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#An-_und_Einpressen_von_Bauteilen -->
+
+    <rdf:Description rdf:about="#An-_und_Einpressen_von_Bauteilen">
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Anlasser_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Anlasser_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#EInrueckrelais_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Einspurgetriebe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Gleichstrommotor_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Anlasser_Individual -->
+
+    <rdf:Description rdf:about="#Anlasser_Individual">
+        <CanBeMadeFrom rdf:resource="#Anlasser_Decomposition_Individual"/>
+        <Has_Overall_Weight rdf:resource="#HeavyWeightMaterial"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ansaugrohre_Individual -->
+
+    <rdf:Description rdf:about="#Ansaugrohre_Individual">
+        <MadeOfMaterial rdf:resource="#Einsatzstahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ansaugsysteme_Decomposition_Ansaugsysteme -->
+
+    <rdf:Description rdf:about="#Ansaugsysteme_Decomposition_Ansaugsysteme">
+        <PotentialDecompositionContains rdf:resource="#Ansaugrohre_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Drossel_Ansaugsystem_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ladedruckregler_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ladeluftkuehler_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftfilter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftfuehrungen_Ladeluft_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftmengenmesser_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ansaugsysteme_Individual -->
+
+    <rdf:Description rdf:about="#Ansaugsysteme_Individual">
+        <CanBeMadeFrom rdf:resource="#Ansaugsysteme_Decomposition_Ansaugsysteme"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Anschluesse_Individual -->
+
+    <Anschluesse rdf:about="#Anschluesse_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antrieb_mit_Benzinmotor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Antrieb_mit_Benzinmotor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Benzin_Motor_Inividual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronischs_Antriebsmanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftstofftank_Benzin-Diesel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftuebertragung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antrieb_mit_Dieselmotor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Antrieb_mit_Dieselmotor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Diesel_Motor_Individuel"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronischs_Antriebsmanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftstofftank_Benzin-Diesel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftuebertragung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antrieb_mit_Elektromotor_Decomposition_Individuel -->
+
+    <rdf:Description rdf:about="#Antrieb_mit_Elektromotor_Decomposition_Individuel">
+        <PotentialDecompositionContains rdf:resource="#Elektromotor_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronischs_Antriebsmanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Energiespeicher_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftuebertragung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antrieb_mit_Gasmotor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Antrieb_mit_Gasmotor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Elektronischs_Antriebsmanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Gasmotor_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Gastank_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftuebertragung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antrieb_mit_Kraftumwandlung_Individual -->
+
+    <rdf:Description rdf:about="#Antrieb_mit_Kraftumwandlung_Individual">
+        <CanBeMadeFrom rdf:resource="#Antrieb_mit_Benzinmotor_Decomposition_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Antrieb_mit_Dieselmotor_Decomposition_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Antrieb_mit_Elektromotor_Decomposition_Individuel"/>
+        <CanBeMadeFrom rdf:resource="#Antrieb_mit_Gasmotor_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antrieb_ohne_Kraftumwandlung_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Antrieb_ohne_Kraftumwandlung_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Elektronischs_Antriebsmanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Energiespeicher_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Radnabenmotor_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antrieb_ohne_Kraftumwandlung_Individual -->
+
+    <rdf:Description rdf:about="#Antrieb_ohne_Kraftumwandlung_Individual">
+        <CanBeMadeFrom rdf:resource="#Antrieb_ohne_Kraftumwandlung_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Antriebswellen_Individual -->
+
+    <rdf:Description rdf:about="#Antriebswellen_Individual">
+        <MadeOfMaterial rdf:resource="#Stahlguss_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Asynchronmotor_Individual -->
+
+    <rdf:Description rdf:about="#Asynchronmotor_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Aufkohlen_von_Einsatzstahl -->
+
+    <rdf:Description rdf:about="#Aufkohlen_von_Einsatzstahl">
+        <AllowedMaterials rdf:resource="#Einsatzstahl_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Auotimatik_Getriebe_Individual -->
+
+    <rdf:Description rdf:about="#Auotimatik_Getriebe_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Auseinandernehmen_Mechatronik -->
+
+    <rdf:Description rdf:about="#Auseinandernehmen_Mechatronik">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Auszen -->
+
+    <Location rdf:about="#Auszen">
+        <rdfs:comment rdf:datatype="&xsd;string"></rdfs:comment>
+    </Location>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Automatische_Kupplung_Individual -->
+
+    <rdf:Description rdf:about="#Automatische_Kupplung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Batterie_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Batterie_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Anschluesse_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Behaelter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektroden_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektrolyt_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kondensator_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Membran_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Batterie_Individual -->
+
+    <rdf:Description rdf:about="#Batterie_Individual">
+        <CanBeMadeFrom rdf:resource="#Batterie_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Baustahl_Individual -->
+
+    <rdf:Description rdf:about="#Baustahl_Individual">
+        <ProcessedThrough rdf:resource="#Durchziehen_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Plasma-Pulver-Auftragschweiszen_niedriglegierter_Stahl"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Befeuchter_Individual -->
+
+    <rdf:Description rdf:about="#Befeuchter_Individual">
+        <MadeOfMaterial rdf:resource="#Elastomer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Behaelter_Individual -->
+
+    <rdf:Description rdf:about="#Behaelter_Individual">
+        <MadeOfMaterial rdf:resource="#Elastomer_Individual"/>
+        <MadeOfMaterial rdf:resource="#Stahl_fuer_thermische_und_korrosive_Beanspruchung_Individual"/>
+        <MadeOfMaterial rdf:resource="#Verbundwerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Beissschneiden_von_Blechen -->
+
+    <rdf:Description rdf:about="#Beissschneiden_von_Blechen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Bemalung_Individual -->
+
+    <rdf:Description rdf:about="#Bemalung_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Benzin_Motor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Benzin_Motor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Kraftstoffversorgung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ventile_Brennraumein-_und_-auslass_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Benzin_Motor_Inividual -->
+
+    <rdf:Description rdf:about="#Benzin_Motor_Inividual">
+        <CanBeMadeFrom rdf:resource="#Benzin_Motor_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Bestrahlen_von_Bauteilen -->
+
+    <rdf:Description rdf:about="#Bestrahlen_von_Bauteilen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Biegeumformen_NE-Metall -->
+
+    <rdf:Description rdf:about="#Biegeumformen_NE-Metall">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Biegeumformen_Stahl -->
+
+    <rdf:Description rdf:about="#Biegeumformen_Stahl">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Binden_von_Keramikpulver -->
+
+    <rdf:Description rdf:about="#Binden_von_Keramikpulver">
+        <AllowedMaterials rdf:resource="#Keramik_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Binden_von_Kunststoffpulver -->
+
+    <rdf:Description rdf:about="#Binden_von_Kunststoffpulver">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Binden_von_Stahlpulver -->
+
+    <rdf:Description rdf:about="#Binden_von_Stahlpulver">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Bipolarplatten_Individual -->
+
+    <rdf:Description rdf:about="#Bipolarplatten_Individual">
+        <MadeOfMaterial rdf:resource="#Partikelverbundwerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Boden -->
+
+    <Location rdf:about="#Boden"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Brennstoffzellen_Kuehlsystem_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Brennstoffzellen_Kuehlsystem_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Kuehler_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlmittel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlmittelpumpen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlmittelverteiler_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Thermostat_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Waermetauscher_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Brennstoffzellen_Kuehlsystem_Individual -->
+
+    <rdf:Description rdf:about="#Brennstoffzellen_Kuehlsystem_Individual">
+        <CanBeMadeFrom rdf:resource="#Brennstoffzellen_Kuehlsystem_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chemisch_Nickel_von_Kunststoff -->
+
+    <rdf:Description rdf:about="#Chemisch_Nickel_von_Kunststoff">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chemisch_Nickel_von_Metallen -->
+
+    <rdf:Description rdf:about="#Chemisch_Nickel_von_Metallen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chemisch_bestaendiger_Stahl_Individual -->
+
+    <rdf:Description rdf:about="#Chemisch_bestaendiger_Stahl_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chemische_Gasphasenabscheidung_von_Glas -->
+
+    <rdf:Description rdf:about="#Chemische_Gasphasenabscheidung_von_Glas">
+        <AllowedMaterials rdf:resource="#Glas_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chemische_Gasphasenabscheidung_von_Halbleitern -->
+
+    <rdf:Description rdf:about="#Chemische_Gasphasenabscheidung_von_Halbleitern">
+        <AllowedMaterials rdf:resource="#Halbleiter_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chemische_Gasphasenabscheidung_von_Kunststoffen -->
+
+    <rdf:Description rdf:about="#Chemische_Gasphasenabscheidung_von_Kunststoffen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chromatieren_vom_Magnesiumlegierungen -->
+
+    <rdf:Description rdf:about="#Chromatieren_vom_Magnesiumlegierungen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Magnesiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chromatieren_von_Aluminiumlegierungen -->
+
+    <rdf:Description rdf:about="#Chromatieren_von_Aluminiumlegierungen">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Chromatieren_von_Zink-Cadmiumlegierungen -->
+
+    <rdf:Description rdf:about="#Chromatieren_von_Zink-Cadmiumlegierungen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Zink-Cadmiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#DC-AC_Konverter_Individual -->
+
+    <rdf:Description rdf:about="#DC-AC_Konverter_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#DC-DC_Konverter_Individual -->
+
+    <rdf:Description rdf:about="#DC-DC_Konverter_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Dachhimmel -->
+
+    <Location rdf:about="#Dachhimmel"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Dichtungen_Individual -->
+
+    <rdf:Description rdf:about="#Dichtungen_Individual">
+        <MadeOfMaterial rdf:resource="#Elastomer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Diesel_Motor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Diesel_Motor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Kraftstoffversorgung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ventile_Brennraumein-_und_-auslass_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Diesel_Motor_Individuel -->
+
+    <rdf:Description rdf:about="#Diesel_Motor_Individuel">
+        <CanBeMadeFrom rdf:resource="#Diesel_Motor_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Differentialgetriebe_Individual -->
+
+    <rdf:Description rdf:about="#Differentialgetriebe_Individual">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Diffusionsschweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Diffusionsschweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Diffusionsschweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Diffusionsschweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Dosiersysteme_Individual -->
+
+    <rdf:Description rdf:about="#Dosiersysteme_Individual">
+        <MadeOfMaterial rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Drossel_Ansaugsystem_Individual -->
+
+    <rdf:Description rdf:about="#Drossel_Ansaugsystem_Individual">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Druckbehaelter_Kuehlmittel_Individual -->
+
+    <rdf:Description rdf:about="#Druckbehaelter_Kuehlmittel_Individual">
+        <MadeOfMaterial rdf:resource="#Chemisch_bestaendiger_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Druckregelventil_Individual -->
+
+    <rdf:Description rdf:about="#Druckregelventil_Individual">
+        <MadeOfMaterial rdf:resource="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Druckregulator_Individual -->
+
+    <rdf:Description rdf:about="#Druckregulator_Individual">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Druckwasserstoffbestaendiger_Stahl_Individual -->
+
+    <rdf:Description rdf:about="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Druecken_NE-Bleche -->
+
+    <rdf:Description rdf:about="#Druecken_NE-Bleche">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Druecken_Stahlbleche -->
+
+    <rdf:Description rdf:about="#Druecken_Stahlbleche">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Durchdruecken_Metall -->
+
+    <rdf:Description rdf:about="#Durchdruecken_Metall">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Durchziehen_von_Kupfer -->
+
+    <rdf:Description rdf:about="#Durchziehen_von_Kupfer">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Kupferlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Durchziehen_von_Stahl -->
+
+    <rdf:Description rdf:about="#Durchziehen_von_Stahl">
+        <AllowedMaterials rdf:resource="#Baustahl_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Duroplast_Individual -->
+
+    <rdf:Description rdf:about="#Duroplast_Individual">
+        <ProcessedThrough rdf:resource="#Stereolithografie_von_Photopolymeren"/>
+        <ProcessedThrough rdf:resource="#Vakuumgiessen_von_PU_Giessharze"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#EInrueckrelais_Individual -->
+
+    <rdf:Description rdf:about="#EInrueckrelais_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Edelmetalllegierung_Individual -->
+
+    <rdf:Description rdf:about="#Edelmetalllegierung_Individual">
+        <ProcessedThrough rdf:resource="#Aetzen_von_Edelmetalllegierungen"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Einbringen_von_Fluessigkeiten_Gasen_Pulvern_oder_Pasten_in_Zwischenraeume -->
+
+    <rdf:Description rdf:about="#Einbringen_von_Fluessigkeiten_Gasen_Pulvern_oder_Pasten_in_Zwischenraeume">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Eindruecken_Metall -->
+
+    <rdf:Description rdf:about="#Eindruecken_Metall">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Einsatzstahl_Individual -->
+
+    <rdf:Description rdf:about="#Einsatzstahl_Individual">
+        <ProcessedThrough rdf:resource="#Aufkohlen_von_Einsatzstahl"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Einspritzduese_Individual -->
+
+    <rdf:Description rdf:about="#Einspritzduese_Individual">
+        <MadeOfMaterial rdf:resource="#Warmfester_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Einspritzleitung_Individual -->
+
+    <rdf:Description rdf:about="#Einspritzleitung_Individual">
+        <MadeOfMaterial rdf:resource="#Einsatzstahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Einspritzpumpe_Individual -->
+
+    <rdf:Description rdf:about="#Einspritzpumpe_Individual">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Einspurgetriebe_Individual -->
+
+    <rdf:Description rdf:about="#Einspurgetriebe_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Eisengusswerkstoff_Individual -->
+
+    <rdf:Description rdf:about="#Eisengusswerkstoff_Individual">
+        <ProcessedThrough rdf:resource="#Aluminothermisches_Schweissen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Diffusionsschweissen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Elektronenstrahlschweissen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Elektrotauchlackieren_Anodisch_Gusseisen"/>
+        <ProcessedThrough rdf:resource="#Elektrotauchlackieren_Kathodisch_Gusseisen"/>
+        <ProcessedThrough rdf:resource="#Feuerschweissen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Freiformen_von_Stahlblechen"/>
+        <ProcessedThrough rdf:resource="#Galvanisieren_von_Gusseisen"/>
+        <ProcessedThrough rdf:resource="#Gasschmelzschweissen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Gluehen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Laserschweissen_von_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Lichtbogenhandschweissen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Magnetisieren_von_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Plasma-Pulver-Auftragschweiszen_Gusseisen"/>
+        <ProcessedThrough rdf:resource="#Pulverbeschichten_Gusseisen"/>
+        <ProcessedThrough rdf:resource="#Schutzgasschweissen_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Sprengschweisse_Eisenguss"/>
+        <ProcessedThrough rdf:resource="#Sputtern_Gusseisen"/>
+        <ProcessedThrough rdf:resource="#Unterpulverschweissen_Eisenguss"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elastomer_Individual -->
+
+    <rdf:Description rdf:about="#Elastomer_Individual">
+        <ProcessedThrough rdf:resource="#Elastomer_Spritzgiessen"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elastomer_Spritzgiessen -->
+
+    <rdf:Description rdf:about="#Elastomer_Spritzgiessen">
+        <AllowedMaterials rdf:resource="#Elastomer_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektrisch -->
+
+    <ModeOfOperation rdf:about="#Elektrisch"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektrische_Leistungsregler_Individual -->
+
+    <rdf:Description rdf:about="#Elektrische_Leistungsregler_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektro_Hybridantrieb -->
+
+    <rdf:Description rdf:about="#Elektro_Hybridantrieb">
+        <rdfs:label
+            >OWLIndividual_00000021289061774883</rdfs:label>
+        <CanBeMadeFrom rdf:resource="#Elektro_Hybridantrieb_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektro_Hybridantrieb_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Elektro_Hybridantrieb_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Antrieb_ohne_Kraftumwandlung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Energiegewinnung_Wasserstoff"/>
+        <PotentialDecompositionContains rdf:resource="#LithiumIonBattery_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektroden_Individual -->
+
+    <rdf:Description rdf:about="#Elektroden_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektrolyt_Individual -->
+
+    <rdf:Description rdf:about="#Elektrolyt_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektromotor_Individual -->
+
+    <rdf:Description rdf:about="#Elektromotor_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronenstrahl_Individual -->
+
+    <rdf:Description rdf:about="#Elektronenstrahl_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronenstrahlschweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Elektronenstrahlschweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronenstrahlschweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Elektronenstrahlschweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronenstrahlschweiszen_von_Metallen -->
+
+    <rdf:Description rdf:about="#Elektronenstrahlschweiszen_von_Metallen">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronische_Steuerung_Individual -->
+
+    <rdf:Description rdf:about="#Elektronische_Steuerung_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronisches_Antriebsmanagement_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Elektronisches_Antriebsmanagement_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Aktuatoren_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronische_Steuerung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Sensoren_Induvidual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronisches_Management_Brennstoffzelle_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Elektronisches_Management_Brennstoffzelle_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Elektronische_Steuerung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Inverter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Sensoren_Induvidual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronisches_Management_Brennstoffzelle_Individual -->
+
+    <rdf:Description rdf:about="#Elektronisches_Management_Brennstoffzelle_Individual">
+        <CanBeMadeFrom rdf:resource="#Elektronisches_Management_Brennstoffzelle_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronisches_Motormanagement_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Elektronisches_Motormanagement_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Aktuatoren_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronische_Steuerung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Sensoren_Induvidual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronischs_Antriebsmanagement_Individual -->
+
+    <rdf:Description rdf:about="#Elektronischs_Antriebsmanagement_Individual">
+        <CanBeMadeFrom rdf:resource="#Elektronisches_Antriebsmanagement_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektronischs_Motormanagement_Individual -->
+
+    <rdf:Description rdf:about="#Elektronischs_Motormanagement_Individual">
+        <CanBeMadeFrom rdf:resource="#Elektronisches_Motormanagement_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektrotauchlackieren_Anodisch_Gusseisen -->
+
+    <rdf:Description rdf:about="#Elektrotauchlackieren_Anodisch_Gusseisen">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektrotauchlackieren_Anodisch_Stahl -->
+
+    <rdf:Description rdf:about="#Elektrotauchlackieren_Anodisch_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektrotauchlackieren_Kathodisch_Gusseisen -->
+
+    <rdf:Description rdf:about="#Elektrotauchlackieren_Kathodisch_Gusseisen">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Elektrotauchlackieren_Kathodisch_Stahl -->
+
+    <rdf:Description rdf:about="#Elektrotauchlackieren_Kathodisch_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Eloxieren_von_Aluminium -->
+
+    <rdf:Description rdf:about="#Eloxieren_von_Aluminium">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Endplatten_Individual -->
+
+    <rdf:Description rdf:about="#Endplatten_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Energiegewinnung_Individual -->
+
+    <rdf:Description rdf:about="#Energiegewinnung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Energiegewinnung_Solar_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Energiegewinnung_Solar_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#DC-AC_Konverter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#DC-DC_Konverter_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Energiegewinnung_Wasserstoff -->
+
+    <rdf:Description rdf:about="#Energiegewinnung_Wasserstoff">
+        <rdfs:label
+            >OWLIndividual_00000021857384991935</rdfs:label>
+        <CanBeMadeFrom rdf:resource="#Energiegewinnung_Wasserstoff_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Energiegewinnung_Wasserstoff_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Energiegewinnung_Wasserstoff_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#DC-AC_Konverter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#DC-DC_Konverter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wasserstoff-Brennstoffzelle_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Energiespeicher_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Energiespeicher_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Batterie_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Katalysatoren_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Energiespeicher_Individual -->
+
+    <rdf:Description rdf:about="#Energiespeicher_Individual">
+        <CanBeMadeFrom rdf:resource="#LithiumIonEnergiespeicher_Decomposition"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Faserverstaerkter_Werkstoff_Individual -->
+
+    <rdf:Description rdf:about="#Faserverstaerkter_Werkstoff_Individual">
+        <ProcessedThrough rdf:resource="#Spritzgiessen_von_faserverstaerkter_Termoplate"/>
+        <ProcessedThrough rdf:resource="#Strangziehen_faserverstaerkter_Kunststoffprofile"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Federstahl_Individual -->
+
+    <rdf:Description rdf:about="#Federstahl_Individual">
+        <ProcessedThrough rdf:resource="#Mechanische_Verzinkung_gehaerteter_Federstauhle"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Feuerschweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Feuerschweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Feuerschweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Feuerschweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Floatglasverfahren -->
+
+    <rdf:Description rdf:about="#Floatglasverfahren">
+        <AllowedMaterials rdf:resource="#Glas_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Freiformen_von_NE-Blechen -->
+
+    <rdf:Description rdf:about="#Freiformen_von_NE-Blechen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Freiformen_von_Stahlblechen -->
+
+    <rdf:Description rdf:about="#Freiformen_von_Stahlblechen">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Fremdzuendender_Verbrennungsmotor_Composition_Individual -->
+
+    <rdf:Description rdf:about="#Fremdzuendender_Verbrennungsmotor_Composition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Zuendsystem_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Fremdzuendender_Verbrennungsmotor_Individual -->
+
+    <rdf:Description rdf:about="#Fremdzuendender_Verbrennungsmotor_Individual">
+        <CanBeMadeFrom rdf:resource="#Fremdzuendender_Verbrennungsmotor_Composition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Funkenerodieren_Individual -->
+
+    <rdf:Description rdf:about="#Funkenerodieren_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Fused_Deposition_Modeling -->
+
+    <rdf:Description rdf:about="#Fused_Deposition_Modeling">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Galvanisieren_son_Stahl -->
+
+    <rdf:Description rdf:about="#Galvanisieren_son_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Galvanisieren_von_Gusseisen -->
+
+    <rdf:Description rdf:about="#Galvanisieren_von_Gusseisen">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Galvanoformen_Kupferbeschichtungen -->
+
+    <rdf:Description rdf:about="#Galvanoformen_Kupferbeschichtungen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Kupferlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Galvanoformen_Nickelbeschichtungen -->
+
+    <rdf:Description rdf:about="#Galvanoformen_Nickelbeschichtungen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nickel-Kobaltlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gaseinspritzduesen_Individual -->
+
+    <rdf:Description rdf:about="#Gaseinspritzduesen_Individual">
+        <MadeOfMaterial rdf:resource="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasleitung_Individual -->
+
+    <rdf:Description rdf:about="#Gasleitung_Individual">
+        <MadeOfMaterial rdf:resource="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasmotor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Gasmotor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Gaseinspritzduesen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Gasversorgung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Motor_Kontroll_Modul_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasmotor_Individual -->
+
+    <rdf:Description rdf:about="#Gasmotor_Individual">
+        <CanBeMadeFrom rdf:resource="#Gasmotor_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasschmelzschweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Gasschmelzschweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasschmelzschweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Gasschmelzschweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gastank_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Gastank_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Isolierung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kryotechnik_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Mess-_und_Regeltechnik_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Sensoren_Induvidual"/>
+        <PotentialDecompositionContains rdf:resource="#Tankanschluss_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Tanknippel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ventile_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Verschlussmechanismus_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gastank_Individual -->
+
+    <rdf:Description rdf:about="#Gastank_Individual">
+        <MadeOfMaterial rdf:resource="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Gastank_Decomposition_Individual"/>
+        <MadeOfMaterial rdf:resource="#Schichtverbundwerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasversorgung_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Gasversorgung_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Anschluesse_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Druckregulator_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Gasleitung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Gasverteiler_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ventile_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasversorgung_Individual -->
+
+    <rdf:Description rdf:about="#Gasversorgung_Individual">
+        <CanBeMadeFrom rdf:resource="#Gasversorgung_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gasverteiler_Individual -->
+
+    <rdf:Description rdf:about="#Gasverteiler_Individual">
+        <MadeOfMaterial rdf:resource="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gaszufuehrung_Individual -->
+
+    <rdf:Description rdf:about="#Gaszufuehrung_Individual">
+        <MadeOfMaterial rdf:resource="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gemischbildungssystem_Individual -->
+
+    <rdf:Description rdf:about="#Gemischbildungssystem_Individual">
+        <MadeOfMaterial rdf:resource="#Druckwasserstoffbestaendiger_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Generatoren_Individual -->
+
+    <rdf:Description rdf:about="#Generatoren_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gesenkformen_Aluminium -->
+
+    <rdf:Description rdf:about="#Gesenkformen_Aluminium">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gesenkformen_Kupfer -->
+
+    <rdf:Description rdf:about="#Gesenkformen_Kupfer">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Kupferlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gesenkformen_Magnesium -->
+
+    <rdf:Description rdf:about="#Gesenkformen_Magnesium">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Magnesiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gesenkformen_Stahl -->
+
+    <rdf:Description rdf:about="#Gesenkformen_Stahl">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gesenkformen_Titan -->
+
+    <rdf:Description rdf:about="#Gesenkformen_Titan">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Titanlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Getriebe_35 -->
+
+    <rdf:Description rdf:about="#Getriebe_35">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gewalztes_Gussglas -->
+
+    <rdf:Description rdf:about="#Gewalztes_Gussglas">
+        <AllowedMaterials rdf:resource="#Glas_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gie&#223;harz-Werkzeuge_f&#252;r_Kleinserien -->
+
+    <rdf:Description rdf:about="#Gie&#223;harz-Werkzeuge_f&#252;r_Kleinserien">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Glas_Individual -->
+
+    <rdf:Description rdf:about="#Glas_Individual">
+        <ProcessedThrough rdf:resource="#Aetzen_von_Glas"/>
+        <ProcessedThrough rdf:resource="#Chemische_Gasphasenabscheidung_von_Glas"/>
+        <ProcessedThrough rdf:resource="#Floatglasverfahren"/>
+        <ProcessedThrough rdf:resource="#Gewalztes_Gussglas"/>
+        <ProcessedThrough rdf:resource="#Glasschleifen_und_Polieren"/>
+        <ProcessedThrough rdf:resource="#Weichloeten_von_Glas"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Glasschleifen_und_Polieren -->
+
+    <rdf:Description rdf:about="#Glasschleifen_und_Polieren">
+        <AllowedMaterials rdf:resource="#Glas_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gleichstrommotor_Individual -->
+
+    <rdf:Description rdf:about="#Gleichstrommotor_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Gluehen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Gluehen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#H2-Sensor_Individual -->
+
+    <rdf:Description rdf:about="#H2-Sensor_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Halbleiter_Individual -->
+
+    <rdf:Description rdf:about="#Halbleiter_Individual">
+        <ProcessedThrough rdf:resource="#Chemische_Gasphasenabscheidung_von_Halbleitern"/>
+        <ProcessedThrough rdf:resource="#Physikalische_Gasphasenabscheidung_Halbleiter"/>
+        <ProcessedThrough rdf:resource="#Plasmaaetzen_von_Halbleitern"/>
+        <ProcessedThrough rdf:resource="#Sputtern_Halbleiter"/>
+        <ProcessedThrough rdf:resource="#Weichloeten_von_Halbleitern"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hartguss_Individual -->
+
+    <rdf:Description rdf:about="#Hartguss_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hartloeten_Individual -->
+
+    <rdf:Description rdf:about="#Hartloeten_Individual">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#HeavyWeightMaterial -->
+
+    <MaterialWeight rdf:about="#HeavyWeightMaterial"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Heizung -->
+
+    <Tempering rdf:about="#Heizung"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#HighCost -->
+
+    <SetupCost rdf:about="#HighCost">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >OWLIndividual_00000012463464514785</rdfs:label>
+    </SetupCost>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hochtemperaturloeten_von_Keramin -->
+
+    <rdf:Description rdf:about="#Hochtemperaturloeten_von_Keramin">
+        <AllowedMaterials rdf:resource="#Keramik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hochtemperaturloeten_von_Nickel-Kobaltlegierungen -->
+
+    <rdf:Description rdf:about="#Hochtemperaturloeten_von_Nickel-Kobaltlegierungen">
+        <AllowedMaterials rdf:resource="#Nickel-Kobaltlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hochtemperaturloeten_von_Stahl -->
+
+    <rdf:Description rdf:about="#Hochtemperaturloeten_von_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Holz_Individual -->
+
+    <rdf:Description rdf:about="#Holz_Individual">
+        <ProcessedThrough rdf:resource="#Laserschneiden_Laserbohren_von_Holz"/>
+        <ProcessedThrough rdf:resource="#Spanen_von_Holz_mit_geometrisch_bestimmter_Schneide_14"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hybridantrieb_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Hybridantrieb_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Primaerantrieb_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Sekundaerantrieb_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hybridantrieb_Individual -->
+
+    <rdf:Description rdf:about="#Hybridantrieb_Individual">
+        <CanBeMadeFrom rdf:resource="#Hybridantrieb_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hydraulikhochdruckpumpen_Individual -->
+
+    <rdf:Description rdf:about="#Hydraulikhochdruckpumpen_Individual">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <MadeOfMaterial rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hydraulikleitungen_Individual -->
+
+    <rdf:Description rdf:about="#Hydraulikleitungen_Individual">
+        <MadeOfMaterial rdf:resource="#Einsatzstahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Hydraulisch -->
+
+    <ModeOfOperation rdf:about="#Hydraulisch"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Innen -->
+
+    <Location rdf:about="#Innen"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Innenhochdruckweitstauchen_von_NE-Metallrohren -->
+
+    <rdf:Description rdf:about="#Innenhochdruckweitstauchen_von_NE-Metallrohren">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Innenhochdruckweitstauchen_von_Stahlrohren -->
+
+    <rdf:Description rdf:about="#Innenhochdruckweitstauchen_von_Stahlrohren">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Inverter_Individual -->
+
+    <rdf:Description rdf:about="#Inverter_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Isolierung_Individual -->
+
+    <rdf:Description rdf:about="#Isolierung_Individual">
+        <MadeOfMaterial rdf:resource="#Faserverstaerkter_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kaltpressschweiszen_von_Metallen -->
+
+    <rdf:Description rdf:about="#Kaltpressschweiszen_von_Metallen">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kardangetriebe_Individual -->
+
+    <rdf:Description rdf:about="#Kardangetriebe_Individual">
+        <MadeOfMaterial rdf:resource="#Einsatzstahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Stahlguss_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Katalysatoren_Individual -->
+
+    <rdf:Description rdf:about="#Katalysatoren_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Katalytische_Nachverbrennung_Individual -->
+
+    <rdf:Description rdf:about="#Katalytische_Nachverbrennung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Keil-_und_Zahnriemen_Individual -->
+
+    <rdf:Description rdf:about="#Keil-_und_Zahnriemen_Individual">
+        <MadeOfMaterial rdf:resource="#Elastomer_Individual"/>
+        <MadeOfMaterial rdf:resource="#Faserverstaerkter_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Keilschneide_auf_Amboss -->
+
+    <rdf:Description rdf:about="#Keilschneide_auf_Amboss">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Keramik_Individual -->
+
+    <rdf:Description rdf:about="#Keramik_Individual">
+        <ProcessedThrough rdf:resource="#Binden_von_Keramikpulver"/>
+        <ProcessedThrough rdf:resource="#Hochtemperaturloeten_von_Keramin"/>
+        <ProcessedThrough rdf:resource="#Keramik_Sintern"/>
+        <ProcessedThrough rdf:resource="#Keramikgiessen"/>
+        <ProcessedThrough rdf:resource="#Selektives_Lasersintern_von_Keramik"/>
+        <ProcessedThrough rdf:resource="#Sintern_Brennen_von_Keramik"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Keramik_Sintern -->
+
+    <rdf:Description rdf:about="#Keramik_Sintern">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Keramik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Keramikgiessen -->
+
+    <rdf:Description rdf:about="#Keramikgiessen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Keramik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kleben_von_Bauteilen -->
+
+    <rdf:Description rdf:about="#Kleben_von_Bauteilen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kolben_mit_Kolbenringen_Individual -->
+
+    <rdf:Description rdf:about="#Kolben_mit_Kolbenringen_Individual">
+        <MadeOfMaterial rdf:resource="#Federstahl_Individual"/>
+        <MadeOfMaterial rdf:resource="#Warmfester_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kompressoren_Individual -->
+
+    <rdf:Description rdf:about="#Kompressoren_Individual">
+        <MadeOfMaterial rdf:resource="#Warmfester_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kondensator_Individual -->
+
+    <rdf:Description rdf:about="#Kondensator_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftstofffilter_Individual -->
+
+    <rdf:Description rdf:about="#Kraftstofffilter_Individual">
+        <MadeOfMaterial rdf:resource="#Schichtverbundwerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftstoffleitungen_Inividual -->
+
+    <rdf:Description rdf:about="#Kraftstoffleitungen_Inividual">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftstoffpumpe_Individual -->
+
+    <rdf:Description rdf:about="#Kraftstoffpumpe_Individual">
+        <MadeOfMaterial rdf:resource="#Hartguss_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftstofftank_Benzin-Diesel_Individual -->
+
+    <rdf:Description rdf:about="#Kraftstofftank_Benzin-Diesel_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftstoffventile_Individual -->
+
+    <rdf:Description rdf:about="#Kraftstoffventile_Individual">
+        <MadeOfMaterial rdf:resource="#Warmfester_Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftstoffversorgung_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Kraftstoffversorgung_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Einspritzduese_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Einspritzleitung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Einspritzpumpe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftstofffilter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftstoffleitungen_Inividual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftstoffpumpe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kraftstoffventile_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftstoffversorgung_Individual -->
+
+    <rdf:Description rdf:about="#Kraftstoffversorgung_Individual">
+        <CanBeMadeFrom rdf:resource="#Kraftstoffversorgung_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftuebertragung_Automatik_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Kraftuebertragung_Automatik_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Antriebswellen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Auotimatik_Getriebe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Automatische_Kupplung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Differentialgetriebe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kardangetriebe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Manschetten_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wandler_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftuebertragung_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Kraftuebertragung_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Antriebswellen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Differentialgetriebe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kardangetriebe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kupplung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Manschetten_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Manuelles_Getriebe_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wandler_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kraftuebertragung_Individual -->
+
+    <rdf:Description rdf:about="#Kraftuebertragung_Individual">
+        <CanBeMadeFrom rdf:resource="#Kraftuebertragung_Automatik_Decomposition_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Kraftuebertragung_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kragenziehen_NE-Metalle -->
+
+    <rdf:Description rdf:about="#Kragenziehen_NE-Metalle">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kragenziehen_Stahl -->
+
+    <rdf:Description rdf:about="#Kragenziehen_Stahl">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kryotechnik_Individual -->
+
+    <rdf:Description rdf:about="#Kryotechnik_Individual">
+        <MadeOfMaterial rdf:resource="#Schichtverbundwerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kuehler_Individual -->
+
+    <rdf:Description rdf:about="#Kuehler_Individual">
+        <MadeOfMaterial rdf:resource="#Baustahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kuehlerluefter_Individual -->
+
+    <rdf:Description rdf:about="#Kuehlerluefter_Individual">
+        <MadeOfMaterial rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kuehlmittel_Individual -->
+
+    <rdf:Description rdf:about="#Kuehlmittel_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kuehlmittelpumpen_Individual -->
+
+    <rdf:Description rdf:about="#Kuehlmittelpumpen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kuehlmittelregelventile_Individual -->
+
+    <rdf:Description rdf:about="#Kuehlmittelregelventile_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kuehlmittelschlaeuche_Individual -->
+
+    <rdf:Description rdf:about="#Kuehlmittelschlaeuche_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kuehlmittelverteiler_Individual -->
+
+    <rdf:Description rdf:about="#Kuehlmittelverteiler_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kunststoff_Extrusion -->
+
+    <rdf:Description rdf:about="#Kunststoff_Extrusion">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kunststoff_Extrusionsblasen -->
+
+    <rdf:Description rdf:about="#Kunststoff_Extrusionsblasen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kunststoff_Spritzgiessen -->
+
+    <rdf:Description rdf:about="#Kunststoff_Spritzgiessen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kupferlegierung_Individual -->
+
+    <rdf:Description rdf:about="#Kupferlegierung_Individual">
+        <ProcessedThrough rdf:resource="#Aetzen_von_Kupfer"/>
+        <ProcessedThrough rdf:resource="#Durchziehen_von_Kupfer"/>
+        <ProcessedThrough rdf:resource="#Galvanoformen_Kupferbeschichtungen"/>
+        <ProcessedThrough rdf:resource="#Gesenkformen_Kupfer"/>
+        <ProcessedThrough rdf:resource="#Verzinnen_von_Kupfer"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kupplung_Individual -->
+
+    <rdf:Description rdf:about="#Kupplung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kurbelgehaeuse_Individual -->
+
+    <rdf:Description rdf:about="#Kurbelgehaeuse_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Kurbelwellen_Individual -->
+
+    <rdf:Description rdf:about="#Kurbelwellen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Lackieren_Individual -->
+
+    <rdf:Description rdf:about="#Lackieren_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ladedruckregler_Individual -->
+
+    <rdf:Description rdf:about="#Ladedruckregler_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ladeluftkuehler_Individual -->
+
+    <rdf:Description rdf:about="#Ladeluftkuehler_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Lambdasonden_Individual -->
+
+    <rdf:Description rdf:about="#Lambdasonden_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Laserschneiden_Laserbohren_von_Blechen -->
+
+    <rdf:Description rdf:about="#Laserschneiden_Laserbohren_von_Blechen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Laserschneiden_Laserbohren_von_Holz -->
+
+    <rdf:Description rdf:about="#Laserschneiden_Laserbohren_von_Holz">
+        <AllowedMaterials rdf:resource="#Holz_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Laserschweissen_von_Eisenguss -->
+
+    <rdf:Description rdf:about="#Laserschweissen_von_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Laserschweissen_von_Stahl -->
+
+    <rdf:Description rdf:about="#Laserschweissen_von_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Laserschweiszen_von_Termoplasten -->
+
+    <rdf:Description rdf:about="#Laserschweiszen_von_Termoplasten">
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Lichtbogenhandschweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Lichtbogenhandschweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Lichtbogenhandschweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Lichtbogenhandschweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#LithiumIonBattery_Decomposition -->
+
+    <rdf:Description rdf:about="#LithiumIonBattery_Decomposition">
+        <rdfs:label
+            >OWLIndividual_00000021840847260951</rdfs:label>
+        <PotentialDecompositionContains rdf:resource="#Anschluesse_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Behaelter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektroden_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektrolyt_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kondensator_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Membran_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#LithiumIonBattery_Individual -->
+
+    <rdf:Description rdf:about="#LithiumIonBattery_Individual">
+        <rdfs:label
+            >OWLIndividual_00000021694485756622</rdfs:label>
+        <CanBeMadeFrom rdf:resource="#LithiumIonBattery_Decomposition"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#LithiumIonEnergiespeicher_Decomposition -->
+
+    <rdf:Description rdf:about="#LithiumIonEnergiespeicher_Decomposition">
+        <rdfs:label
+            >OWLIndividual_00000021671566455748</rdfs:label>
+        <PotentialDecompositionContains rdf:resource="#Katalysatoren_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#LithiumIonBattery_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#LithiumIon_Energiespeicher -->
+
+    <rdf:Description rdf:about="#LithiumIon_Energiespeicher">
+        <rdfs:label
+            >OWLIndividual_00000021314489165256</rdfs:label>
+        <CanBeMadeFrom rdf:resource="#LithiumIonEnergiespeicher_Decomposition"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#LowCost -->
+
+    <SetupCost rdf:about="#LowCost">
+        <rdfs:label rdf:datatype="&xsd;string"
+            >OWLIndividual_00000012790248752590</rdfs:label>
+    </SetupCost>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#LowWeightMaterial -->
+
+    <MaterialWeight rdf:about="#LowWeightMaterial"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftdruckleitungen_Individual -->
+
+    <Luftdruckleitungen rdf:about="#Luftdruckleitungen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftfilter_Individual -->
+
+    <Luftfilter rdf:about="#Luftfilter_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftfuehrungen_Ladeluft_Individual -->
+
+    <Luftfuehrungen_Ladeluft rdf:about="#Luftfuehrungen_Ladeluft_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftkompressor_Individual -->
+
+    <Luftkompressor rdf:about="#Luftkompressor_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftkonditionierung_Individual -->
+
+    <Luftkonditionierung rdf:about="#Luftkonditionierung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftleitungen_Individual -->
+
+    <Luftleitungen rdf:about="#Luftleitungen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftmengenmesser_Individual -->
+
+    <Luftmengenmesser rdf:about="#Luftmengenmesser_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Luftversorgung_Individual -->
+
+    <Luftversorgung rdf:about="#Luftversorgung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Magnesium_Thixoforming -->
+
+    <rdf:Description rdf:about="#Magnesium_Thixoforming">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Magnesiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Magnesiumdruckguss -->
+
+    <rdf:Description rdf:about="#Magnesiumdruckguss">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Magnesiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Magnesiumlegierung_Individual -->
+
+    <rdf:Description rdf:about="#Magnesiumlegierung_Individual">
+        <ProcessedThrough rdf:resource="#Chromatieren_vom_Magnesiumlegierungen"/>
+        <ProcessedThrough rdf:resource="#Gesenkformen_Magnesium"/>
+        <ProcessedThrough rdf:resource="#Magnesium_Thixoforming"/>
+        <ProcessedThrough rdf:resource="#Magnesiumdruckguss"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Magnetisieren_von_Eisenguss -->
+
+    <rdf:Description rdf:about="#Magnetisieren_von_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Magnetisieren_von_Stahl -->
+
+    <rdf:Description rdf:about="#Magnetisieren_von_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Manschetten_Individual -->
+
+    <rdf:Description rdf:about="#Manschetten_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Manuelles_Getriebe_Individual -->
+
+    <rdf:Description rdf:about="#Manuelles_Getriebe_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Massenausgleichswellen_Individual -->
+
+    <rdf:Description rdf:about="#Massenausgleichswellen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Massivwerkstoff_Individual -->
+
+    <Massivwerkstoff rdf:about="#Massivwerkstoff_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Mechanische_Verzinkung_gehaerteter_Federstauhle -->
+
+    <rdf:Description rdf:about="#Mechanische_Verzinkung_gehaerteter_Federstauhle">
+        <AllowedMaterials rdf:resource="#Federstahl_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Mechatronik_Individual -->
+
+    <Mechatronik rdf:about="#Mechatronik_Individual">
+        <ProcessedThrough rdf:resource="#Abloeten_Mechatronik"/>
+        <ProcessedThrough rdf:resource="#Auseinandernehmen_Mechatronik"/>
+        <ProcessedThrough rdf:resource="#Montieren_Zusammensetzen_Mechatronik"/>
+        <ProcessedThrough rdf:resource="#Weichloeten_Mechatronik"/>
+    </Mechatronik>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Membran_Individual -->
+
+    <rdf:Description rdf:about="#Membran_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Mess-_und_Regeltechnik_Individual -->
+
+    <rdf:Description rdf:about="#Mess-_und_Regeltechnik_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Metallaetzen_Individual -->
+
+    <rdf:Description rdf:about="#Metallaetzen_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Metallgiessen -->
+
+    <rdf:Description rdf:about="#Metallgiessen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Metallischer_Werkstoff_Individual -->
+
+    <rdf:Description rdf:about="#Metallischer_Werkstoff_Individual">
+        <ProcessedThrough rdf:resource="#Beissschneiden_von_Blechen"/>
+        <ProcessedThrough rdf:resource="#Chemisch_Nickel_von_Metallen"/>
+        <ProcessedThrough rdf:resource="#Durchdruecken_Metall"/>
+        <ProcessedThrough rdf:resource="#Eindruecken_Metall"/>
+        <ProcessedThrough rdf:resource="#Elektronenstrahlschweiszen_von_Metallen"/>
+        <ProcessedThrough rdf:resource="#Funkenerodieren_Individual"/>
+        <ProcessedThrough rdf:resource="#Hartloeten_Individual"/>
+        <ProcessedThrough rdf:resource="#Kaltpressschweiszen_von_Metallen"/>
+        <ProcessedThrough rdf:resource="#Keilschneide_auf_Amboss"/>
+        <ProcessedThrough rdf:resource="#Laserschneiden_Laserbohren_von_Blechen"/>
+        <ProcessedThrough rdf:resource="#Metallaetzen_Individual"/>
+        <ProcessedThrough rdf:resource="#Metallgiessen"/>
+        <ProcessedThrough rdf:resource="#Reibruehrschweiszen_Ruehrreibschweiszen_vom_Metallen"/>
+        <ProcessedThrough rdf:resource="#Rotationsreibschweiszen_von_Metallen"/>
+        <ProcessedThrough rdf:resource="#Schmelztauchen_Metallischer_Werkstoffe"/>
+        <ProcessedThrough rdf:resource="#Selektives_Laserschmetzen_Metall"/>
+        <ProcessedThrough rdf:resource="#Selektives_Lasersintern_vom_Metallpulver"/>
+        <ProcessedThrough rdf:resource="#Spanen_vom_Metall_mit_geometrisch_unbestimmter_Schneide"/>
+        <ProcessedThrough rdf:resource="#Spanen_von_Metallen_mit_geometrisch_bestimmter_Schneide"/>
+        <ProcessedThrough rdf:resource="#Stanzen_vom_Platinen"/>
+        <ProcessedThrough rdf:resource="#Thermisches_Trennen_Individual"/>
+        <ProcessedThrough rdf:resource="#WIG-Impulsschweiszen_von_Metall"/>
+        <ProcessedThrough rdf:resource="#WIG-Orbitalschweiszen_vom_Metall"/>
+        <ProcessedThrough rdf:resource="#Weichloeten_Individual"/>
+        <ProcessedThrough rdf:resource="#Widerstandsschweiszen_von_Metall"/>
+        <ProcessedThrough rdf:resource="#Wirbelsintern_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#ModeOfOperation_13 -->
+
+    <ModeOfOperation rdf:about="#ModeOfOperation_13"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Montieren_Zusammensetzen_Bauteilen -->
+
+    <rdf:Description rdf:about="#Montieren_Zusammensetzen_Bauteilen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Montieren_Zusammensetzen_Mechatronik -->
+
+    <rdf:Description rdf:about="#Montieren_Zusammensetzen_Mechatronik">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Motor_Individual -->
+
+    <rdf:Description rdf:about="#Motor_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Motor_Kontroll_Modul_Individual -->
+
+    <rdf:Description rdf:about="#Motor_Kontroll_Modul_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Motorblock_Individual -->
+
+    <rdf:Description rdf:about="#Motorblock_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Motorkuehlsystem_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Motorkuehlsystem_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Druckbehaelter_Kuehlmittel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlerluefter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlmittel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlmittelpumpen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlmittelregelventile_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kuehlmittelschlaeuche_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Steuerungen_Kuehlungsmanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Thermostat_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Waermetauscher_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Motorkuehlsystem_Individual -->
+
+    <rdf:Description rdf:about="#Motorkuehlsystem_Individual">
+        <CanBeMadeFrom rdf:resource="#Motorkuehlsystem_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Naturstein_Individual -->
+
+    <rdf:Description rdf:about="#Naturstein_Individual">
+        <ProcessedThrough rdf:resource="#Aetzen_von_Naturstein"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Naturstoff_Individual -->
+
+    <Naturstoff rdf:about="#Naturstoff_Individual">
+        <ProcessedThrough rdf:resource="#Spalten_Individual"/>
+    </Naturstoff>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Nichteisenmetall_Individual -->
+
+    <rdf:Description rdf:about="#Nichteisenmetall_Individual">
+        <ProcessedThrough rdf:resource="#Biegeumformen_NE-Metall"/>
+        <ProcessedThrough rdf:resource="#Druecken_NE-Bleche"/>
+        <ProcessedThrough rdf:resource="#Freiformen_von_NE-Blechen"/>
+        <ProcessedThrough rdf:resource="#Innenhochdruckweitstauchen_von_NE-Metallrohren"/>
+        <ProcessedThrough rdf:resource="#Kragenziehen_NE-Metalle"/>
+        <ProcessedThrough rdf:resource="#Schubumformen_NE-Metall"/>
+        <ProcessedThrough rdf:resource="#Thing_7"/>
+        <ProcessedThrough rdf:resource="#Tiefziehen_NE-Bleche"/>
+        <ProcessedThrough rdf:resource="#Verfestigen_durch_Umformen_NE-Metalle"/>
+        <ProcessedThrough rdf:resource="#Walzen_von_NE-Blechen"/>
+        <ProcessedThrough rdf:resource="#Zugumformen_NE-Metall"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Nickel-Kobaltlegierung_Individual -->
+
+    <rdf:Description rdf:about="#Nickel-Kobaltlegierung_Individual">
+        <ProcessedThrough rdf:resource="#Galvanoformen_Nickelbeschichtungen"/>
+        <ProcessedThrough rdf:resource="#Hochtemperaturloeten_von_Nickel-Kobaltlegierungen"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Niederdruckleitungen_Oel_Individual -->
+
+    <rdf:Description rdf:about="#Niederdruckleitungen_Oel_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Nieten_von_Bauteilen -->
+
+    <rdf:Description rdf:about="#Nieten_von_Bauteilen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Nitrieren_Stahl -->
+
+    <rdf:Description rdf:about="#Nitrieren_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Nitrierstahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Nitrierstahl_Individual -->
+
+    <rdf:Description rdf:about="#Nitrierstahl_Individual">
+        <ProcessedThrough rdf:resource="#Nitrieren_Stahl"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Nockenwellen_Individual -->
+
+    <rdf:Description rdf:about="#Nockenwellen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Oelfilter_Individual -->
+
+    <rdf:Description rdf:about="#Oelfilter_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Oelkuehler_Individual -->
+
+    <rdf:Description rdf:about="#Oelkuehler_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Oelpumpen_Individual -->
+
+    <rdf:Description rdf:about="#Oelpumpen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Oelwannen_Individual -->
+
+    <rdf:Description rdf:about="#Oelwannen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Partikelverbundwerkstoff_Individual -->
+
+    <rdf:Description rdf:about="#Partikelverbundwerkstoff_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Phosphatieren_von_Aluminium -->
+
+    <rdf:Description rdf:about="#Phosphatieren_von_Aluminium">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Phosphatieren_von_Stahl -->
+
+    <rdf:Description rdf:about="#Phosphatieren_von_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Physikalische_Gasphasenabscheidung_Halbleiter -->
+
+    <rdf:Description rdf:about="#Physikalische_Gasphasenabscheidung_Halbleiter">
+        <AllowedMaterials rdf:resource="#Halbleiter_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Physikalische_Gasphasenabscheidung_Kunststoff -->
+
+    <rdf:Description rdf:about="#Physikalische_Gasphasenabscheidung_Kunststoff">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Physikalische_Gasphasenabscheidung_Werkzeugstahl -->
+
+    <rdf:Description rdf:about="#Physikalische_Gasphasenabscheidung_Werkzeugstahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkzeugstahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Plasma-Pulver-Auftragschweiszen_Gusseisen -->
+
+    <rdf:Description rdf:about="#Plasma-Pulver-Auftragschweiszen_Gusseisen">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Plasma-Pulver-Auftragschweiszen_niedriglegierter_Stahl -->
+
+    <rdf:Description rdf:about="#Plasma-Pulver-Auftragschweiszen_niedriglegierter_Stahl">
+        <AllowedMaterials rdf:resource="#Baustahl_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Plasmaaetzen_von_Halbleitern -->
+
+    <rdf:Description rdf:about="#Plasmaaetzen_von_Halbleitern">
+        <AllowedMaterials rdf:resource="#Halbleiter_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Pleuel_Individual -->
+
+    <rdf:Description rdf:about="#Pleuel_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Pneumatisch -->
+
+    <ModeOfOperation rdf:about="#Pneumatisch"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Polymer_Individual -->
+
+    <rdf:Description rdf:about="#Polymer_Individual">
+        <ProcessedThrough rdf:resource="#Binden_von_Kunststoffpulver"/>
+        <ProcessedThrough rdf:resource="#Chemisch_Nickel_von_Kunststoff"/>
+        <ProcessedThrough rdf:resource="#Chemische_Gasphasenabscheidung_von_Kunststoffen"/>
+        <ProcessedThrough rdf:resource="#Physikalische_Gasphasenabscheidung_Kunststoff"/>
+        <ProcessedThrough rdf:resource="#Spanen_mit_geometrisch_bestimmter_Schneide_Kunststoff"/>
+        <ProcessedThrough rdf:resource="#Spanen_vom_Polimeren_mit_geometrisch_bestimmter_Schneide"/>
+        <ProcessedThrough rdf:resource="#Stanzen_vom_Platinen"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Primaerantrieb_Decomposition_1_Individual -->
+
+    <rdf:Description rdf:about="#Primaerantrieb_Decomposition_1_Individual">
+        <PotentialDecompositionContains rdf:resource="#Antrieb_mit_Kraftumwandlung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Primaerantrieb_Decomposition_2_Individual -->
+
+    <rdf:Description rdf:about="#Primaerantrieb_Decomposition_2_Individual">
+        <PotentialDecompositionContains rdf:resource="#Antrieb_ohne_Kraftumwandlung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Primaerantrieb_Individual -->
+
+    <rdf:Description rdf:about="#Primaerantrieb_Individual">
+        <part_of rdf:resource="#Energiegewinnung_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Primaerantrieb_Decomposition_1_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Primaerantrieb_Decomposition_2_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Prototypenbau -->
+
+    <DevelopmentPhase rdf:about="#Prototypenbau"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Pulverbeschichten_Gusseisen -->
+
+    <rdf:Description rdf:about="#Pulverbeschichten_Gusseisen">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Pulverbeschichten_Stahl -->
+
+    <rdf:Description rdf:about="#Pulverbeschichten_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Radnabenmotor_Individual -->
+
+    <rdf:Description rdf:about="#Radnabenmotor_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Reformer_Individual -->
+
+    <rdf:Description rdf:about="#Reformer_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Reibruehrschweiszen_Ruehrreibschweiszen_vom_Metallen -->
+
+    <rdf:Description rdf:about="#Reibruehrschweiszen_Ruehrreibschweiszen_vom_Metallen">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Reinigen_von_Bauteilen -->
+
+    <rdf:Description rdf:about="#Reinigen_von_Bauteilen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Rotationsreibschweiszen_von_Metallen -->
+
+    <rdf:Description rdf:about="#Rotationsreibschweiszen_von_Metallen">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sauerstoffsystem_Decomposition_Individual -->
+
+    <Sauerstoffsystem_Decomposition rdf:about="#Sauerstoffsystem_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Anschluesse_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftfilter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftkompressor_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftkonditionierung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftleitungen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftversorgung_Individual"/>
+    </Sauerstoffsystem_Decomposition>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sauerstoffsystem_Individual -->
+
+    <Sauerstoffsystem rdf:about="#Sauerstoffsystem_Individual">
+        <CanBeMadeFrom rdf:resource="#Sauerstoffsystem_Decomposition_Individual"/>
+    </Sauerstoffsystem>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schalldaempfer_Individual -->
+
+    <rdf:Description rdf:about="#Schalldaempfer_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schichtverbundwerkstoff_Individual -->
+
+    <rdf:Description rdf:about="#Schichtverbundwerkstoff_Individual">
+        <ProcessedThrough rdf:resource="#Schichtverbung_durch_Sintern"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schichtverbung_durch_Sintern -->
+
+    <rdf:Description rdf:about="#Schichtverbung_durch_Sintern">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Schichtverbundwerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schmelztauchen_Metallischer_Werkstoffe -->
+
+    <rdf:Description rdf:about="#Schmelztauchen_Metallischer_Werkstoffe">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schubumformen_NE-Metall -->
+
+    <rdf:Description rdf:about="#Schubumformen_NE-Metall">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schubumformen_Stahl -->
+
+    <rdf:Description rdf:about="#Schubumformen_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schutzgasschweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Schutzgasschweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Schutzgasschweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Schutzgasschweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sekundaerantrieb_Decomposition_1_Individual -->
+
+    <rdf:Description rdf:about="#Sekundaerantrieb_Decomposition_1_Individual">
+        <PotentialDecompositionContains rdf:resource="#Antrieb_mit_Kraftumwandlung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sekundaerantrieb_Decomposition_2_Individual -->
+
+    <rdf:Description rdf:about="#Sekundaerantrieb_Decomposition_2_Individual">
+        <PotentialDecompositionContains rdf:resource="#Antrieb_ohne_Kraftumwandlung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sekundaerantrieb_Individual -->
+
+    <rdf:Description rdf:about="#Sekundaerantrieb_Individual">
+        <part_of rdf:resource="#Antrieb_ohne_Kraftumwandlung_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Sekundaerantrieb_Decomposition_1_Individual"/>
+        <CanBeMadeFrom rdf:resource="#Sekundaerantrieb_Decomposition_2_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Selektives_Laserschmetzen_Metall -->
+
+    <rdf:Description rdf:about="#Selektives_Laserschmetzen_Metall">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Selektives_Lasersintern_vom_Metallpulver -->
+
+    <rdf:Description rdf:about="#Selektives_Lasersintern_vom_Metallpulver">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Selektives_Lasersintern_von_Keramik -->
+
+    <rdf:Description rdf:about="#Selektives_Lasersintern_von_Keramik">
+        <AllowedMaterials rdf:resource="#Keramik_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Selektives_Lasersintern_von_Polyamiden -->
+
+    <rdf:Description rdf:about="#Selektives_Lasersintern_von_Polyamiden">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sensoren_Induvidual -->
+
+    <rdf:Description rdf:about="#Sensoren_Induvidual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Serienfertigung -->
+
+    <DevelopmentPhase rdf:about="#Serienfertigung"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sintern_Brennen_von_Eisen-_und_Stahlmetallurgie -->
+
+    <rdf:Description rdf:about="#Sintern_Brennen_von_Eisen-_und_Stahlmetallurgie">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sintern_Brennen_von_Keramik -->
+
+    <rdf:Description rdf:about="#Sintern_Brennen_von_Keramik">
+        <AllowedMaterials rdf:resource="#Keramik_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sintern_von_Eisen-_und_Stahlmetallurgie -->
+
+    <rdf:Description rdf:about="#Sintern_von_Eisen-_und_Stahlmetallurgie">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Solarpannels_Individual -->
+
+    <rdf:Description rdf:about="#Solarpannels_Individual">
+        <CanBeMadeFrom rdf:resource="#Energiegewinnung_Solar_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spalten_Individual -->
+
+    <rdf:Description rdf:about="#Spalten_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Naturstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spanen_mit_geometrisch_bestimmter_Schneide_Individual -->
+
+    <rdf:Description rdf:about="#Spanen_mit_geometrisch_bestimmter_Schneide_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spanen_mit_geometrisch_bestimmter_Schneide_Kunststoff -->
+
+    <rdf:Description rdf:about="#Spanen_mit_geometrisch_bestimmter_Schneide_Kunststoff">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spanen_vom_Metall_mit_geometrisch_unbestimmter_Schneide -->
+
+    <rdf:Description rdf:about="#Spanen_vom_Metall_mit_geometrisch_unbestimmter_Schneide">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spanen_vom_Polimeren_mit_geometrisch_bestimmter_Schneide -->
+
+    <rdf:Description rdf:about="#Spanen_vom_Polimeren_mit_geometrisch_bestimmter_Schneide">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spanen_von_Holz_mit_geometrisch_bestimmter_Schneide_14 -->
+
+    <rdf:Description rdf:about="#Spanen_von_Holz_mit_geometrisch_bestimmter_Schneide_14">
+        <AllowedMaterials rdf:resource="#Holz_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spanen_von_Metallen_mit_geometrisch_bestimmter_Schneide -->
+
+    <rdf:Description rdf:about="#Spanen_von_Metallen_mit_geometrisch_bestimmter_Schneide">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sprengschweisse_Eisenguss -->
+
+    <rdf:Description rdf:about="#Sprengschweisse_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sprengschweisse_Stahl -->
+
+    <rdf:Description rdf:about="#Sprengschweisse_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spritzen_Individual -->
+
+    <rdf:Description rdf:about="#Spritzen_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Spritzgiessen_von_faserverstaerkter_Termoplate -->
+
+    <rdf:Description rdf:about="#Spritzgiessen_von_faserverstaerkter_Termoplate">
+        <AllowedMaterials rdf:resource="#Faserverstaerkter_Werkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sputtern_Gusseisen -->
+
+    <rdf:Description rdf:about="#Sputtern_Gusseisen">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sputtern_Halbleiter -->
+
+    <rdf:Description rdf:about="#Sputtern_Halbleiter">
+        <AllowedMaterials rdf:resource="#Halbleiter_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sputtern_Stahl -->
+
+    <rdf:Description rdf:about="#Sputtern_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Sputtern_von_Auminium -->
+
+    <rdf:Description rdf:about="#Sputtern_von_Auminium">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stack_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Stack_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Anschluesse_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Bipolarplatten_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Dichtungen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektroden_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Endplatten_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Gaszufuehrung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Membran_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Stack_Katalysator_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stack_Individual -->
+
+    <rdf:Description rdf:about="#Stack_Individual">
+        <CanBeMadeFrom rdf:resource="#Stack_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stack_Katalysator_Individual -->
+
+    <rdf:Description rdf:about="#Stack_Katalysator_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stahl_Individual -->
+
+    <rdf:Description rdf:about="#Stahl_Individual">
+        <ProcessedThrough rdf:resource="#Aetzen_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Aluminothermisches_Schweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Biegeumformen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Binden_von_Stahlpulver"/>
+        <ProcessedThrough rdf:resource="#Diffusionsschweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Druecken_Stahlbleche"/>
+        <ProcessedThrough rdf:resource="#Elektronenstrahlschweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Elektrotauchlackieren_Anodisch_Stahl"/>
+        <ProcessedThrough rdf:resource="#Elektrotauchlackieren_Kathodisch_Stahl"/>
+        <ProcessedThrough rdf:resource="#Feuerschweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Galvanisieren_son_Stahl"/>
+        <ProcessedThrough rdf:resource="#Gasschmelzschweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Gesenkformen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Hochtemperaturloeten_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Innenhochdruckweitstauchen_von_Stahlrohren"/>
+        <ProcessedThrough rdf:resource="#Kragenziehen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Laserschweissen_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Lichtbogenhandschweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Magnetisieren_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Phosphatieren_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Pulverbeschichten_Stahl"/>
+        <ProcessedThrough rdf:resource="#Schubumformen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Schutzgasschweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Sintern_Brennen_von_Eisen-_und_Stahlmetallurgie"/>
+        <ProcessedThrough rdf:resource="#Sintern_von_Eisen-_und_Stahlmetallurgie"/>
+        <ProcessedThrough rdf:resource="#Sprengschweisse_Stahl"/>
+        <ProcessedThrough rdf:resource="#Sputtern_Stahl"/>
+        <ProcessedThrough rdf:resource="#Stahl_Stranggiessen"/>
+        <ProcessedThrough rdf:resource="#Stahl_Thixoforming"/>
+        <ProcessedThrough rdf:resource="#Thermomechanische_Behandlung_Stahl"/>
+        <ProcessedThrough rdf:resource="#Tiefziehen_Stahlbleche"/>
+        <ProcessedThrough rdf:resource="#Unterpulverschweissen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Verfestigen_durch_Umformen_Stahl"/>
+        <ProcessedThrough rdf:resource="#Verzinken_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Verzinnen_von_Stahl"/>
+        <ProcessedThrough rdf:resource="#Waermebehandlung_Stahl"/>
+        <ProcessedThrough rdf:resource="#Walzen_von_Stahlblechen"/>
+        <ProcessedThrough rdf:resource="#Zugumformen_Stahl"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stahl_Stranggiessen -->
+
+    <rdf:Description rdf:about="#Stahl_Stranggiessen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stahl_Thixoforming -->
+
+    <rdf:Description rdf:about="#Stahl_Thixoforming">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stahl_fuer_thermische_und_korrosive_Beanspruchung_Individual -->
+
+    <rdf:Description rdf:about="#Stahl_fuer_thermische_und_korrosive_Beanspruchung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stahlguss_Individual -->
+
+    <rdf:Description rdf:about="#Stahlguss_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stanzen_vom_Platinen -->
+
+    <rdf:Description rdf:about="#Stanzen_vom_Platinen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+        <AllowedMaterials rdf:resource="#Polymer_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Stereolithografie_von_Photopolymeren -->
+
+    <rdf:Description rdf:about="#Stereolithografie_von_Photopolymeren">
+        <AllowedMaterials rdf:resource="#Duroplast_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Steuerungen_Kuehlungsmanagement_Individual -->
+
+    <rdf:Description rdf:about="#Steuerungen_Kuehlungsmanagement_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Strangziehen_faserverstaerkter_Kunststoffprofile -->
+
+    <rdf:Description rdf:about="#Strangziehen_faserverstaerkter_Kunststoffprofile">
+        <AllowedMaterials rdf:resource="#Faserverstaerkter_Werkstoff_Individual"/>
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Synchronmotor_Individual -->
+
+    <rdf:Description rdf:about="#Synchronmotor_Individual">
+        <MadeOfMaterial rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Taktventil_Individual -->
+
+    <rdf:Description rdf:about="#Taktventil_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Tankanschluss_Individual -->
+
+    <rdf:Description rdf:about="#Tankanschluss_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Tanknippel_Individual -->
+
+    <rdf:Description rdf:about="#Tanknippel_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Thermisches_Spritzen_Individual -->
+
+    <rdf:Description rdf:about="#Thermisches_Spritzen_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Thermisches_Trennen_Individual -->
+
+    <rdf:Description rdf:about="#Thermisches_Trennen_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Thermomechanische_Behandlung_Stahl -->
+
+    <rdf:Description rdf:about="#Thermomechanische_Behandlung_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Thermoplast_Individual -->
+
+    <rdf:Description rdf:about="#Thermoplast_Individual">
+        <ProcessedThrough rdf:resource="#Fused_Deposition_Modeling"/>
+        <ProcessedThrough rdf:resource="#Gie&#223;harz-Werkzeuge_f&#252;r_Kleinserien"/>
+        <ProcessedThrough rdf:resource="#Kunststoff_Extrusion"/>
+        <ProcessedThrough rdf:resource="#Kunststoff_Extrusionsblasen"/>
+        <ProcessedThrough rdf:resource="#Kunststoff_Spritzgiessen"/>
+        <ProcessedThrough rdf:resource="#Laserschweiszen_von_Termoplasten"/>
+        <ProcessedThrough rdf:resource="#Selektives_Lasersintern_von_Polyamiden"/>
+        <ProcessedThrough rdf:resource="#Tiefziehen_Termoplast"/>
+        <ProcessedThrough rdf:resource="#Ultraschallschweiszen_von_Termoplasten"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Thermostat_Individual -->
+
+    <rdf:Description rdf:about="#Thermostat_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Thing_7 -->
+
+    <owl:Thing rdf:about="#Thing_7"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Tiefziehen_NE-Bleche -->
+
+    <rdf:Description rdf:about="#Tiefziehen_NE-Bleche">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Tiefziehen_Stahlbleche -->
+
+    <rdf:Description rdf:about="#Tiefziehen_Stahlbleche">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Tiefziehen_Termoplast -->
+
+    <rdf:Description rdf:about="#Tiefziehen_Termoplast">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Titanlegierung_Individual -->
+
+    <rdf:Description rdf:about="#Titanlegierung_Individual">
+        <ProcessedThrough rdf:resource="#Gesenkformen_Titan"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Turbolader_Individual -->
+
+    <rdf:Description rdf:about="#Turbolader_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ultraschallschweiszen_von_Aluminium -->
+
+    <rdf:Description rdf:about="#Ultraschallschweiszen_von_Aluminium">
+        <AllowedMaterials rdf:resource="#Aluminiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ultraschallschweiszen_von_Termoplasten -->
+
+    <rdf:Description rdf:about="#Ultraschallschweiszen_von_Termoplasten">
+        <AllowedMaterials rdf:resource="#Thermoplast_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Unterdruckleitungen_Individual -->
+
+    <rdf:Description rdf:about="#Unterdruckleitungen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Unterdruckpumpen_Individual -->
+
+    <rdf:Description rdf:about="#Unterdruckpumpen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Unterpulverschweissen_Eisenguss -->
+
+    <rdf:Description rdf:about="#Unterpulverschweissen_Eisenguss">
+        <AllowedMaterials rdf:resource="#Eisengusswerkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Unterpulverschweissen_Stahl -->
+
+    <rdf:Description rdf:about="#Unterpulverschweissen_Stahl">
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Vakuumgiessen_von_PU_Giessharze -->
+
+    <rdf:Description rdf:about="#Vakuumgiessen_von_PU_Giessharze">
+        <AllowedMaterials rdf:resource="#Duroplast_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ventile_Brennraumein-_und_-auslass_Individual -->
+
+    <rdf:Description rdf:about="#Ventile_Brennraumein-_und_-auslass_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ventile_Individual -->
+
+    <rdf:Description rdf:about="#Ventile_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Ventiltrieb_Individual -->
+
+    <rdf:Description rdf:about="#Ventiltrieb_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verbindungselemente_Individual -->
+
+    <rdf:Description rdf:about="#Verbindungselemente_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verbrennungsmotor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Verbrennungsmotor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Abgassystem_Verbrennungsmoror_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Anlasser_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ansaugsysteme_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektrische_Leistungsregler_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronischs_Motormanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Generatoren_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Hydraulikhochdruckpumpen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Hydraulikleitungen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Keil-_und_Zahnriemen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kolben_mit_Kolbenringen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kompressoren_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kurbelgehaeuse_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Kurbelwellen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Luftdruckleitungen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Massenausgleichswellen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Motorblock_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Motorkuehlsystem_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Niederdruckleitungen_Oel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Nockenwellen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Oelfilter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Oelkuehler_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Oelpumpen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Oelwannen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Pleuel_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Unterdruckleitungen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Unterdruckpumpen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Ventiltrieb_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Vergaser_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Zylinderkopf_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verbrennungsmotor_Individual -->
+
+    <rdf:Description rdf:about="#Verbrennungsmotor_Individual">
+        <CanBeMadeFrom rdf:resource="#Verbrennungsmotor_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verbundwerkstoff_Individual -->
+
+    <Verbundwerkstoff rdf:about="#Verbundwerkstoff_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verfestigen_durch_Umformen_NE-Metalle -->
+
+    <rdf:Description rdf:about="#Verfestigen_durch_Umformen_NE-Metalle">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verfestigen_durch_Umformen_Stahl -->
+
+    <rdf:Description rdf:about="#Verfestigen_durch_Umformen_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Vergaser_Individual -->
+
+    <rdf:Description rdf:about="#Vergaser_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verschlussmechanismus_Individual -->
+
+    <rdf:Description rdf:about="#Verschlussmechanismus_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verzinken_von_Stahl -->
+
+    <rdf:Description rdf:about="#Verzinken_von_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verzinnen_von_Kupfer -->
+
+    <rdf:Description rdf:about="#Verzinnen_von_Kupfer">
+        <AllowedMaterials rdf:resource="#Kupferlegierung_Individual"/>
+        <HasSetupCost rdf:resource="#LowCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Verzinnen_von_Stahl -->
+
+    <rdf:Description rdf:about="#Verzinnen_von_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#WIG-Impulsschweiszen_von_Metall -->
+
+    <rdf:Description rdf:about="#WIG-Impulsschweiszen_von_Metall">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#WIG-Orbitalschweiszen_vom_Metall -->
+
+    <rdf:Description rdf:about="#WIG-Orbitalschweiszen_vom_Metall">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Waermebehandlung_Stahl -->
+
+    <rdf:Description rdf:about="#Waermebehandlung_Stahl">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Waermetauscher_Individual -->
+
+    <rdf:Description rdf:about="#Waermetauscher_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Walzen_4 -->
+
+    <rdf:Description rdf:about="#Walzen_4">
+        <HasSetupCost rdf:resource="#HighCost"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Walzen_von_NE-Blechen -->
+
+    <rdf:Description rdf:about="#Walzen_von_NE-Blechen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Walzen_von_Stahlblechen -->
+
+    <rdf:Description rdf:about="#Walzen_von_Stahlblechen">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wandler_Individual -->
+
+    <rdf:Description rdf:about="#Wandler_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Warmfester_Stahl_Individual -->
+
+    <rdf:Description rdf:about="#Warmfester_Stahl_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wassermanagement_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Wassermanagement_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Abscheider_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Anschluesse_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Befeuchter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Behaelter_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Dichtungen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Dosiersysteme_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wassermanagement_Individual -->
+
+    <rdf:Description rdf:about="#Wassermanagement_Individual">
+        <CanBeMadeFrom rdf:resource="#Wassermanagement_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wassersteff_Brenngasversorgung_Individual -->
+
+    <rdf:Description rdf:about="#Wassersteff_Brenngasversorgung_Individual">
+        <CanBeMadeFrom rdf:resource="#Wasserstoff_Brenngasversorgung_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoff-Brennstoffzelle_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoff-Brennstoffzelle_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Abgassystem_Brennstoffzelle_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Brennstoffzellen_Kuehlsystem_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronisches_Management_Brennstoffzelle_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Elektronischs_Motormanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Sauerstoffsystem_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Stack_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wassermanagement_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wassersteff_Brenngasversorgung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoff-Brennstoffzelle_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoff-Brennstoffzelle_Individual">
+        <CanBeMadeFrom rdf:resource="#Wasserstoff-Brennstoffzelle_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoff_Brenngasversorgung_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoff_Brenngasversorgung_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Reformer_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Taktventil_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoffleitung_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoffleitung_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoffsensoren_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoffsensoren_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoffverbrennungsmotor_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoffverbrennungsmotor_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Gaseinspritzduesen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Motor_Kontroll_Modul_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wasserstoffversorgung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoffverbrennungsmotor_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoffverbrennungsmotor_Individual">
+        <CanBeMadeFrom rdf:resource="#Wasserstoffverbrennungsmotor_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoffversorgung_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoffversorgung_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Gemischbildungssystem_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wasserstoffleitung_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Wasserstoffsensoren_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wasserstoffversorgung_Individual -->
+
+    <rdf:Description rdf:about="#Wasserstoffversorgung_Individual">
+        <CanBeMadeFrom rdf:resource="#Wasserstoffversorgung_Decomposition_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Weichloeten_Individual -->
+
+    <rdf:Description rdf:about="#Weichloeten_Individual">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Weichloeten_Mechatronik -->
+
+    <rdf:Description rdf:about="#Weichloeten_Mechatronik">
+        <AllowedMaterials rdf:resource="#Mechatronik_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Weichloeten_von_Glas -->
+
+    <rdf:Description rdf:about="#Weichloeten_von_Glas">
+        <AllowedMaterials rdf:resource="#Glas_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Weichloeten_von_Halbleitern -->
+
+    <rdf:Description rdf:about="#Weichloeten_von_Halbleitern">
+        <AllowedMaterials rdf:resource="#Halbleiter_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Werkstoff_Individual -->
+
+    <Werkstoff rdf:about="#Werkstoff_Individual">
+        <ProcessedThrough rdf:resource="#An-_und_Einpressen_von_Bauteilen"/>
+        <ProcessedThrough rdf:resource="#Bemalung_Individual"/>
+        <ProcessedThrough rdf:resource="#Bestrahlen_von_Bauteilen"/>
+        <ProcessedThrough rdf:resource="#Einbringen_von_Fluessigkeiten_Gasen_Pulvern_oder_Pasten_in_Zwischenraeume"/>
+        <ProcessedThrough rdf:resource="#Elektronenstrahl_Individual"/>
+        <ProcessedThrough rdf:resource="#Kleben_von_Bauteilen"/>
+        <ProcessedThrough rdf:resource="#Lackieren_Individual"/>
+        <ProcessedThrough rdf:resource="#Montieren_Zusammensetzen_Bauteilen"/>
+        <ProcessedThrough rdf:resource="#Nieten_von_Bauteilen"/>
+        <ProcessedThrough rdf:resource="#Reinigen_von_Bauteilen"/>
+        <ProcessedThrough rdf:resource="#Spritzen_Individual"/>
+        <ProcessedThrough rdf:resource="#Thermisches_Spritzen_Individual"/>
+        <ProcessedThrough rdf:resource="#Zerlegen_von_Bauteilen"/>
+    </Werkstoff>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Werkzeugstahl_Individual -->
+
+    <rdf:Description rdf:about="#Werkzeugstahl_Individual">
+        <ProcessedThrough rdf:resource="#Physikalische_Gasphasenabscheidung_Werkzeugstahl"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Widerstandsschweiszen_von_Metall -->
+
+    <rdf:Description rdf:about="#Widerstandsschweiszen_von_Metall">
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Wirbelsintern_Individual -->
+
+    <rdf:Description rdf:about="#Wirbelsintern_Individual">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Metallischer_Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zerlegen_von_Bauteilen -->
+
+    <rdf:Description rdf:about="#Zerlegen_von_Bauteilen">
+        <HasSetupCost rdf:resource="#LowCost"/>
+        <AllowedMaterials rdf:resource="#Werkstoff_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zink-Cadmiumlegierung_Individual -->
+
+    <rdf:Description rdf:about="#Zink-Cadmiumlegierung_Individual">
+        <ProcessedThrough rdf:resource="#Aetzen_von_Zink"/>
+        <ProcessedThrough rdf:resource="#Chromatieren_von_Zink-Cadmiumlegierungen"/>
+        <ProcessedThrough rdf:resource="#Zinkdruckguss"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zinkdruckguss -->
+
+    <rdf:Description rdf:about="#Zinkdruckguss">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Zink-Cadmiumlegierung_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zuendkerzen_Individual -->
+
+    <rdf:Description rdf:about="#Zuendkerzen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zuendspulen_Individual -->
+
+    <rdf:Description rdf:about="#Zuendspulen_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zuendsystem_Decomposition_Individual -->
+
+    <rdf:Description rdf:about="#Zuendsystem_Decomposition_Individual">
+        <PotentialDecompositionContains rdf:resource="#Zuendkerzen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Zuendspulen_Individual"/>
+        <PotentialDecompositionContains rdf:resource="#Zuendsystem_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zuendsystem_Individual -->
+
+    <rdf:Description rdf:about="#Zuendsystem_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zugumformen_NE-Metall -->
+
+    <rdf:Description rdf:about="#Zugumformen_NE-Metall">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Nichteisenmetall_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zugumformen_Stahl -->
+
+    <rdf:Description rdf:about="#Zugumformen_Stahl">
+        <HasSetupCost rdf:resource="#HighCost"/>
+        <AllowedMaterials rdf:resource="#Stahl_Individual"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#Zylinderkopf_Individual -->
+
+    <rdf:Description rdf:about="#Zylinderkopf_Individual"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#elektrisch -->
+
+    <Modus rdf:about="#elektrisch"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#hydraulisch -->
+
+    <Modus rdf:about="#hydraulisch"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#mechanisch -->
+
+    <Modus rdf:about="#mechanisch"/>
+    
+
+
+    <!-- http://www.Sudden-ontologies.com/SuddenOntology.owl#pneumatisch -->
+
+    <Modus rdf:about="#pneumatisch"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Motor_Individual"/>
+            <rdf:Description rdf:about="#Radnabenmotor_Individual"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1042) http://owlapi.sourceforge.net -->
+

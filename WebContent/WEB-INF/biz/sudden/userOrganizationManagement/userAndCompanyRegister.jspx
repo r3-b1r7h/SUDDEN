@@ -1,0 +1,37 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+	<ui:define name="content">
+
+		<h1>User - Organization Management Subsystem!</h1>
+
+		<ice:form>
+			<h3>Registration Processes</h3>
+			<p /><ice:commandLink id="userRegister"
+				value="User Registration Process" action="registerUser"
+				immediate="true"
+				actionListener="#{jsfUserController.menuRegisterButtonVisible}" />
+			<p /><ice:commandLink id="companyRegister"
+				value="Organization Registration Process" action="registerUser"
+				immediate="true"
+				actionListener="#{jsfUserController.menuNextButtonVisible}" />
+			<p />
+			<h3>Repositories</h3>
+			<ice:commandLink id="searchUsers" value="Browse Users Repository"
+				action="searchUsers" immediate="true" />
+			<p /><ice:commandLink id="searchCompany"
+				value="Browse Organizations Repository" action="searchCompany"
+				immediate="true" />
+			<p />
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

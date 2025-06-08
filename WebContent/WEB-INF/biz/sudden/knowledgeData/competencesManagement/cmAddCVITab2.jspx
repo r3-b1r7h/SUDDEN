@@ -1,0 +1,116 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="componentBox"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:ice="http://www.icesoft.com/icefaces/component">
+		<ice:panelGroup styleClass="synopsisBox textEntryContainer">
+			<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+				rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+
+				<ice:outputLabel for="cviTickType" value="Tick Type:" />
+				<ice:selectOneMenu id="cviTickType"
+					value="#{CMController.cmCVIController.tick.type}"
+					partialSubmit="true">
+					<f:selectItems id="cviTickTypeItems"
+						value="#{CMController.cmCVIController.existingTickTypes}" />
+				</ice:selectOneMenu>
+
+				<ice:outputLabel for="cviTickAutoValue" value="Tick AutoValue:" />
+				<ice:selectOneMenu id="cviTickAutoValue"
+					value="#{CMController.cmCVIController.tick.autoValue}"
+					partialSubmit="true">
+					<f:selectItems id="cviTickAutoValueItems"
+						value="#{CMController.cmCVIController.existingTickAutoValues}" />
+				</ice:selectOneMenu>
+
+				<ice:outputLabel for="cviTickTTextValue" value="Tick Text Value: " />
+				<ice:inputText id="cviTickTTextValue" size="25" maxlength="25"
+					value="#{CMController.cmCVIController.tick.TTextValue}" />
+				<ice:outputLabel for="cviTickTNumValue"
+					value="Tick Numerical Value: " />
+				<ice:inputText id="cviTickTNumValue" size="25" maxlength="25"
+					value="#{CMController.cmCVIController.tick.TNumValue}" />
+				<ice:outputLabel for="cviTickQuantifiable"
+					value="Quantifiable Tick: " />
+				<ice:selectBooleanCheckbox id="cviTickQuantifiable"
+					value="#{CMController.cmCVIController.tick.quantifiable}" />
+				<ice:outputLabel for="addTick" value="" />
+				<ice:commandButton id="addTick" value="ADD TICK"
+					actionListener="#{CMController.cmCVIController.addTickButtonListener}" />
+			</ice:panelGrid>
+		</ice:panelGroup>
+	</ice:panelGroup>
+
+	<ice:panelGroup styleClass="exampleBox dataScrollingContainer"
+		style="clear: left;">
+
+		<ice:panelGroup styleClass="clearer" />
+
+		<ice:dataTable id="data" var="tick"
+			value="#{CMController.cmCVIController.addCVIDataScrollingModel.items}"
+			rows="#{CMController.cmCVIController.addCVIDataScrollingModel.selectedDataScrollModes[dataScrollingModel.selectedDataScrollMode].rows}"
+			scrollable="#{CMController.cmCVIController.addCVIDataScrollingModel.selectedDataScrollModes[dataScrollingModel.selectedDataScrollMode].scrollingEnabled}"
+			scrollHeight="250px" style="float:left"
+			columnWidths="100px,100px,100px,100px"
+			styleClass="dataPaginatorDataTable" cellpadding="0">
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column1" value="Tick Type" />
+				</f:facet>
+				<ice:outputText id="type" value="#{tick.type}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column2" value="Tick AutoValue" />
+				</f:facet>
+				<ice:outputText id="autoValue" value="#{tick.autoValue}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column3" value="Tick Quantifiable" />
+				</f:facet>
+				<ice:outputText id="quantifiable" value="#{tick.quantifiable}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column4" value="Tick Text Value" />
+				</f:facet>
+				<ice:outputText id="number" value="#{tick.TTextValue}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column5" value="Tick Numerical Value" />
+				</f:facet>
+				<ice:outputText id="firstName" value="#{tick.TNumValue}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column6" value="Selected" />
+				</f:facet>
+				<ice:selectBooleanCheckbox id="selectTick" value="#{tick.selected}"
+					partialSubmit="true" />
+			</ice:column>
+		</ice:dataTable>
+
+		<ice:panelGroup styleClass="clearer" />
+	</ice:panelGroup>
+
+	<ice:panelGroup styleClass="componentBox">
+		<ice:commandButton id="removeSelectedTicks"
+			value="REMOVE SELECTED TICKS"
+			actionListener="#{CMController.cmCVIController.removeSelectedTicksButtonListener}" />
+	</ice:panelGroup>
+
+	<ice:panelGroup styleClass="clearer" />
+
+	<ice:panelGroup styleClass="clearer" />
+
+	<!-- Set up the buttons and links for browsing through the table
+             fastStep means No. of pages to fast forward or rewind: 3
+             paginatorMaxPages means No. of direct links to pages: 4 -->
+
+</ice:panelGroup>

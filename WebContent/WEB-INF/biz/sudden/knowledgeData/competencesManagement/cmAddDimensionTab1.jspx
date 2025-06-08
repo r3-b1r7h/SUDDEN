@@ -1,0 +1,29 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="synopsisBox textEntryContainer">
+		<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+			rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+			<ice:outputLabel for="dimensionName" value="Name: " />
+			<ice:inputText id="dimensionName" size="25" maxlength="25"
+				value="#{CMController.cmDimensionController.dimension.name}" partialSubmit="true" />
+			<ice:outputLabel for="dimensionDescription" value="Description: " />
+			<ice:inputTextarea id="dimensionDescription"
+				value="#{CMController.cmDimensionController.dimension.description}" cols="20" rows="4"
+				partialSubmit="true" style="width:280px;height:80px;overflow: auto;" />
+			<ice:outputLabel for="dimensionQText" value="Questionnaire Text: " />
+			<ice:inputText id="dimensionQText" size="25" maxlength="25"
+				value="#{CMController.cmDimensionController.dimension.QText}" partialSubmit="true" />
+			<ice:outputLabel for="dimensionEText" value="Evaluation Text: " />
+			<ice:inputText id="dimensionEText" size="25" maxlength="25"
+				value="#{CMController.cmDimensionController.dimension.EText}" partialSubmit="true" />
+			<ice:outputLabel for="dimensionWeightMultiplier" value="Weight Multiplier: " />
+			<ice:inputText id="dimensionWeightMultiplier" size="25" maxlength="25"
+				value="#{CMController.cmDimensionController.weightMultiplier}" partialSubmit="true" />												
+		</ice:panelGrid>
+	</ice:panelGroup>
+</ice:panelGroup>
+
+

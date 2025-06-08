@@ -1,0 +1,11 @@
+This package is meant to represent the controller that ties together 
+the two types of team formation, providing for some mildly inventive team
+formation behaviour.
+
+It's not Spring friendly yet since I'm just concentrating on getting a very
+lightweight framework up. Really just interfaces and some data structures.
+
+Once I've got this up I'll read about Spring in detail and amend appropriately :)
+
+For much of this section I don't expect this to require really big changes - 
+very little of this code is user facing.

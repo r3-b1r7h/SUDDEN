@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:param name="action" value="#{teamFormationController.selectedCaseFile.finalTeam == null ? 'teamFormation' : 'executionFeedback'}"/>
+
+	<ui:define name="navigationTopText">
+		#{teamFormationController.selectedCaseFile.finalTeam == null ? 'Team Ranking and Coodination Fit analysis to identify the best operational team.' : 'Execution feedback module that initiates improvement procedures.'}
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:messages globalOnly="true" />
+		
+		<ice:form>
+
+			<ice:selectOneMenu value="#{teamFormationController.selectedCaseFile.id}" valueChangeListener="#{teamFormationController.changedSelectedCaseFile}"
+							   partialSubmit="true" immediate="true">
+				<f:selectItems value="#{teamFormationController.caseFileNameMap}" />
+			</ice:selectOneMenu>
+
+			<br/><br/>
+			<h2>Business Opportunity Name:</h2>#{teamFormationController.selectedCaseFile.bo.name}<br/>
+			<h2>Business Opportunity Description:</h2>#{teamFormationController.selectedCaseFile.bo.description}<br/><br/>
+			
+			<ice:commandButton value="Refresh case file" action="#{teamFormationController.refreshCaseFile}" />
+			<ice:commandButton value="Close case file" action="#{teamFormationController.closeCaseFile}" disabled="#{teamFormationController.selectedCaseFile.phase>3}" />
+			<br/>
+			<br/>
+
+			<ice:commandButton value="Compute efficiency ratings" action="#{teamFormationController.computeEfficiencyRating}" />
+			<ice:commandButton value="Compute coordination score" action="#{teamFormationController.computeCoordinationScore}" /><br/>
+
+<!--  
+			asnPrototypeTeam nodes:<br/>
+			<ice:dataTable var="node"
+				value="#{teamFormationController.selectedCaseFile.asnPrototypeTeam.myNodes}"
+				columnClasses="tableCol"
+				rendered="#{!empty teamFormationController.selectedCaseFile.asnPrototypeTeam.myNodes}">
+	
+				<ice:column>#{node.id}</ice:column>
+				<ice:column>#{node.class.name}</ice:column>
+				<ice:column>#{node}</ice:column>
+
+			</ice:dataTable>
+
+			asnPrototypeTeam depedencies:<br/>
+			<ice:dataTable var="depedency"
+				value="#{teamFormationController.selectedCaseFile.asnPrototypeTeam.myDependencies}"
+				columnClasses="tableCol"
+				rendered="#{!empty teamFormationController.selectedCaseFile.asnPrototypeTeam.myDependencies}">
+	
+				<ice:column>#{depedency.id}</ice:column>
+				<ice:column>#{depedency.class.name}</ice:column>
+				<ice:column>#{depedency.sourceNode.id}</ice:column>
+				<ice:column>#{depedency.targetNode.id}</ice:column>
+
+			</ice:dataTable>
+-->
+			<ice:dataTable var="candidateTeam"
+				binding="#{teamFormationController.teamsDataTable}"
+				value="#{teamFormationController.selectedCaseFile.tempTeams}"
+				columnClasses="tableCol"
+				rendered="#{!empty teamFormationController.selectedCaseFile.tempTeams}">
+	
+				<f:facet name="header">
+					<ice:columnGroup>
+						<ice:headerRow>
+							<ice:column colspan="2">Candidate Teams</ice:column>
+							<ice:column>Ranking</ice:column>
+							<ice:column>Coordination score</ice:column>
+							<ice:column>In budget rating</ice:column>
+							<ice:column>In time efficiency rating</ice:column>
+							<ice:column colspan="2">Coordination fit result</ice:column>
+						</ice:headerRow>
+					</ice:columnGroup>
+				</f:facet>
+					
+				<ice:column>
+					#{teamFormationController.teamsDataTable.rowIndex+1}
+				</ice:column>
+
+				<ice:column>
+					<ice:commandLink
+						value="Candidate team #{teamFormationController.teamsDataTable.rowIndex+1}"
+						action="#{teamFormationController.selectTeam}">
+						<f:param name="id" value="#{candidateTeam.id}" />
+					</ice:commandLink>
+				</ice:column>
+	
+				<ice:column>
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{candidateTeam.ranking != null}">
+						<f:param value="#{candidateTeam.ranking}" />
+					</ice:outputFormat>
+					
+				</ice:column>
+	
+				<ice:column>&amp;nbsp;#{candidateTeam.coordinationFitResults.coordinationScoreAsString}</ice:column>
+
+				<ice:column>&amp;nbsp;#{candidateTeam.coordinationFitResults.inBudgetEfficiencyRatingAsString}</ice:column>
+
+				<ice:column>&amp;nbsp;#{candidateTeam.coordinationFitResults.inTimeEfficiencyRatingAsString}</ice:column>
+	
+				<ice:column>
+					<ice:outputText rendered="#{candidateTeam.coordinationFitResults.state == 'NOT_REQUESTED'}" action="#{teamFormationController.inviteTeam}">This team is not invited to participate.</ice:outputText>
+
+					<ice:commandLink value="Invite team..." rendered="#{candidateTeam.coordinationFitResults.state == 'NOT_REQUESTED'}"
+									 action="#{teamFormationController.inviteTeam}">
+						<f:param name="id" value="#{candidateTeam.id}" />
+					</ice:commandLink>
+
+					<ice:outputText rendered="#{candidateTeam.coordinationFitResults.state == 'PENDING'}">
+						Pending participation data from team members
+					</ice:outputText>
+					
+					<ice:outputText rendered="#{candidateTeam.coordinationFitResults.state == 'COMPLETED'}">
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Min</th>
+									<th>Expected</th>
+									<th>Max</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Cost (kEuros)</th>
+									<td style="text-align: right">&amp;nbsp;
+										<ice:outputFormat value="{0,number,#.##}">
+											<f:param value="#{candidateTeam.coordinationFitResults.minTotalCost}" />
+										</ice:outputFormat>
+									</td>
+									<td style="text-align: right">&amp;nbsp;
+										<ice:outputFormat value="{0,number,#.##}">
+											<f:param value="#{candidateTeam.coordinationFitResults.avgTotalCost}" />
+										</ice:outputFormat>
+									</td>
+									<td style="text-align: right">&amp;nbsp;
+										<ice:outputFormat value="{0,number,#.##}">
+											<f:param value="#{candidateTeam.coordinationFitResults.maxTotalCost}" />
+										</ice:outputFormat>
+									</td>
+								</tr>
+								<tr>
+									<th>Effort (md)</th>
+									<td style="text-align: right">&amp;nbsp;#{candidateTeam.coordinationFitResults.minTotalDuration}</td>
+									<td style="text-align: right">&amp;nbsp;#{candidateTeam.coordinationFitResults.avgTotalDuration}</td>
+									<td style="text-align: right">&amp;nbsp;#{candidateTeam.coordinationFitResults.maxTotalDuration}</td>
+								</tr>
+							</tbody>
+						</table><br/>
+
+						<p style="font-weight: bold">Critical path</p>
+						<ice:dataTable var="node"
+								value="#{candidateTeam.coordinationFitResults.criticalPathWithSuppliers}"
+								binding="#{teamFormationController.criticalPathDataTable}">
+							<ice:column>
+								&amp;nbsp;#{teamFormationController.criticalPathDataTable.rowIndex+1}
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">Role</f:facet>
+								&amp;nbsp;#{node.key.qualificationProfile.firstProductName}
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">Supplier</f:facet>
+								&amp;nbsp;#{node.value.organisation.name}
+							</ice:column>
+							<ice:column>
+								<f:facet name="header">Expected duration</f:facet>
+								&amp;nbsp;#{node.value.avgDurationProposal}
+							</ice:column>
+						</ice:dataTable>
+
+						<ice:commandButton
+							action="teamFormationTeamDetails"
+							actionListener="#{teamFormationController.selectTeam}"
+							value="Accept team..."
+							rendered="#{teamFormationController.selectedCaseFile.finalTeam == null}">
+							<f:attribute name="teamid" value="#{candidateTeam.id}" />
+						</ice:commandButton>
+
+					</ice:outputText>
+
+				</ice:column>
+	
+				<ice:column>
+					<ice:outputHtml rendered="#{teamFormationController.selectedCaseFile.finalTeam == candidateTeam}">
+						<img src="images/accepted.png" />
+					</ice:outputHtml>
+				</ice:column>
+	
+			</ice:dataTable>
+
+			<ice:commandButton action="teamFormation" value="Back to cases..."/>
+
+		</ice:form>
+		<ui:debug hotkey="m" />
+	</ui:define>
+</ui:decorate>

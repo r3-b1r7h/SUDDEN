@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  copy into ~/.m2 (on linux) or c:\Documents and Settings\user\.m2 --><settings>
+	<servers>
+		<server>
+			<id>internal</id>
+			<username>maven</username>
+			<password>mav3nR3p0</password>
+		</server>
+	</servers>
+	<localRepository>.m2/repository</localRepository>
+</settings>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.xsd
+	http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!--  BEGIN - SPRING SECURITY configuration -->
+	<security:global-method-security
+		secured-annotations="enabled" />
+	<security:authentication-provider
+		user-service-ref="baseAndUtility.userService">
+		<!--
+			<security:user-service> <security:user name="admin" password="admin"
+			authorities="ROLE_USER" /> </security:user-service>
+		-->
+	</security:authentication-provider>
+	<security:http auto-config='true'>
+		<security:intercept-url pattern="/login.iface"
+			filters="none" />
+		<security:intercept-url pattern="/images/*"
+			filters="none" />
+		<security:intercept-url pattern="/themes/*"
+			filters="none" />
+		<security:intercept-url pattern="/*"
+			access="ROLE_ADMIN, ROLE_USER" />
+		<security:remember-me />
+		<!--
+			<security:intercept-url pattern="/public/**"
+			access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		-->
+		<security:anonymous username="anonym" />
+		<security:form-login login-processing-url="/login"
+			login-page="/login.iface" default-target-url="/index.jsp"
+			always-use-default-target="false" />
+		<security:logout logout-url="/logout"
+			invalidate-session="true" />
+	</security:http>
+
+	<!--  END - SPRING SECURITY configuration -->
+	<!--
+		Rendermanager in order to render asynchronous updates to the clients
+	-->
+	<bean id="userInterface.gui.renderManager" class="com.icesoft.faces.async.render.RenderManager" />
+	<bean id="primitiveValueController" scope="session"
+		class="biz.sudden.baseAndUtility.web.controller.impl.PrimitiveValueController">
+		<property name="primitiveValueService" ref="baseAndUtility.primitiveValueService">
+		</property>
+	</bean>
+	<bean id="createProcessJSFController" scope="session"
+		class="biz.sudden.baseAndUtility.web.controller.impl.CreateProcessJSFControllerImpl">
+		<property name="baseService" ref="baseAndUtility.smService" />
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+		<property name="scopeController" ref="scopeController" />
+	</bean>
+	<bean id="userSessionController"
+		class="biz.sudden.userInterface.gui.web.controller.impl.UserSessionControllerImpl"
+		scope="session" />
+	<!-- BEGIN Beans 4 ServiceManagement -->
+	<!--
+		TODO: is this sMControlle needed ?? I think no (Georg) <bean
+		id="sMController" scope="session"
+		class="biz.sudden.knowledgeData.serviceManagement.web.controller.impl.SMControllerImpl">
+		<property name="pmsService"
+		ref="serviceManagement.ProductMaterialSupportingServices" /> <property
+		name="manufacturingService"
+		ref="serviceManagement.ManufacturingProcessTypeService" /> <property
+		name="baseService" ref="baseAndUtility.smService" /> <property
+		name="connectableService" ref="baseAndUtility.connectableService" />
+		</bean>
+	-->
+	<bean id="sm_Controller" scope="session"
+		class="biz.sudden.knowledgeData.serviceManagement.web.controller.impl.ServiceManagementControllerImpl">
+		<property name="baseService" ref="baseAndUtility.smService" />
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+		<property name="pmsService"
+			ref="serviceManagement.ProductMaterialSupportingServices" />
+		<property name="mptService"
+			ref="serviceManagement.ManufacturingProcessTypeService">
+		</property>
+		<property name="technologyService" ref="serviceManagement.TechnologyService" />
+		<property name="machineService" ref="serviceManagement.MachineryTypeServices" />
+		<property name="scopeController" ref="scopeController" />
+	</bean>
+
+	<!-- END Beans 4 ServiceManagement -->
+	<bean id="pmEnterpriseDesignController2" scope="session"
+		class="biz.sudden.evaluation.performanceMeasurement.web.controller.impl.PMEnterpriseProfileDesignController2Impl">
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+		<property name="PMController" ref="pmController" />
+	</bean>
+	<bean id="pmDesignController" scope="session"
+		class="biz.sudden.evaluation.performanceMeasurement.web.controller.impl.PMEnterpriseProfileDesignControllerImpl">
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+		<property name="PMController" ref="pmController" />
+	</bean>
+	<bean id="pmEvaluationController" scope="session"
+		class="biz.sudden.evaluation.performanceMeasurement.web.controller.impl.PMEnterpriseEvaluationControllerImpl">
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+		<property name="PMController" ref="pmController" />
+		<property name="searchService"
+			ref="serviceManagement.ProductMaterialSupportingServices" />
+	</bean>
+		<bean id="pmNetworkDesignController2" scope="session"
+		class="biz.sudden.evaluation.performanceMeasurement.web.controller.impl.PMNetworkProfileDesignController2Impl">
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+		<property name="PMController" ref="pmController" />
+		<property name="caseFileController" ref="caseFileController" />
+		<property name="handleBoService" ref="handleBOService" />
+		<property name="teamController" ref="TeamFormationController" />
+	</bean>
+	<bean id="pmNetworkDesignController" scope="session"
+		class="biz.sudden.evaluation.performanceMeasurement.web.controller.impl.PMNetworkProfileDesignControllerImpl">
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+		<property name="PMController" ref="pmController" />
+		<property name="caseFileController" ref="caseFileController" />
+		<property name="handleBoService" ref="handleBOService" />
+		<property name="teamController" ref="TeamFormationController" />
+	</bean>
+	<bean id="pmController" scope="session"
+		class="biz.sudden.evaluation.performanceMeasurement.web.controller.impl.PMControllerImpl">
+		<property name="networkEvaluationService" ref="pm.networkService" />
+		<property name="enterpriseEvaluationService" ref="pm.enterpriseService" />
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+		<property name="scopeController" ref="scopeController" />
+		<property name="organizationService"
+			ref="userOrganizationManagement.organizationManagement.service.Organization" />
+	</bean>
+
+
+	<!-- BEGIN: Web Beans for Collaborative Planning -->
+	<bean id="cpController" scope="session"
+		class="biz.sudden.designCoordination.collaborativePlanning.web.controller.impl.CpController">
+		<property name="cpSendMessageService"
+			ref="designCoordination.collaborativePlanning.sendMessageService" />
+		<property name="userSessionController" ref="userSessionController" />
+		<property name="userService" ref="baseAndUtility.userService" />
+		<property name="cpGetMessageService"
+			ref="designCoordination.collaborativePlanning.getMessageService" />
+		<property name="cpBulletinBoardService"
+			ref="designCoordination.collaborativePlanning.bulletinBoardService" />
+	</bean>
+	<bean id="ratingController" scope="session"
+		class="biz.sudden.designCoordination.collaborativePlanning.web.controller.impl.RatingController"
+		parent="cpController">
+		<property name="cpBulletinBoardService"
+			ref="designCoordination.collaborativePlanning.bulletinBoardService" />
+	</bean>
+	<!--<bean id="cpChatController" scope="session"
+		class="biz.sudden.designCoordination.collaborativePlanning.web.controller.impl.CPChatController" />
+	-->
+	<bean id="requestChatController"
+		class="biz.sudden.designCoordination.collaborativePlanning.RequestChatController"
+		scope="session" init-method="init"> <!-- FIXME: this has been scope="request" hence this controller has been created at every request... is this wanted??  -->
+		<property name="userController" ref="userController" />
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+		<property name="chatManager" ref="chatManager" />
+		<property name="userSessionController" ref="userSessionController" />
+	</bean>
+	<!--
+		ChatApplication is the container for all Chats and has a reference to
+		RenderManager
+	-->
+	<bean id="designCoordination.collaborativePlanning.chatApplication"
+		class="biz.sudden.designCoordination.collaborativePlanning.web.controller.impl.ChatApplicationImpl"
+		scope="session">
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+	</bean>
+	<bean id="chatManager"
+		class="biz.sudden.designCoordination.collaborativePlanning.web.controller.ChatManager">
+		<property name="chatRoomService"
+			ref="designCoordination.collaborativePlanning.chatRoomService" />
+		<property name="userService" ref="baseAndUtility.userService" />
+	</bean>
+	<!--
+		A participant is bound to a client session and is an abstraction of a
+		user (at web level), has reference to ChatApplication
+	-->
+	<bean id="designCoordination.collaborativePlanning.participant"
+		class="biz.sudden.designCoordination.collaborativePlanning.web.controller.impl.ParticipantImpl"
+		scope="session">
+		<property name="chatApplication"
+			ref="designCoordination.collaborativePlanning.chatApplication" />
+	</bean>
+	<!-- END: Web Controller for Collaborative Planning (session scoped) -->
+
+	<!--  treeDragDrop.jspx uses this -->
+	<bean id="dragDropBean"
+		class="biz.sudden.baseAndUtility.web.controller.tree.TreeDragDrop">
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+		<property name="baseService" ref="baseAndUtility.smService" />
+	</bean>
+	<bean id="userManager"
+		class="biz.sudden.baseAndUtility.web.controller.impl.UserManager" />
+	<bean id="userController"
+		class="biz.sudden.baseAndUtility.web.controller.impl.UserJSFControllerImpl"
+		scope="session" destroy-method="destroy" init-method="init">
+		<property name="userService" ref="baseAndUtility.userService" />
+		<property name="userManager" ref="userManager" />
+		<property name="manager" ref="userInterface.gui.renderManager" />
+		<property name="chatManager" ref="chatManager" />
+		<property name="shutdownController" ref="shutdownController" />
+	</bean>
+	<bean id="shutdownController"
+		class="biz.sudden.baseAndUtility.web.controller.impl.ShutdownControllerImpl">
+		<property name="manager" ref="userInterface.gui.renderManager" />
+		<property name="userService" ref="baseAndUtility.userService" />
+	</bean>
+	<!--
+		<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="shutdown-service"/> <property
+		name="service" ref="shutdownController"/> <property
+		name="serviceInterface"
+		value="biz.sudden.baseAndUtility.web.controller.ShutdownController"/>
+		<property name="registryPort" value="1234"/> </bean>
+	-->
+
+	<!-- FIXME: features des scopeJSFController in den userController ?? -->
+	<bean id="scopeController"
+		class="biz.sudden.baseAndUtility.web.controller.impl.ScopeControllerImpl"
+		scope="session">
+		<property name="scopeService" ref="baseAndUtility.scopeService" />
+	</bean>
+	<bean id="kdmController"
+		class="biz.sudden.knowledgeData.kdm.web.controller.impl.KdmControllerImpl"
+		scope="session">
+		<property name="KDMService" ref="kdm.KDMService" />
+		<property name="scopeController" ref="scopeController" />
+		<property name="executor" ref="threadPoolExecutor" />
+		<property name="competencesmanagementController" ref="CMController" />
+	</bean>
+	<bean id="caseFileController"
+		class="biz.sudden.knowledgeData.kdm.web.controller.impl.CaseFileControllerImpl"
+		scope="session" init-method="initTabs">
+		<property name="PMController" ref="pmController" />
+		<property name="KDMService" ref="kdm.KDMService" />
+		<property name="scopeController" ref="scopeController" />
+		<property name="executor" ref="threadPoolExecutor" />
+		<property name="handleBoService" ref="handleBOService" />
+		<property name="genericRepository" ref="suddenGenericRepository" />
+		<property name="renderManager" ref="userInterface.gui.renderManager" />
+	</bean>
+	<bean id="fileUploadController"
+		class="biz.sudden.knowledgeData.kdm.web.controller.impl.FileUploadControllerImpl"
+		scope="session">
+		<property name="fileUploadService" ref="kdm.FileUploadService">
+		</property>
+	</bean>
+
+
+	<!-- coordination controller -->
+	<bean id="coordinationController" scope="session"
+		class="biz.sudden.designCoordination.coordination.web.controller.impl.CoordinationControllerImpl">
+		<property name="controllerForEvaluation" ref="pmController" />
+	</bean>
+
+	  <bean id="TeamFormationController" scope="session"
+		class="biz.sudden.designCoordination.teamFormation.overallControl.TeamFormationControllerImpl">
+		<property name="TDTF" ref="tf.TDTF" />
+		<property name="productMaterialSupportingService"
+			ref="serviceManagement.ProductMaterialSupportingServices" />
+		<property name="enterpriseEvaluationService" ref="pm.enterpriseService" />
+		<property name="SMS" ref="baseAndUtility.smService" />
+		<property name="KDMService" ref="kdm.KDMService" />
+		<property name="jadeService" ref="TFJadeService" />
+		<property name="controllerForEvaluation" ref="pmController" />
+		<property name="coordControl" ref="coordinationController" />
+		<property name="coordService" ref="Coordination" />
+	</bean>
+	
+
+	<!-- created for testing the Team formation UI controller -->
+	<bean id="teamFormationController" scope="session"
+		class="biz.sudden.userInterface.gui.web.controller.impl.TeamFormationControllerImpl">
+		<property name="caseFileController" ref="caseFileController" />
+		<property name="kdmService" ref="kdm.KDMService" />
+		<property name="invitationService" ref="baseAndUtility.invitationService" />
+		<property name="userService" ref="baseAndUtility.userService" />
+		<property name="messageService"
+			ref="designCoordination.collaborativePlanning.sendMessageService" />
+		<property name="coordinationFitService" ref="evaluation.coordinationFitService" />
+		<property name="coordinationService"
+			ref="Coordination" />
+				<property name="coordinationController" ref="coordinationController" />
+				<property name="teamFormationController" ref="TeamFormationController" />
+	</bean>
+	<bean id="teamFormationInvitationController" scope="session"
+		class="biz.sudden.userInterface.gui.web.controller.impl.TeamFormationInvitationController">
+		<property name="caseFileRepository" ref="baseAndUtility.caseFileRepository" />
+		<property name="coordinationFitService" ref="evaluation.coordinationFitService" />
+		<property name="invitationService" ref="baseAndUtility.invitationService" />
+	</bean>
+	<bean id="executionFeedbackController" scope="session"
+		class="biz.sudden.userInterface.gui.web.controller.impl.ExecutionFeedbackController">
+		<property name="caseFileRepository" ref="baseAndUtility.caseFileRepository" />
+		<property name="competencesManagementInstancesService"
+			ref="competencesManagement.InstancesManagementService" />
+		<property name="competencesManagementService"
+			ref="competencesManagement.CompetencesManagementService" />
+		<property name="userService" ref="baseAndUtility.userService" />
+		<property name="messageService"
+			ref="designCoordination.collaborativePlanning.sendMessageService" />
+		<property name="bulletinBoardService"
+			ref="designCoordination.collaborativePlanning.bulletinBoardService" />
+	</bean>
+	<!--
+		Sudden Listener for different Events (session creation, deletion,
+		faces events,...)
+	-->
+	<bean id="suddenListener"
+		class="biz.sudden.designCoordination.collaborativePlanning.SuddenListener" />
+
+	<!--  userOrganizationManagement -->
+	<bean id="jsfUserController"
+		class="biz.sudden.userOrganizationManagement.userManagement.web.controller.JSFUserController"
+		scope="session">
+		<property name="IUserAccount"
+			ref="userOrganizationManagement.UserManagement.RegisterUserAccount" />
+		<property name="IUserProfile"
+			ref="userOrganizationManagement.UserManagement.RegisterUserProfile" />
+		<property name="IUser"
+			ref="userOrganizationManagement.UserManagement.RegisterUser" />
+		<property name="IOrganization"
+			ref="userOrganizationManagement.organizationManagement.service.Organization" />
+		<property name="userService" ref="baseAndUtility.userService" />
+	</bean>
+
+	<bean id="jsfOrganizationController"
+		class="biz.sudden.userOrganizationManagement.organizationManagement.web.controller.JSFOrganizationController"
+		scope="session">
+		<property name="IOrganization"
+			ref="userOrganizationManagement.organizationManagement.service.Organization" />
+		<property name="IOrganizationProfile"
+			ref="userOrganizationManagement.organizationManagement.service.OrganizationProfile" />
+		<property name="IUserAccount"
+			ref="userOrganizationManagement.UserManagement.RegisterUserAccount" />
+		<property name="IUserProfile"
+			ref="userOrganizationManagement.UserManagement.RegisterUserProfile" />
+		<property name="IUser"
+			ref="userOrganizationManagement.UserManagement.RegisterUser" />
+		<property name="serviceManagementController" ref="sm_Controller" />
+		<property name="cmInstanceController" ref="competencesManagement.InstanceController" />
+		<property name="cmController" ref="CMController" />
+		
+	</bean>
+	<bean id="rootLinkController"
+		class="biz.sudden.baseAndUtility.web.controller.RootLinkController"
+		scope="session">
+		<property name="rootLinkService" ref="rootLinkService" />
+		<property name="userSessionController" ref="userSessionController" />
+		<property name="linkService" ref="baseAndUtility.linkService" />
+		<property name="genericRepository" ref="suddenGenericRepository" />
+	</bean>
+
+	<!--  competencesManagement -->
+	<bean id="CMController" scope="session"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMControllerImpl"
+		init-method="init">
+		<property name="cmService"
+			ref="competencesManagement.CompetencesManagementService" />
+		<property name="cmQuestionnairesService"
+			ref="competencesManagement.QuestionnairesManagementService" />
+		<property name="cmInstancesService"
+			ref="competencesManagement.InstancesManagementService" />
+		<property name="cmRolesService"
+			ref="competencesManagement.RolesManagementService" />			
+		<property name="cmCVIController" ref="competencesManagement.CVIController" />
+		<property name="cmDimensionController" ref="competencesManagement.DimensionController" />
+		<property name="cmCompetenceController" ref="competencesManagement.CompetenceController" />
+		<property name="cmQuestionnaireController"
+			ref="competencesManagement.QuestionnaireController" />
+		<property name="cmRoleController"
+			ref="competencesManagement.RoleController" />			
+		<property name="cmInstanceController" ref="competencesManagement.InstanceController" />
+	</bean>
+
+	<bean id="questionnaireController" scope="session"
+		class="biz.sudden.knowledgeData.questionnaireNew.web.controller.QuestionnaireController">
+		<property name="questionnaireService" ref="questionnaireService" />
+		<property name="tickService" ref="tickService" />
+	</bean>
+
+	<bean id="tickController" scope="session" init-method="init"
+		class="biz.sudden.knowledgeData.questionnaireNew.web.controller.TickController">
+		<property name="tickService" ref="tickService" />
+	</bean>
+
+	<bean id="fillinController" scope="session"
+		class="biz.sudden.knowledgeData.questionnaireNew.web.controller.QuestionnaireFillInController">
+		<property name="tickService" ref="tickService" />
+		<property name="fillinService" ref="fillinService" />
+		<property name="questionnaireService" ref="questionnaireService" />
+	</bean>
+
+
+</beans>

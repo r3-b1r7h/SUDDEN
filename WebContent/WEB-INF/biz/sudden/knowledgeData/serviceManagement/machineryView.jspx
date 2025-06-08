@@ -1,0 +1,155 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ui:param name="action" value="machineryView"/>
+     <ui:define name="navigationTopText">
+     machines used to implement a technology
+	 </ui:define>
+
+	<ui:define name="navigationPath">
+		<ice:form>
+			<ice:panelGroup style="width:600px;">
+				<ice:commandLink value="#{sm_Controller.selectedOrganisationName}" action="organisationView" />
+				<ice:outputText value="->" />
+				<ice:commandLink value="#{sm_Controller.prodValueTree.selectedNodeObject.text}" action="productValueCreatingView" />
+				<ice:outputText value="->" />
+				<ice:commandLink value="#{sm_Controller.materialTree.selectedNodeObject.text}" action="materialView" />
+				<ice:outputText value="->" />
+				<ice:commandLink value="#{sm_Controller.technologyTree.selectedNodeObject.text}" action="technologyView" />
+			</ice:panelGroup>
+		</ice:form>
+	</ui:define>
+
+
+	<ui:define name="content">
+	<f:view>
+
+			<ice:panelGroup>
+			
+			<table>
+				<tr>
+					<td><ice:form>
+						<ice:panelGroup scrollHeight="400px" scrollWidth="360px">
+							<ice:tree value="#{sm_Controller.machineTree.sourceTree}" var="item"
+								hideRootNode="false" hideNavigation="false">
+								<ice:treeNode>
+									<f:facet name="content">
+										<ice:panelGroup dragValue="#{item}" draggable="true"
+											 styleClass="treenode"
+											dragMask="hover_start, dragging, hover_end, drag_cancel"
+											dragOptions="dragGhost"
+											dragListener="#{sm_Controller.machineTree.dragListener}">
+											<ice:outputText value="#{item.userObject.text}" />
+										</ice:panelGroup>
+									</f:facet>
+								</ice:treeNode>
+							</ice:tree>
+						</ice:panelGroup>
+					</ice:form></td>
+
+					<td><ice:form>
+						<ice:panelGroup scrollHeight="400px" scrollWidth="360px">
+							<ice:tree value="#{sm_Controller.machineTree.targetTree}"
+								var="item2" hideRootNode="false" hideNavigation="false">
+								<ice:treeNode>
+									<f:facet name="content">
+										<ice:panelGroup dropValue="#{item2}"
+											dropListener="#{sm_Controller.machineTree.dropListener}" dropTarget="true"
+											dropMask="hover_start, dragging, hover_end, drag_cancel"
+											 styleClass="treenode">
+											<!--  <ice:outputText value="#{item2.userObject.text}" />
+											actionListener="#{item2.userObject.nodeClicked}"
+											-->
+											<ice:commandLink
+												actionListener="#{item2.userObject.nodeClicked}"
+												value="#{item2.userObject.text}" />
+											<!-- 	
+											<ice:selectBooleanCheckbox partialSubmit="true"
+									             value="selected"
+									         />	
+									          -->
+										</ice:panelGroup>
+									</f:facet>
+								</ice:treeNode>
+							</ice:tree>
+						</ice:panelGroup>
+					</ice:form></td>
+
+					<td><ice:form>
+						<ice:panelGroup>
+
+							<ice:outputText
+								value="Selected Node: #{sm_Controller.machineTree.selectedNodeObject.text}"
+								escape="false" />
+							<p /><ice:commandButton
+								actionListener="#{sm_Controller.machineTree.deleteSelectedNode}"
+								disabled="#{sm_Controller.machineTree.deleteDisabled}" value="Delete" />
+							<p /><ice:commandButton
+								actionListener="#{sm_Controller.machineTree.showPopup}"
+								disabled="#{sm_Controller.machineTree.selectedDisabled}" value="Add Sub" /><!-- diabled wenn kein node selected -->
+							<p />
+						</ice:panelGroup>
+					</ice:form></td>
+
+				</tr>
+			</table>
+			
+			<ice:form>
+				<!-- Hier eigenes Bean fuer Popup -->
+				<ice:panelPopup draggable="true"
+					rendered="#{sm_Controller.machineTree.popupVisible}" styleClass="corePopup" >
+
+					<f:facet name="header">
+						<ice:panelGroup styleClass="popupHeaderWrapper">
+							<ice:outputText value="Add Sub Node!"
+								styleClass="popupHeaderText" />
+						</ice:panelGroup>
+					</f:facet>
+
+					<f:facet name="body">
+
+						<ice:panelGroup styleClass="popupBody">
+							<ice:outputText
+								value="To Node: #{sm_Controller.machineTree.selectedNodeObject.text}" />
+							<p /><ice:outputLabel value="Name: " /> <ice:inputText size="25"
+								maxlength="25" actionListener="#{sm_Controller.machineTree.addNodeToSelectedNode}"
+								value="#{sm_Controller.machineTree.name}" />
+							<!--  
+							<p /><ice:outputLabel
+								for="SlctCompTyp" value="type" /> <ice:selectOneMenu
+								id="SlctCompTyp" value="#{sm_Controller.machineTree.selectedComponent}"
+								partialSubmit="true">
+								<f:selectItems id="SlctcompTypeItms"
+									value="#{sm_Controller.machineTree.componentItems}" />
+							</ice:selectOneMenu>
+							-->
+							<p /><ice:commandButton type="submit" value="add"
+								actionListener="#{sm_Controller.machineTree.addNodeToSelectedNode}" /> <ice:commandButton
+								type="submit" value="close"
+								actionListener="#{sm_Controller.machineTree.hidePopup}" />
+						
+						</ice:panelGroup>
+					</f:facet>
+				</ice:panelPopup>
+			</ice:form>
+			
+			<hr />
+			<ice:form>
+				<p /><ice:commandButton
+					actionListener="#{sm_Controller.mapMachineTreeToTM}"
+					value="#{msg.ServicemanagementSave}"
+					disabled="#{sm_Controller.buttonSaveMachinesDisabled}"
+					 /> 
+				<p />
+				<ice:commandButton value="Self-evaluation Questionnaire"
+						action="fillInLevel0Questionnaire" />
+			</ice:form>	
+			</ice:panelGroup>
+	</f:view>
+	</ui:define>
+
+</ui:decorate>

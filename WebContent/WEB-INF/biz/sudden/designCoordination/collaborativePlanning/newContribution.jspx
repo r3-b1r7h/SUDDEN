@@ -1,0 +1,57 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="navigationPath">
+		<ice:form>
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Home" action="home" style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="BulletinBoards" action="bulletinboard"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Topics" action="showtopics"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Contributions" action="showcontributions"
+				style="margin-right:10px" />
+		</ice:form>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ice:form>
+
+			<ice:panelGrid columns="2" style="width:65%;border:1px solid black">
+				<ice:outputText value="Sender" />
+				<ice:inputText disabled="true" value="#{cpController.currentUser.nickname}" />
+				<ice:outputText value="Subject" />
+				<ice:inputText  value="#{cpController.contributionSubject}" />
+				<ice:outputText value="Message" />
+				<ice:inputTextarea value="#{cpController.contributionMessage}" style="width:100%;height:150px"/>
+				<ice:outputText value="" />
+				<ice:outputText value="" />
+				<ice:commandButton value="Send Contribution" actionListener="#{cpController.createNewContribution}" />
+			</ice:panelGrid>
+
+
+<!--  
+comm.setSubject(contributionSubject);
+		comm.setSender(getCurrentUser());
+		comm.setSendDate(new Date());
+		comm.setTopic(selectedTopic);
+		comm.setMessage(contributionMessage);
+-->
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

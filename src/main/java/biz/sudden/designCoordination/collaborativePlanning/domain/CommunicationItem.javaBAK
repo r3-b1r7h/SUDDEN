@@ -1,0 +1,100 @@
+package biz.sudden.designCoordination.collaborativePlanning.domain;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.CollectionOfElements;
+
+import biz.sudden.baseAndUtility.domain.IDInterface;
+
+/**
+ * 
+ * A CommunicationItem is a abstract domainObject, whereas Offer, NegotiationItem and 
+ * NegotiationIssue can be a CommunicationItem
+ * 
+ * @author Thomas Feiner
+ *
+ */
+
+@Entity
+public class CommunicationItem implements IDInterface {
+
+	private Long id;
+//	private CP_Actor sender;
+//	private List<CP_Actor> receiver;
+//	private String message;
+//	private List<String> tags;
+//	
+//	@ManyToOne
+//	public CP_Actor getSender() {
+//		return sender;
+//	}
+//
+//	public void setSender(CP_Actor sender) {
+//		this.sender = sender;
+//	}
+//
+//	@OneToMany
+//	public List<CP_Actor> getReceiver() {
+//		return receiver;
+//	}
+//
+//	public void setReceiver(List<CP_Actor> receiver) {
+//		this.receiver = receiver;
+//	}
+//
+//	public String getMessage() {
+//		return message;
+//	}
+//
+//	public void setMessage(String message) {
+//		this.message = message;
+//	}
+//
+//	@CollectionOfElements
+//	public List<String> getTags() {
+//		return tags;
+//	}
+//
+//	public void setTags(List<String> tags) {
+//		this.tags = tags;
+//	}
+//	
+//	public void addTag(String tag) {
+//		this.tags.add(tag);
+//	}
+//	
+//	public void removeTag(String tag) {
+//		this.tags.remove(tag);
+//	}
+//	
+//	@Transient
+//	public int getTagsSize() {
+//		if (tags != null)
+//			return tags.size();
+//		else
+//			return 0;
+//	}
+//	
+//	public void setTagsSize(int size) {
+//		
+//	}
+ 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)	
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<ui:define name="content">
+
+		<h:messages globalOnly="true" />
+		
+		name:#{teamFormationInvitationController.selectedInvitation.caseFile.name}<br/>
+		supplier id:#{teamFormationInvitationController.selectedInvitation.supplier.id}<br/>
+		<ice:form>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Min</th>
+						<th>Expected</th>
+						<th>Max</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Cost (kEuros)</th>
+						<td><ice:inputText value="#{teamFormationInvitationController.minCostProposal}" /></td>
+						<td><ice:inputText value="#{teamFormationInvitationController.avgCostProposal}" /></td>
+						<td><ice:inputText value="#{teamFormationInvitationController.maxCostProposal}" /></td>
+					</tr>
+					<tr>
+						<th>Effort (md)</th>
+						<td><ice:inputText value="#{teamFormationInvitationController.minDurationProposal}" /></td>
+						<td><ice:inputText value="#{teamFormationInvitationController.avgDurationProposal}" /></td>
+						<td><ice:inputText value="#{teamFormationInvitationController.maxDurationProposal}" /></td>
+					</tr>
+				</tbody>
+			</table><br/>
+
+
+			<ice:commandButton value="Join team" action="#{teamFormationInvitationController.joinTeam}" />
+			<ice:commandButton value="Cancel" action="cpReceiveMessages" />
+		</ice:form>
+
+	</ui:define>
+</ui:decorate>

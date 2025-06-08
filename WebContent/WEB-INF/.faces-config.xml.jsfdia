@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showQuestionnaire::#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showAllQuestionnaires.iface"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showAllQuestionnaires.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showAllQuestionnaires.iface"
+    TITLE="showQuestionnaire" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showSingleQuestionnaire::#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showQuestionnaire.iface"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showQuestionnaire.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showQuestionnaire.iface"
+    TITLE="showSingleQuestionnaire" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showSingleFillInQuestionnaire::#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showSingleFillInQuestionnaire.iface"
+    NAME="output2"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showSingleFillInQuestionnaire.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showSingleFillInQuestionnaire.iface"
+    TITLE="showSingleFillInQuestionnaire" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="startQuestionnaire::#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#startQuestionnaire.iface"
+    NAME="output3"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/startQuestionnaire.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#startQuestionnaire.iface"
+    TITLE="startQuestionnaire" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showQuestion::#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showQuestion.iface"
+    NAME="output4"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showQuestion.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showQuestion.iface"
+    TITLE="showQuestion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showTickTemplates::#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showTickTemplates.iface"
+    NAME="output5"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showTickTemplates.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showTickTemplates.iface"
+    TITLE="showTickTemplates" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="viewfilledinquestionnaire::#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#viewQuestionnaireFilledIn.iface"
+    NAME="output6"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/viewQuestionnaireFilledIn.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#viewQuestionnaireFilledIn.iface"
+    TITLE="viewfilledinquestionnaire" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showFeedback::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showRatingBulletinBoards.iface"
+    NAME="output7"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showRatingBulletinBoards.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showRatingBulletinBoards.iface"
+    TITLE="showFeedback" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="home::#index.jsp" NAME="output8"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="goto::#goto.jsp" NAME="output9"
+    PATH="/goto.jsp" TARGET="rules:#goto.jsp" TITLE="goto" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="bo::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showBO.jspx"
+    NAME="output10"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showBO.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showBO.jspx"
+    TITLE="bo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="createUser::#WEB-INF#biz#sudden#baseAndUtility#createUser.jspx"
+    NAME="output11"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/createUser.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#createUser.jspx"
+    TITLE="createUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="collaborativePlanning::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#chat.iface"
+    NAME="output12"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/chat.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#chat.iface"
+    TITLE="collaborativePlanning" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="chat::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#chat.iface"
+    NAME="output13"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/chat.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#chat.iface"
+    TITLE="chat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cpSendMessage::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#sendMessage.iface"
+    NAME="output14"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/sendMessage.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#sendMessage.iface"
+    TITLE="cpSendMessage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cpReceiveMessages::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#receiveMessages.iface"
+    NAME="output15"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/receiveMessages.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#receiveMessages.iface"
+    TITLE="cpReceiveMessages" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cpShowForum::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showForum.iface"
+    NAME="output16"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showForum.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showForum.iface"
+    TITLE="cpShowForum" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="kdm::#WEB-INF#biz#sudden#knowledgeData#kdm#kdm.iface"
+    NAME="output17"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/kdm/kdm.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#kdm#kdm.iface"
+    TITLE="kdm" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="fileupload::#WEB-INF#biz#sudden#knowledgeData#kdm#fileupload.iface"
+    NAME="output18"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/kdm/fileupload.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#kdm#fileupload.iface"
+    TITLE="fileupload" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="pingPong::#WEB-INF#test#tf#pingpong#pingpong.iface"
+    NAME="output19" PATH="/WEB-INF/test/tf/pingpong/pingpong.iface"
+    TARGET="rules:#WEB-INF#test#tf#pingpong#pingpong.iface"
+    TITLE="pingPong" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="toTree::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#basicTree.jspx"
+    NAME="output20"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/basicTree.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#basicTree.jspx"
+    TITLE="toTree" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="performanceMeasurementDesign::#WEB-INF#biz#sudden#evaluation#performanceMeasurement#enterprise.iface"
+    NAME="output21"
+    PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/enterprise.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#enterprise.iface"
+    TITLE="performanceMeasurementDesign" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="performanceMeasurementDesign2::#WEB-INF#biz#sudden#evaluation#performanceMeasurement#enterprisedesign.iface"
+    NAME="output22"
+    PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/enterprisedesign.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#enterprisedesign.iface"
+    TITLE="performanceMeasurementDesign2" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="performanceMeasurementEvaluation::#WEB-INF#biz#sudden#evaluation#performanceMeasurement#evaluation.iface"
+    NAME="output23"
+    PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/evaluation.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#evaluation.iface"
+    TITLE="performanceMeasurementEvaluation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="performanceMeasurementNetwork::#WEB-INF#biz#sudden#evaluation#performanceMeasurement#network.iface"
+    NAME="output24"
+    PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/network.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#network.iface"
+    TITLE="performanceMeasurementNetwork" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="performanceMeasurementNetwork2::#WEB-INF#biz#sudden#evaluation#performanceMeasurement#networkdesign.iface"
+    NAME="output25"
+    PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/networkdesign.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#networkdesign.iface"
+    TITLE="performanceMeasurementNetwork2" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="baseAndUtility::#WEB-INF#biz#sudden#baseAndUtility#overview_mane.iface"
+    NAME="output26"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.iface"
+    TITLE="baseAndUtility" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="searchUsers::#WEB-INF#biz#sudden#userOrganizationManagement#searchUser.jspx"
+    NAME="output27"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/searchUser.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#searchUser.jspx"
+    TITLE="searchUsers" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="searchCompany::#WEB-INF#biz#sudden#userOrganizationManagement#searchCompany.jspx"
+    NAME="output28"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/searchCompany.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#searchCompany.jspx"
+    TITLE="searchCompany" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="userAndCompanyRegister::#WEB-INF#biz#sudden#userOrganizationManagement#userAndCompanyRegister.jspx"
+    NAME="output29"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userAndCompanyRegister.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userAndCompanyRegister.jspx"
+    TITLE="userAndCompanyRegister" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="competencesManagement::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmOverview.jspx"
+    NAME="output30"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmOverview.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmOverview.jspx"
+    TITLE="competencesManagement" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="teamFormation::#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-case.iface"
+    NAME="output31"
+    PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-case.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-case.iface"
+    TITLE="teamFormation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="teamFormationCase::#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-case.iface"
+    NAME="output32"
+    PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-case.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-case.iface"
+    TITLE="teamFormationCase" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="runCoordination::#WEB-INF#biz#sudden#designCoordination#coordination#coord.iface"
+    NAME="output33"
+    PATH="/WEB-INF/biz/sudden/designCoordination/coordination/coord.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#coordination#coord.iface"
+    TITLE="runCoordination" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="teamFormationTeamDetails::#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-team.iface"
+    NAME="output34"
+    PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-team.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-team.iface"
+    TITLE="teamFormationTeamDetails" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="teamFormationInvitations::#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-invitations.iface"
+    NAME="output35"
+    PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-invitations.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-invitations.iface"
+    TITLE="teamFormationInvitations" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="teamFormationInvitation::#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-invitation.iface"
+    NAME="output36"
+    PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-invitation.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-invitation.iface"
+    TITLE="teamFormationInvitation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="executionFeedbackForm::#WEB-INF#biz#sudden#evaluation#executionFeedback#ef.iface"
+    NAME="output37"
+    PATH="/WEB-INF/biz/sudden/evaluation/executionFeedback/ef.iface"
+    TARGET="rules:#WEB-INF#biz#sudden#evaluation#executionFeedback#ef.iface"
+    TITLE="executionFeedbackForm" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx"
+  SHAPE="288,3457,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success::#WEB-INF#biz#sudden#baseAndUtility#create_mane.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/create_mane.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#create_mane.jspx"
+    TITLE="success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageScopes::#WEB-INF#biz#sudden#baseAndUtility#manageScope.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/manageScope.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#manageScope.jspx"
+    TITLE="manageScopes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx:1"
+   NAME="item1"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showC::#WEB-INF#biz#sudden#baseAndUtility#showConnectables.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/showConnectables.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#showConnectables.jspx"
+    TITLE="showC" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx:2"
+   NAME="item2"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="find::#WEB-INF#biz#sudden#baseAndUtility#assocSearchBy_AT_Con.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/assocSearchBy_AT_Con.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#assocSearchBy_AT_Con.jspx"
+    TITLE="find" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx:3"
+   NAME="item3"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toSM::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    TITLE="toSM" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx:4"
+   NAME="item4"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="associate::#WEB-INF#biz#sudden#baseAndUtility#associate.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/associate.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#associate.jspx"
+    TITLE="associate" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#find.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/find.jspx"
+  SHAPE="32,3441,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#find.jspx:0" NAME="item"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/find.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="find::#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx"
+    TITLE="find" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#find.jspx:1"
+   NAME="item1" PATH="/WEB-INF/biz/sudden/baseAndUtility/find.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="stay::#WEB-INF#biz#sudden#baseAndUtility#find.jspx"
+    NAME="output" PATH="/WEB-INF/biz/sudden/baseAndUtility/find.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#find.jspx"
+    TITLE="stay" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#associate.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/associate.jspx"
+  SHAPE="560,4145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#associate.jspx:0"
+   NAME="item" PATH="/WEB-INF/biz/sudden/baseAndUtility/associate.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="stay::#WEB-INF#biz#sudden#baseAndUtility#associate.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/associate.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#associate.jspx"
+    TITLE="stay" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssoc.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssoc.jspx"
+  SHAPE="32,3713,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssoc.jspx:0"
+   NAME="item" PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssoc.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="assocFound::#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx"
+    TITLE="assocFound" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssoc.jspx:1"
+   NAME="item1" PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssoc.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="stay::#WEB-INF#biz#sudden#baseAndUtility#findAssoc.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssoc.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssoc.jspx"
+    TITLE="stay" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssociated4C.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssociated4C.jspx"
+  SHAPE="32,3857,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssociated4C.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssociated4C.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="assocFound4C::#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.jspx"
+    TITLE="assocFound4C" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssociated4C.jspx:1"
+   NAME="item1"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssociated4C.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="stay::#WEB-INF#biz#sudden#baseAndUtility#findAssociated4C.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/findAssociated4C.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#findAssociated4C.jspx"
+    TITLE="stay" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#showConnectables.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/showConnectables.jspx"
+  SHAPE="560,3857,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#baseAndUtility#showConnectables.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/baseAndUtility/showConnectables.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="stay::#WEB-INF#biz#sudden#baseAndUtility#showConnectables.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/baseAndUtility/showConnectables.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#showConnectables.jspx"
+    TITLE="stay" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,4145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="toTree::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#treeDragDrop.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/treeDragDrop.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#treeDragDrop.jspx"
+    TITLE="toTree" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="560,4257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="serviceManagement::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    TITLE="serviceManagement" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,4001,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="treeDragDrop::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#treeDragDrop.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/treeDragDrop.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#treeDragDrop.jspx"
+    TITLE="treeDragDrop" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="organisationView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    TITLE="organisationView" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+  SHAPE="832,3457,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="productValueCreatingView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/productValueCreatingView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    TITLE="productValueCreatingView" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/productValueCreatingView.jspx"
+  SHAPE="1104,3441,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/productValueCreatingView.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="organisationView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    TITLE="organisationView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="materialView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/materialView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx"
+    TITLE="materialView" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/materialView.jspx"
+  SHAPE="560,4369,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/materialView.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="organisationView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    TITLE="organisationView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="productValueCreatingView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/productValueCreatingView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    TITLE="productValueCreatingView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="technologyView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#technologyView.jspx"
+    NAME="output2"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/technologyView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#technologyView.jspx"
+    TITLE="technologyView" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#technologyView.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/technologyView.jspx"
+  SHAPE="288,4385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#technologyView.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/technologyView.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="organisationView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    TITLE="organisationView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="productValueCreatingView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/productValueCreatingView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    TITLE="productValueCreatingView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="materialView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx"
+    NAME="output2"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/materialView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx"
+    TITLE="materialView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="machineryView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#machineryView.jspx"
+    NAME="output3"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/machineryView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#machineryView.jspx"
+    TITLE="machineryView" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#machineryView.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/machineryView.jspx"
+  SHAPE="32,4369,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#machineryView.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/machineryView.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="organisationView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/organisationView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#organisationView.jspx"
+    TITLE="organisationView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="productValueCreatingView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/productValueCreatingView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    TITLE="productValueCreatingView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="materialView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx"
+    NAME="output2"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/materialView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#materialView.jspx"
+    TITLE="materialView" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="technologyView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#technologyView.jspx"
+    NAME="output3"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/technologyView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#technologyView.jspx"
+    TITLE="technologyView" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,4577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="loginAs::#WEB-INF#biz#sudden#baseAndUtility#loginAs.jspx"
+    NAME="output" PATH="/WEB-INF/biz/sudden/baseAndUtility/loginAs.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#baseAndUtility#loginAs.jspx"
+    TITLE="loginAs" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,4689,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="bulletinboard::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showBulletinBoards.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showBulletinBoards.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showBulletinBoards.jspx"
+    TITLE="bulletinboard" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,4801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showtopicsrating::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showTopicsRating.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showTopicsRating.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showTopicsRating.jspx"
+    TITLE="showtopicsrating" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showtopics::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showTopics.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showTopics.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showTopics.jspx"
+    TITLE="showtopics" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showcontributionsratings::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContributionsRatings.jspx"
+    NAME="output2"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showContributionsRatings.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContributionsRatings.jspx"
+    TITLE="showcontributionsratings" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showcontributions::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContributions.jspx"
+    NAME="output3"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showContributions.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContributions.jspx"
+    TITLE="showcontributions" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="opennewcontribution::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#newContribution.jspx"
+    NAME="output4"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/newContribution.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#newContribution.jspx"
+    TITLE="opennewcontribution" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="showcontribution::#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContribution.jspx"
+    NAME="output5"
+    PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showContribution.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContribution.jspx"
+    TITLE="showcontribution" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userAndCompanyRegister.jspx"
+  PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userAndCompanyRegister.jspx"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userAndCompanyRegister.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userAndCompanyRegister.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registerUser::#WEB-INF#biz#sudden#userOrganizationManagement#userAccountRegister.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userAccountRegister.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userAccountRegister.jspx"
+    TITLE="registerUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registerCompany::#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx"
+    NAME="output2"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/companyRegister.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx"
+    TITLE="registerCompany" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userAccountRegister.jspx"
+  PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userAccountRegister.jspx"
+  SHAPE="544,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userAccountRegister.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userAccountRegister.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registerUserProfile::#WEB-INF#biz#sudden#userOrganizationManagement#userProfileRegister.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userProfileRegister.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userProfileRegister.jspx"
+    TITLE="registerUserProfile" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userProfileRegister.jspx"
+  PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userProfileRegister.jspx"
+  SHAPE="768,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#userOrganizationManagement#userProfileRegister.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/userOrganizationManagement/userProfileRegister.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registerCompany::#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/companyRegister.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx"
+    TITLE="registerCompany" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx"
+  PATH="/WEB-INF/biz/sudden/userOrganizationManagement/companyRegister.jspx"
+  SHAPE="1008,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/userOrganizationManagement/companyRegister.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::6" SHAPE="832,3729,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="productValueCreatingView::#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/productValueCreatingView.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#productValueCreatingView.jspx"
+    TITLE="productValueCreatingView" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmOverview.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmOverview.jspx"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmOverview.jspx:0"
+   NAME="item"
+   PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmOverview.jspx" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#index.jsp" NAME="output"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addCVI::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddCVI.jspx"
+    NAME="output1"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddCVI.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddCVI.jspx"
+    TITLE="addCVI" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registerCompany::#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx"
+    NAME="output2"
+    PATH="/WEB-INF/biz/sudden/userOrganizationManagement/companyRegister.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#userOrganizationManagement#companyRegister.jspx"
+    TITLE="registerCompany" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::7" SHAPE="32,5633,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="addDimension::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddDimension.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddDimension.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddDimension.jspx"
+    TITLE="addDimension" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::8" SHAPE="32,5745,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::8" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="addCompetence::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddCompetence.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddCompetence.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddCompetence.jspx"
+    TITLE="addCompetence" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::9" SHAPE="32,5857,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cviAdded::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCVIAdded.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmCVIAdded.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCVIAdded.jspx"
+    TITLE="cviAdded" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::10" SHAPE="32,5969,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::10" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="dimensionAdded::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmDimensionAdded.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmDimensionAdded.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmDimensionAdded.jspx"
+    TITLE="dimensionAdded" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::11" SHAPE="32,6081,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::11" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="competenceAdded::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCompetenceAdded.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmCompetenceAdded.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCompetenceAdded.jspx"
+    TITLE="competenceAdded" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::12" SHAPE="32,6193,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::12" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="questionnaireAdded::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmQuestionnaireAdded.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmQuestionnaireAdded.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmQuestionnaireAdded.jspx"
+    TITLE="questionnaireAdded" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::13" SHAPE="32,6305,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::13" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="roleAdded::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmRoleAdded.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmRoleAdded.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmRoleAdded.jspx"
+    TITLE="roleAdded" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::14" SHAPE="32,6417,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::14" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="addQuestionnaire::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddQuestionnaire.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddQuestionnaire.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddQuestionnaire.jspx"
+    TITLE="addQuestionnaire" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::15" SHAPE="32,6529,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::15" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="addRole::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddRole.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddRole.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddRole.jspx"
+    TITLE="addRole" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::16" SHAPE="32,6641,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::16" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseRepositoryCVI::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCVIs.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCVIs.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCVIs.jspx"
+    TITLE="browseRepositoryCVI" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::17" SHAPE="32,6753,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::17" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseRepositoryDimensions::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseDimensions.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseDimensions.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseDimensions.jspx"
+    TITLE="browseRepositoryDimensions" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::18" SHAPE="32,6865,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::18" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseRepositoryCompetences::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCompetences.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCompetences.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCompetences.jspx"
+    TITLE="browseRepositoryCompetences" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::19" SHAPE="32,6977,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::19" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseRepositoryQuestionnaires::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaires.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseQuestionnaires.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaires.jspx"
+    TITLE="browseRepositoryQuestionnaires" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::20" SHAPE="32,7089,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::20" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseRepositoryCompetenceInstances::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCompetenceInstances.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCompetenceInstances.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCompetenceInstances.jspx"
+    TITLE="browseRepositoryCompetenceInstances" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::21" SHAPE="32,7201,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::21" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseRepositoryDimensionInstances::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseDimensionInstances.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseDimensionInstances.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseDimensionInstances.jspx"
+    TITLE="browseRepositoryDimensionInstances" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::22" SHAPE="32,7313,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::22" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseCategories::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCategories.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCategories.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCategories.jspx"
+    TITLE="browseCategories" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::23" SHAPE="32,7425,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::23" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseCategoriesTree::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCategoriesRepositories.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmCategoriesRepositories.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCategoriesRepositories.jspx"
+    TITLE="browseCategoriesTree" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::24" SHAPE="32,7537,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::24" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="fillInLevel0Questionnaire::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmFillInL0Questionnaire.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmFillInL0Questionnaire.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmFillInL0Questionnaire.jspx"
+    TITLE="fillInLevel0Questionnaire" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::25" SHAPE="32,7649,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::25" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="questionnaireSubmitted::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmQuestionnaireSubmitted.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmQuestionnaireSubmitted.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmQuestionnaireSubmitted.jspx"
+    TITLE="questionnaireSubmitted" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::26" SHAPE="32,7761,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::26" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="fillInQuestionnaires::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmFillInQuestionnaires.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmFillInQuestionnaires.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmFillInQuestionnaires.jspx"
+    TITLE="fillInQuestionnaires" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::27" SHAPE="32,7873,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::27" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseQuestionnaireInstances::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaireInstances.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseQuestionnaireInstances.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaireInstances.jspx"
+    TITLE="browseQuestionnaireInstances" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::28" SHAPE="32,7985,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::28" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="showQuestionnaireInstanceForOrganization::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmShowQuestionnaireInstanceForOrganization.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmShowQuestionnaireInstanceForOrganization.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmShowQuestionnaireInstanceForOrganization.jspx"
+    TITLE="showQuestionnaireInstanceForOrganization" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::29" SHAPE="32,8097,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::29" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseQuestionnaireInstancesNoCVIsTicks::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaireInstancesNoCVIsTicks.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseQuestionnaireInstancesNoCVIsTicks.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaireInstancesNoCVIsTicks.jspx"
+    TITLE="browseQuestionnaireInstancesNoCVIsTicks" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::30" SHAPE="32,8209,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::30" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseCategoriesById::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#searchCategoriesById.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/searchCategoriesById.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#searchCategoriesById.jspx"
+    TITLE="browseCategoriesById" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::31" SHAPE="32,8321,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::31" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseCategoriesByIdAndParent::#WEB-INF#biz#sudden#knowledgeData#competencesManagement#searchCategoryByParentAndId.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/searchCategoryByParentAndId.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#searchCategoryByParentAndId.jspx"
+    TITLE="browseCategoriesByIdAndParent" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::32" SHAPE="32,8433,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::32" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="browseCaseFiles::#WEB-INF#biz#sudden#knowledgeData#kdm#casefiles.jspx"
+    NAME="output"
+    PATH="/WEB-INF/biz/sudden/knowledgeData/kdm/casefiles.jspx"
+    TARGET="rules:#WEB-INF#biz#sudden#knowledgeData#kdm#casefiles.jspx"
+    TITLE="browseCaseFiles" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::33" SHAPE="32,8545,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::33" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="drehmomente::#WEB-INF#drehmomente.jspx"
+    NAME="output" PATH="/WEB-INF/drehmomente.jspx"
+    TARGET="rules:#WEB-INF#drehmomente.jspx" TITLE="drehmomente" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#newContribution.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/newContribution.jspx"
+  SHAPE="304,5425,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddCompetence.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddCompetence.jspx"
+  SHAPE="240,5761,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaireInstancesNoCVIsTicks.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseQuestionnaireInstancesNoCVIsTicks.jspx"
+  SHAPE="240,8113,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCategories.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCategories.jspx"
+  SHAPE="240,7329,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showForum.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showForum.iface"
+  SHAPE="304,2785,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmRoleAdded.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmRoleAdded.jspx"
+  SHAPE="240,6321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#kdm#casefiles.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/kdm/casefiles.jspx"
+  SHAPE="240,8449,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#index.jsp" PATH="/index.jsp"
+  SHAPE="1280,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContributionsRatings.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showContributionsRatings.jspx"
+  SHAPE="304,5201,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-invitation.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-invitation.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#basicTree.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/basicTree.jspx"
+  SHAPE="304,3233,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#enterprisedesign.iface"
+  PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/enterprisedesign.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmShowQuestionnaireInstanceForOrganization.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmShowQuestionnaireInstanceForOrganization.jspx"
+  SHAPE="240,8001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showTopicsRating.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showTopicsRating.jspx"
+  SHAPE="304,4817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-case.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-case.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddCVI.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddCVI.jspx"
+  SHAPE="544,1313,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#sendMessage.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/sendMessage.iface"
+  SHAPE="304,2561,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showBulletinBoards.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showBulletinBoards.jspx"
+  SHAPE="240,4705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#assocSearchBy_AT_Con.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/assocSearchBy_AT_Con.jspx"
+  SHAPE="560,4001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#chat.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/chat.iface"
+  SHAPE="304,2449,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showRatingBulletinBoards.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showRatingBulletinBoards.iface"
+  SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCompetenceAdded.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmCompetenceAdded.jspx"
+  SHAPE="240,6097,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#searchCategoryByParentAndId.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/searchCategoryByParentAndId.jspx"
+  SHAPE="240,8337,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#evaluation.iface"
+  PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/evaluation.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#coordination#coord.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/coordination/coord.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaires.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseQuestionnaires.jspx"
+  SHAPE="240,6993,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#receiveMessages.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/receiveMessages.iface"
+  SHAPE="304,2673,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmFillInL0Questionnaire.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmFillInL0Questionnaire.jspx"
+  SHAPE="240,7553,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showQuestion.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showQuestion.iface"
+  SHAPE="304,1665,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCompetenceInstances.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCompetenceInstances.jspx"
+  SHAPE="240,7105,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showQuestionnaire.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showQuestionnaire.iface"
+  SHAPE="304,1329,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#network.iface"
+  PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/network.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddRole.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddRole.jspx"
+  SHAPE="240,6545,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#create_mane.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/create_mane.jspx"
+  SHAPE="560,3441,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCVIAdded.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmCVIAdded.jspx"
+  SHAPE="240,5873,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmCategoriesRepositories.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmCategoriesRepositories.jspx"
+  SHAPE="240,7441,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#enterprise.iface"
+  PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/enterprise.iface"
+  SHAPE="304,3345,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#goto.jsp" PATH="/goto.jsp"
+  SHAPE="304,2113,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#evaluation#executionFeedback#ef.iface"
+  PATH="/WEB-INF/biz/sudden/evaluation/executionFeedback/ef.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseQuestionnaireInstances.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseQuestionnaireInstances.jspx"
+  SHAPE="240,7889,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showBO.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showBO.jspx"
+  SHAPE="304,2225,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#userOrganizationManagement#searchUser.jspx"
+  PATH="/WEB-INF/biz/sudden/userOrganizationManagement/searchUser.jspx"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#loginAs.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/loginAs.jspx"
+  SHAPE="240,4593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#overview_mane.iface"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/overview_mane.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmQuestionnaireAdded.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmQuestionnaireAdded.jspx"
+  SHAPE="240,6209,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#WEB-INF#test#tf#pingpong#pingpong.iface"
+  PATH="/WEB-INF/test/tf/pingpong/pingpong.iface" SHAPE="304,3121,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showAllQuestionnaires.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showAllQuestionnaires.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showSingleFillInQuestionnaire.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showSingleFillInQuestionnaire.iface"
+  SHAPE="304,1441,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-team.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-team.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContribution.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showContribution.jspx"
+  SHAPE="304,5537,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#createUser.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/createUser.jspx"
+  SHAPE="304,2337,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#teamFormation#tf-invitations.iface"
+  PATH="/WEB-INF/biz/sudden/designCoordination/teamFormation/tf-invitations.iface"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#kdm#fileupload.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/kdm/fileupload.iface"
+  SHAPE="304,3009,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseDimensions.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseDimensions.jspx"
+  SHAPE="240,6769,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCVIs.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCVIs.jspx"
+  SHAPE="240,6657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#viewQuestionnaireFilledIn.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/viewQuestionnaireFilledIn.iface"
+  SHAPE="304,1889,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseCompetences.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseCompetences.jspx"
+  SHAPE="240,6881,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmBrowseDimensionInstances.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmBrowseDimensionInstances.jspx"
+  SHAPE="240,7217,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmDimensionAdded.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmDimensionAdded.jspx"
+  SHAPE="240,5985,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#kdm#kdm.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/kdm/kdm.iface"
+  SHAPE="304,2897,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddQuestionnaire.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddQuestionnaire.jspx"
+  SHAPE="240,6433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#startQuestionnaire.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/startQuestionnaire.iface"
+  SHAPE="304,1553,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#userOrganizationManagement#searchCompany.jspx"
+  PATH="/WEB-INF/biz/sudden/userOrganizationManagement/searchCompany.jspx"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#serviceManagement#treeDragDrop.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/serviceManagement/treeDragDrop.jspx"
+  SHAPE="288,4017,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmQuestionnaireSubmitted.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmQuestionnaireSubmitted.jspx"
+  SHAPE="240,7665,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showContributions.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showContributions.jspx"
+  SHAPE="304,5313,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#searchCategoriesById.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/searchCategoriesById.jspx"
+  SHAPE="240,8225,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#WEB-INF#drehmomente.jspx"
+  PATH="/WEB-INF/drehmomente.jspx" SHAPE="240,8561,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmAddDimension.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmAddDimension.jspx"
+  SHAPE="240,5649,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#questionnaireNew#showTickTemplates.iface"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/questionnaireNew/showTickTemplates.iface"
+  SHAPE="304,1777,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#baseAndUtility#manageScope.jspx"
+  PATH="/WEB-INF/biz/sudden/baseAndUtility/manageScope.jspx"
+  SHAPE="560,3713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#knowledgeData#competencesManagement#cmFillInQuestionnaires.jspx"
+  PATH="/WEB-INF/biz/sudden/knowledgeData/competencesManagement/cmFillInQuestionnaires.jspx"
+  SHAPE="240,7777,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#designCoordination#collaborativePlanning#showTopics.jspx"
+  PATH="/WEB-INF/biz/sudden/designCoordination/collaborativePlanning/showTopics.jspx"
+  SHAPE="304,5089,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#WEB-INF#biz#sudden#evaluation#performanceMeasurement#networkdesign.iface"
+  PATH="/WEB-INF/biz/sudden/evaluation/performanceMeasurement/networkdesign.iface"
+  SHAPE="304,1329,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

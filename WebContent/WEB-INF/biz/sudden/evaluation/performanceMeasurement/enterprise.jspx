@@ -1,0 +1,172 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+    <ui:param name="action" value="performanceMeasurementDesign2"/>
+     <ui:define name="navigationTopText">
+     design a performance measurement system from a particular enterprise point of view
+	 </ui:define>
+
+
+	<!--  ui:define name="navigationPath">
+		<ice:form>
+			<ice:dataTable id="navigation" var="position"
+				value="#{pmDesignController.visited}">
+				<ice:column>
+					<ice:commandLink value=" - #{position.userObject.text}"
+						action="${pmDesignController.goTo}" />
+				</ice:column>
+			</ice:dataTable>
+		</ice:form>
+	</ui:define -->
+
+
+	<ui:define name="content">
+		<ice:form>
+			<!--valueChangeListener="#{scopeController.selectedUserScopeChanged}" 	  -->
+			<!-- this listener returns "object.toString()" as new Value of the event instead of the object itself -->
+			<ice:outputText value="Scope To Use: " />
+			<ice:selectOneMenu value="#{scopeController.userScopeID}"
+				valueChangeListener="#{scopeController.selectedUserScopeChanged}"
+				immediate="true" partialSubmit="true">
+				<f:selectItems value="#{scopeController.listOfScopes}" />
+			</ice:selectOneMenu>
+		</ice:form>
+		<center><i>/// Edit Enterprise Profile ///</i></center>
+		<ice:outputText>
+		Design an Enterprise Evaluation profile, by starting to select an existing in the left tree, or create a new.  
+		The Profile to the right is the one you are working with.
+		Drag from the left tree, elements to the right tree. Remember to set the function and its parameter first.
+		</ice:outputText>
+		<ice:form>
+			<ice:panelGroup>
+				<!--ice:outputText  value="Selected Node: #{pmDesignController.indicatorTree.selectedNodeObject.text} escape="false" / -->
+				<table>
+					<tr>
+						<td colspan="2">
+							<ice:outputText value="Selected: " /> <ice:inputText
+							immediate="true" value="#{pmDesignController.selectedName}" />
+						</td>
+						<td  colspan="2"><ice:commandButton
+							actionListener="${pmDesignController.deleteSelected}"
+							value="remove" />
+							<ice:commandButton
+							actionListener="${pmDesignController.create}" value="New Profile" />
+						<ice:commandButton actionListener="${pmDesignController.addSub}"
+							value="Add New Sub Profile" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><ice:outputText value="Function To Use: " /> <ice:selectOneMenu
+							immediate="true" partialSubmit="true"
+							value="#{pmDesignController.newEProfileAggregationFunction}">
+							<f:selectItems value="#{pmDesignController.functionNames}" />
+						</ice:selectOneMenu></td>
+						<td><ice:outputText
+							value="Parameter for function (function dependent): " /> <ice:inputText
+							immediate="true" partialSubmit="true"
+							value="#{pmDesignController.newEProfileParameter}" /></td>
+					</tr>
+				</table>
+			</ice:panelGroup>
+		</ice:form>
+
+		<ice:form partialSubmit="true">
+			<ice:panelGroup>
+				<table>
+					<tr>
+						<td><ice:outputLabel for="treed" value="Depth of Tree: " />
+						<ice:inputText id="treed" immediate="false" partialSubmit="true"
+							value="#{pmDesignController.treeDepth}" size="2" /></td>
+						<td><ice:commandButton value="Refresh Trees"
+							actionListener="${pmDesignController.refreshTree}" /></td>
+					</tr>
+					<tr>
+						<td><ice:commandButton value="Link" 
+							actionListener="#{rootLinkController.link}"
+							rendered="${pmDesignController.showLinks}">
+							<f:param name="link" id="link"
+								value="#{pmDesignController.indicatorTree.selectedNodeObject.reference}" />
+						</ice:commandButton></td>
+						<td><ice:selectOneMenu id="selectOneMenu" 
+							value="#{rootLinkController.selectedItem}"
+							valueChangeListener="#{rootLinkController.changeItem}" partialSubmit="true"
+							immediate="true" binding="#{rootLinkController.selectOneMenu}"
+							rendered="${pmDesignController.showLinks}">
+							<f:param name="sourceObject" id="sourceObject" 
+								value="#{pmDesignController.indicatorTree.selectedNodeObject.reference}" />
+							<f:selectItems id="selectedItem"
+								value="#{rootLinkController.linkentries}" />
+						</ice:selectOneMenu></td>
+						<td><ice:panelSeries
+							value="#{rootLinkController.primitiveTypeValues}" var="linkentry"
+							rendered="${pmDesignController.showLinks}"
+							binding="#{rootLinkController.panelSeries}">
+							<ice:outputText value="#{linkentry.name}: #{linkentry.value}"/>
+						</ice:panelSeries></td>
+					</tr>
+				</table>
+			</ice:panelGroup>
+			<ice:panelGroup>
+				<table>
+					<tr>
+						<td>
+						<ice:panelGroup scrollHeight="400px" scrollWidth="360px">
+						<ice:tree
+							value="#{pmDesignController.sourceTreeForGUI}"
+							var="dragNode" hideRootNode="false" hideNavigation="false"  >
+							<ice:treeNode>
+								<f:facet name="content">
+									<!--  dragListener="#{pmDesignController.indicatorTree.dragListener}"-->
+									<ice:panelGroup dragValue="#{dragNode}" draggable="true"
+										styleClass="treenode"
+										dragMask="hover_start, dragging, hover_end, drag_cancel"
+										dragOptions="dragGhost">
+										<ice:commandLink
+											actionListener="#{dragNode.userObject.nodeClicked}"
+											value="#{dragNode.userObject.text}" escape="true" />
+									</ice:panelGroup>
+								</f:facet>
+							</ice:treeNode>
+						</ice:tree>
+						</ice:panelGroup>
+						</td>
+						<td>
+						<ice:panelGroup scrollHeight="400px" scrollWidth="360px">
+						<ice:tree
+							value="#{pmDesignController.targetTreeForGUI}"
+							var="targetNode" hideRootNode="false" hideNavigation="false">
+							<ice:treeNode>
+								<f:facet name="content">
+									<ice:panelGroup dropValue="#{targetNode}"
+										dropListener="#{pmDesignController.dropListener}"
+										dropTarget="true"
+										dropMask="hover_start, dragging, hover_end, drag_cancel"
+										styleClass="treenode">
+										<!--  <ice:outputText value="#{item2.userObject.text}" /> 
+                        actionListener="#{pmDesignController.indicatorTree.targetTree.nodeClicked}"
+                        -->
+										<ice:commandLink
+											actionListener="#{targetNode.userObject.nodeClicked}"
+											value="#{targetNode.userObject.text}" escape="true" />
+										<!-- <ice:selectBooleanCheckbox partialSubmit="true" value="selected"/>-->
+									</ice:panelGroup>
+								</f:facet>
+							</ice:treeNode>
+						</ice:tree>
+						</ice:panelGroup></td>
+					</tr>
+				</table>
+			</ice:panelGroup>
+		</ice:form>
+
+		<ice:form>
+			<ice:commandLink value="home" action="home" />
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

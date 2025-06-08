@@ -1,0 +1,75 @@
+<f:view xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGrid columns="2" cellspacing="5">
+
+		<!-- first column, for tree navigation -->
+		<ice:panelGroup style="border: 1px solid gray; height: auto;">
+			<!--
+                    This is a very links tree comprising of only text nodes.  The
+                    expand and contract images are rendered because the "imageDir"
+                    attribute on the tree component has been set to a known path.
+                -->
+			<ice:tree id="tree"
+				value="#{CMController.cmCVIController.cviCategoryController.categoryTreeController.model}"
+				var="item" hideRootNode="false" hideNavigation="false"
+				imageDir="./xmlhttp/css/xp/css-images/">
+				<ice:treeNode>
+					<f:facet name="icon">
+						<ice:panelGroup style="display: inline">
+							<h:graphicImage value="#{item.userObject.icon}" />
+						</ice:panelGroup>
+					</f:facet>
+					<f:facet name="content">
+						<ice:panelGroup style="display: inline">
+							<ice:commandLink actionListener="#{item.userObject.nodeSelected}"
+								value="#{item.userObject.text}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:treeNode>
+			</ice:tree>
+		</ice:panelGroup>
+		<ice:panelGroup style="border: 1px solid gray; height: auto;">
+			<ice:outputLabel for="categoryName" value="Category Name: " />
+			<ice:inputText id="categoryName" size="25" maxlength="25"
+				value="#{CMController.cmCVIController.cviCategoryController.category.name}"
+				partialSubmit="true" />
+			<ice:commandButton value="Add Category"
+				action="${CMController.cmCVIController.cviCategoryController.addCategory}" />
+			<ice:commandButton value="Build Tree"
+				action="${CMController.cmCVIController.buildCategoryTree}" />
+			<ice:panelGroup styleClass="synopsisBox textEntryContainer">
+				<br />
+				<h4>Selected Category</h4>
+				<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+					rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+					<ice:outputLabel for="categoryId" value="Category ID: " />
+					<ice:outputText id="categoryId" size="25" maxlength="25"
+						value="#{CMController.cmCVIController.cviCategoryController.category.id}"
+						partialSubmit="true" />
+					<ice:outputLabel for="categoryName2" value="Name: " />
+					<ice:outputText id="categoryName2" size="25" maxlength="25"
+						value="#{CMController.cmCVIController.cviCategoryController.category.name}"
+						partialSubmit="true" />
+					<ice:outputLabel for="categoryDescription" value="Description: " />
+					<ice:outputText id="categoryDescription" size="25" maxlength="25"
+						value="#{CMController.cmCVIController.cviCategoryController.category.description}"
+						partialSubmit="true" />
+					<ice:outputLabel for="categoryParentCategory"
+						value="Parent Category ID: " />
+					<ice:outputText id="categoryParentCategory" size="25"
+						maxlength="25"
+						value="#{CMController.cmCVIController.cviCategoryController.category.parentCategoryId}"
+						partialSubmit="true" />
+					<ice:outputLabel for="categoryType" value="Category Type: " />
+					<ice:outputText id="categoryType" size="25" maxlength="25"
+						value="#{CMController.cmCVIController.cviCategoryController.category.type}"
+						partialSubmit="true" />
+				</ice:panelGrid>
+			</ice:panelGroup>
+		</ice:panelGroup>
+
+	</ice:panelGrid>
+
+</f:view>

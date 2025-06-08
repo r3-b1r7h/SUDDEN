@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd ">
+	
+	<!-- define bean for Messages -->
+	
+	<!-- define beans for concrete Repositories -->
+	
+	<!-- define beans for concrete Services -->
+
+	<!--  implicit the scope="singleton" i.e. application scope-->   
+	<bean id="TFAgentCommunications"
+		class="biz.sudden.designCoordination.teamFormation.service.impl.AgentCommunicationsImpl" >
+	</bean>
+	
+	<bean id="TFJadeService" 
+		class="biz.sudden.designCoordination.teamFormation.service.impl.JadeServiceImpl">
+		<property name="communication" ref="TFAgentCommunications" />
+	</bean>
+	
+	<bean id="tf.TDTF" class="biz.sudden.designCoordination.teamFormation.overallControl.topDownTeamFormationModule">
+  	</bean>
+	
+
+	<!-- Sionce the GUI IS needed for testing the PingPong Stuff (ie. esp asynchronous feedback from agents 2 gui) these services need to be here -->
+
+  <bean id="pingpongService"
+		class="biz.sudden.jade.pingpong.PingPongServiceImpl" >
+    <property name="communication" ref="TFAgentCommunications" />
+	</bean>
+	<bean id="pingpongJSFController" class="biz.sudden.jade.pingpong.PingPongjsfControllerImpl" scope="session">
+		<property name="jadeService" ref="pingpongService" />
+    	<property name="renderManager" ref="userInterface.gui.renderManager" />  
+	</bean>
+
+  
+
+</beans>

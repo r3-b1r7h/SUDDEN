@@ -1,0 +1,202 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ui:param name="action" value="performanceMeasurementEvaluation"/>
+     <ui:define name="navigationTopText">
+    evaluate the performance of some company and compare it to others
+	 </ui:define>
+
+	<ui:define name="content">
+		<ice:form partialSubmit="true">
+			<ice:selectOneMenu id="selectOneMenu" value="#{caseFileController.currentCaseFileId}" partialSubmit="true" >	   
+                   <f:selectItems id="selectedItem" value="#{caseFileController.caseFiles}" />
+			</ice:selectOneMenu>
+		</ice:form>
+		<center><i>/// Evaluate Enterprise with Enterprise Profile ///</i></center>
+		<ice:form partialSubmit="true">
+			<ice:outputText value="Evaluate Enterprise: " />
+			<ice:selectOneMenu
+				value="#{pmEvaluationController.selectedOrganisation}"
+				valueChangeListener="#{pmEvaluationController.selectedOrganisationChanged}"
+				immediate="true" partialSubmit="true">
+				<f:selectItems value="#{pmEvaluationController.listOfOrganisations}" />
+			</ice:selectOneMenu>
+		</ice:form>
+
+
+		<ice:form partialSubmit="false">
+			<ice:outputText value="Search Enterprise (select one of types below)):" />
+			<ice:panelGroup>
+				<ice:outputText value="Product:" />
+				<ice:selectOneMenu value="#{pmEvaluationController.doProduct}"
+					valueChangeListener="#{pmEvaluationController.selectedProductChanged}"
+					immediate="true" partialSubmit="true">
+					<f:selectItems value="#{pmEvaluationController.listOfProducts}" />
+				</ice:selectOneMenu>
+			</ice:panelGroup>
+			<ice:panelGroup>
+				<ice:outputText value=" Material: " />
+				<ice:selectOneMenu value="#{pmEvaluationController.doMaterial}"
+					valueChangeListener="#{pmEvaluationController.selectedMaterialChanged}"
+					immediate="true" partialSubmit="true">
+					<f:selectItems value="#{pmEvaluationController.listOfMaterials}" />
+				</ice:selectOneMenu>
+			</ice:panelGroup>
+			<ice:panelGroup>
+				<ice:outputText value=" Technology: " />
+				<ice:selectOneMenu value="#{pmEvaluationController.doTechnology}"
+					valueChangeListener="#{pmEvaluationController.selectedTechnologyChanged}"
+					immediate="true" partialSubmit="true">
+					<f:selectItems value="#{pmEvaluationController.listOfTechnologies}" />
+				</ice:selectOneMenu>
+			</ice:panelGroup>
+		</ice:form>
+
+		<ice:form>
+			<ice:dataTable id="searchEnterprisesTable"
+				value="#{pmEvaluationController.searchedEnterprises}"
+				var="organisationinfo" width="100%"
+				style="padding: 1px; margin: 0px;" border="1">
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText value="Name" />
+					</f:facet>
+					<ice:panelGroup>
+						<ice:commandLink
+							actionListener="#{pmEvaluationController.setSelectedOrganisation}">
+							<f:param name="selectedOrg"
+								value="#{organisationinfo.organisation.id}" />
+							<ice:outputText value="#{organisationinfo.organisation.name}"
+								escape="true" />
+						</ice:commandLink>
+					</ice:panelGroup>
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText value="Products" />
+					</f:facet>
+					<ice:panelSeries id="products" value="#{organisationinfo.productsServices}"
+						var="prod">
+						<ice:panelGroup>
+							<ice:outputText value="#{prod.name}" />
+						</ice:panelGroup>
+					</ice:panelSeries>
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText value="Materials" />
+					</f:facet>
+					<ice:panelSeries id="materials"
+						value="#{organisationinfo.materials}" var="mat">
+						<ice:panelGroup>
+							<ice:outputText value="#{mat.name}" />
+						</ice:panelGroup>
+					</ice:panelSeries>
+				</ice:column>
+			</ice:dataTable>
+		</ice:form>
+		<ice:form partialSubmit="true">
+			<ice:panelGroup>
+				<!--ice:outputText  value="Selected Node: #{pmEvaluationController.indicatorTree.selectedNodeObject.text} escape="false" / -->
+				<table>
+					<tr>
+						<td><ice:outputLabel for="treed" value="Depth of Tree: " />
+						<ice:inputText id="treed" immediate="true"
+							value="#{pmEvaluationController.treeDepth}" size="2" /></td>
+						<td><ice:commandButton value="Refresh Tree"
+							actionListener="${pmEvaluationController.refreshTree}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><ice:commandButton value="Link"
+							actionListener="#{rootLinkController.link}"
+							rendered="${pmEvaluationController.showLinks}">
+							<f:param name="link" id="link"
+								value="#{pmEvaluationController.selectedEvaluationProfile}" />
+						</ice:commandButton> <ice:selectOneMenu id="selectOneMenu"
+							value="#{rootLinkController.selectedItem}"
+							valueChangeListener="#{rootLinkController.changeItem}"
+							partialSubmit="true" immediate="true"
+							binding="#{rootLinkController.selectOneMenu}"
+							rendered="${pmEvaluationController.showLinks}">
+							<f:param name="sourceObject" id="sourceObject"
+								value="#{pmEvaluationController.selectedEvaluationProfile}" />
+							<f:selectItems id="selectedItem"
+								value="#{rootLinkController.linkentries}" />
+						</ice:selectOneMenu> <ice:panelSeries
+							value="#{rootLinkController.primitiveTypeValues}" var="linkentry"
+							binding="#{rootLinkController.panelSeries}"
+							rendered="${pmEvaluationController.showLinks}">
+							<ice:outputText value="#{linkentry.name}: #{linkentry.value}" />
+						</ice:panelSeries></td>
+					</tr>
+					<tr>
+						<td colspan="2"><ice:outputText
+							value="Name of selected Profile: #{pmEvaluationController.selectedEvaluationProfileName}"
+							escape="false" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><ice:outputText
+							value="Name of selected Organisation: #{pmEvaluationController.selectedOrganisation.name}"
+							escape="false" /></td>
+					</tr>
+				</table>
+			</ice:panelGroup>
+			<ice:commandButton value="Compare Organisations" actionListener="#{pmEvaluationController.showComparison}" rendered="#{!pmEvaluationController.compare}"/>
+			<ice:commandButton value="Hide Chart" actionListener="#{pmEvaluationController.showComparison}"  rendered="#{pmEvaluationController.compare}"/>
+			<ice:panelPopup rendered="#{pmEvaluationController.compare}"  draggable="true"
+				 styleClass="corePopup" >
+				<f:facet name="header">
+					<ice:panelGroup>
+					<ice:outputLabel>Performance of selected organisations</ice:outputLabel>
+					<ice:commandButton actionListener="#{pmEvaluationController.showComparison}" value="close"/>
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="body">
+				<ice:panelGroup scrollHeight="600px" scrollWidth="800px"> 
+				<ice:outputChart id="axialOutputChart" rendered="#{pmEvaluationController.compare}"
+					type="#{pmEvaluationController.performanceComparison.type}"
+					style="backgroud-position:bottom; background-image: url('themes/default/img/sudden-small.png'); "
+					chartTitle=          "#{pmEvaluationController.performanceComparison.title}"
+					xaxisTitle=           "#{pmEvaluationController.performanceComparison.xaxisTitle}"
+					yaxisTitle=           "#{pmEvaluationController.performanceComparison.yaxisTitle}"
+					labels=                "#{pmEvaluationController.performanceComparison.labels}"
+					colors=                "#{pmEvaluationController.performanceComparison.colors}"
+					xaxisLabels=        "#{pmEvaluationController.performanceComparison.xaxisLabels}"
+					data=                  "#{pmEvaluationController.performanceComparison.data}"
+					horizontal="#{pmEvaluationController.performanceComparison.horizontal}"
+					width="#{pmEvaluationController.performanceComparison.width}" 
+					heigth="#{pmEvaluationController.performanceComparison.height}" 
+					legendPlacement="#{pmEvaluationController.performanceComparison.legendPlacement}"
+					renderOnSubmit="#{pmEvaluationController.performanceComparison.renderOnSubmit}"
+					actionListener="#{pmEvaluationController.showComparison}"
+					 />
+					 </ice:panelGroup>
+				 </f:facet>
+				</ice:panelPopup>
+			<ice:panelGroup scrollHeight="400px" >
+				<ice:outputLabel>Evaluation Profile For Selected Organisation</ice:outputLabel>
+				<ice:tree value="#{pmEvaluationController.profileTree}"
+					var="dragNode" hideRootNode="true" hideNavigation="false">
+					<ice:treeNode>
+						<f:facet name="content">
+							<ice:commandLink
+								actionListener="#{dragNode.userObject.nodeClicked}"
+								value="#{dragNode.userObject.text}" escape="true" />
+						</f:facet>
+					</ice:treeNode>
+				</ice:tree>
+			</ice:panelGroup>
+			
+		</ice:form>
+
+		<ice:form>
+			<ice:commandLink value="home" action="home" />
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

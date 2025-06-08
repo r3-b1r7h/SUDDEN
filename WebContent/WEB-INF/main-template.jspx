@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+<ice:outputDeclaration doctypeRoot="HTML"
+	doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN"
+	doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<link rel="stylesheet" type="text/css"
+	href="themes/default/style/sudden/sudden.css" />
+<link href="themes/default/style/override.css" rel="stylesheet"
+	type="text/css" />
+<!--  look awful, we have to redo the style sheets! 
+<link rel="stylesheet" type="text/css" href="themes/default/style/xp/xp.css" />
+-->
+<title>.. :: SUddEN :: ..</title>
+
+</head>
+
+<body>
+<!--  
+<ice:outputConnectionStatus
+    cautionLabel="Caution: Connection in danger."
+    activeLabel="Active: Working."
+    disconnectedLabel="Disconnected." 
+    inactiveLabel="Active: Idle."
+/> 
+-->
+
+<f:loadBundle basename="biz.sudden.i18n.MessageResource" var="msg" />
+
+<div id="Seite"
+	style="background-image: url('images/hintergrundSukaba.jpg'); background-repeat: repeat-y; border-left: 0px; margin-left: 0px">
+<div id="Header"><img src="images/headerSuddenNew.jpg" alt="" /></div>
+
+<ul id="Navigation">
+	<ice:form>
+		<ice:commandLink action="#{userController.toggleLocale}"
+			value="#{msg.toggleLocale}" />
+		<br />
+	</ice:form>
+	<ui:insert name="navigationLeft">
+		<ice:form>
+			<ice:panelPopup draggable="true"
+				rendered="#{userController.showWarning}" clientOnly="true"
+				visible="true" styleClass="corePopup" autoCentre="true"
+				style="position:absolute;" modal="true">
+				<f:facet name="header">
+					<ice:panelGroup styleClass="popupHeaderWrapper">
+						<ice:outputText value="Warnung!" styleClass="popupHeaderText" />
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="body">
+					<ice:panelGroup styleClass="popupBody">
+						<ice:outputText
+							value="Wegen Wartungsarbeiten wird der Server in 5 Minuten beendet. Bitte speichern Sie wichtige Daten ab!"></ice:outputText>
+						<ice:commandButton value="OK"
+							action="#{userController.hideWarning}" />
+					</ice:panelGroup>
+				</f:facet>
+			</ice:panelPopup>
+
+			<!--  
+			<ice:commandButton value="logout via controller"
+				action="#{userController.logout}"></ice:commandButton>
+			-->
+
+			<ice:outputText
+				value="#{msg.usersOnline}: #{userController.nrOfUsers}" />
+			<br />
+			<ice:selectOneMenu value="#{userController.selectedUser}"
+				partialSubmit="true" rendered="#{userController.nrOfUsers &gt; 1}">
+				<f:selectItems value="#{userController.userList}" />
+			</ice:selectOneMenu>
+			<ice:commandButton value="#{msg.chatWithThisUser}"
+				actionListener="#{userController.chat}"
+				rendered="#{userController.nrOfUsers &gt; 1}" />
+			<br />
+			<ice:outputText style="color:white"
+				value="#{msg.welcome} #{userController.loggedInUsername}" />
+			<p />
+		</ice:form>
+
+		<!--  Logout Button -->
+		<form action="/sudden/logout" method="post"><input
+			type="submit" value="#{msg.logout}" id="logout" size="5" /></form>
+		<br />
+
+		<ice:form id="outer">
+			<!--  needed? for initialising something???  -->
+			<ice:outputText value="#{requestChatController.dummyNumber}"
+				visible="false"></ice:outputText>
+
+			<!--  renderedOnUserRole="ROLE_ADMIN" -->
+			<ice:outputText style="vertical-align:center;">
+				<span
+					style="padding: 3px; background-color: #8E8980; color: white; letter-spacing: 0.2em; font-size: 100%">#{msg.businessOpportunity}</span>
+			</ice:outputText>
+
+			<ice:commandLink
+				style="#{(action=='browseCaseFiles') ? ' margin-top: 8px; text-decoration: underline; color: #DD4411;' : ' margin-top:8px;'}"
+				value="#{msg.caseFiles2}" 
+				action="browseCaseFiles" />
+			<!-- ice:commandLink value="#{msg.enterprisePmsDesign}" action="performanceMeasurementDesign" /-->
+			<!--  ice:commandLink value="#{msg.enterprisePmsDesign}" action="performanceMeasurementDesign2" /-->
+			<!--  ice:commandLink value="#{msg.networkPmsDesign}" action="performanceMeasurementNetwork" /-->
+			<ice:commandLink 
+				value="#{msg.networkPmsDesign2}"
+				action="performanceMeasurementNetwork2"
+				style="#{(action=='performanceMeasurementNetwork2' || action=='performanceMeasurementDesign2') ? 'text-decoration: underline; color: #DD4411;' : ''}" />
+			<ice:commandLink
+				style="#{(action=='runCoordination') ? 'text-decoration: underline; color: #DD4411;' : ''}"
+				value="#{msg.teamFormation2}" 
+				action="teamFormation"></ice:commandLink>
+			<ice:commandLink
+				style="#{(action=='teamFormationInvitations') ? 'text-decoration: underline; color: #DD4411;' : ''}"
+				value="#{msg.teamFormationInvitations}"
+				action="teamFormationInvitations" />
+			<ice:commandLink
+				style="#{(action=='runCoordination') ? ' margin-bottom:15px; text-decoration: underline; color: #DD4411;' : ' margin-bottom:15px;'}"
+				value="#{msg.coordination}" action="runCoordination" />
+
+
+			<ice:outputText style="vertical-align: center">
+				<span
+					style="padding: 3px; background-color: #8E8980; color: white; letter-spacing: 0.2em; font-size: 100%">#{msg.communication2}</span>
+			</ice:outputText>
+
+			<ice:commandLink
+				style="#{(action=='cpSendMessage') ? ' margin-top: 8px; text-decoration: underline; color: #DD4411;' : ' margin-top:8px;'}"
+				value="#{msg.collabPlanningSendMessage}" 
+				action="cpSendMessage" />
+			<ice:commandLink 
+				value="#{msg.collabPlanningGetMessages}"
+				action="cpReceiveMessages"
+				style="#{(action=='cpReceiveMessages') ? ' text-decoration: underline; color: #DD4411;' : ' '}" />
+			<ice:commandLink
+				style="#{(action=='bulletinboard') ? ' margin-bottom:15px; text-decoration: underline; color: #DD4411;' : ' margin-bottom:15px;'}"
+				value="#{msg.collabPlanningShowForum}" action="bulletinboard" />
+
+
+			<ice:outputText style="vertical-align: center">
+				<span
+					style="padding: 3px; background-color: #8E8980; color: white; letter-spacing: 0.2em; font-size: 100%">#{msg.learning}</span>
+			</ice:outputText>
+
+			<ice:commandLink
+				style="#{(action=='performanceMeasurementEvaluation') ? ' margin-top: 8px; text-decoration: underline; color: #DD4411;' : ' margin-top:8px;'}"
+				value="#{msg.searchEvaluateEnterprise2}"
+				action="performanceMeasurementEvaluation" />
+			<ice:commandLink
+				style="#{(action=='showFeedback') ? ' margin-bottom:15px; text-decoration: underline; color: #DD4411;' : ' margin-bottom:15px;'}"
+				value="#{msg.trainingsImprovements2}" action="showFeedback" />
+
+		</ice:form>
+		<p></p>
+		<ice:form id="outer2" renderedOnUserRole="ROLE_ADMIN" >
+			<ice:outputText style="vertical-align: center">
+				<span
+					style="margin-top: 15px; padding: 3px; background-color: #8E8980; color: white; letter-spacing: 0.2em; font-size: 100%">
+				#{msg.registration}</span>
+			</ice:outputText>
+
+			<ice:commandLink 
+				style="#{(action=='userAndCompanyRegister') ? ' text-decoration: underline; color: #DD4411;margin-top:8px' : 'margin-top:8px '}"
+				value="#{msg.userOrgManagement}" action="userAndCompanyRegister" />
+			<ice:commandLink value="#{msg.serviceManagement}"
+				style="#{(action=='serviceManagement') ? ' text-decoration: underline; color: #DD4411;' : ' '}"
+				action="serviceManagement" />
+			<ice:commandLink value="#{msg.competencesManagement}"
+				style="#{(action=='competencesManagement') ? ' text-decoration: underline; color: #DD4411; margin-bottom:15px; ' : 'margin-bottom:15px; '}"
+				action="${CMController.navigateToCM}" />
+	
+			<ice:outputText style="vertical-align: center">
+				<span
+					style="padding: 3px; background-color: #8E8980; color: white; letter-spacing: 0.2em; font-size: 100%">ADMIN:
+				#{msg.administration}</span>
+			</ice:outputText>
+
+			<ice:commandLink style="margin-top:8px" value="#{msg.viewCleanInit}"
+				action="kdm" />
+			<ice:commandLink style="margin-bottom:15px" value="#{msg.loginAs}"
+				action="loginAs" />
+
+			<ice:outputText style="vertical-align: center">
+				<span
+					style="padding: 3px; background-color: #8E8980; color: white; letter-spacing: 0.2em; font-size: 100%">ADMIN:
+				#{msg.testing}</span>
+			</ice:outputText>
+
+			<ice:commandLink style="margin-top:8px" value="#{msg.baseAndUtility}"
+				action="baseAndUtility" />
+			<ice:commandLink value="#{msg.uploadFile}" action="fileupload" />
+			<ice:commandLink value="#{msg.testJadeIntegration}" action="pingPong" />
+			
+			<ice:commandLink 
+				value="Fragebogen"
+				style="#{(action=='showQuestionnaire') ? ' text-decoration: underline; color: #DD4411; margin-bottom:15px' : 'margin-bottom:15px '}" 
+				action="showQuestionnaire" />
+		</ice:form>
+	</ui:insert>
+
+</ul>
+
+
+
+<div id="Inhalt">
+	<ui:insert name="navigationTop">
+		<ice:form>
+			<table id="topnav">
+				<tr>
+					<td style="height: 25px;">&amp;nbsp;</td>
+				</tr>
+				<tr>
+					<td><ice:commandLink action="browseCaseFiles"
+						styleClass="#{action=='browseCaseFiles' ? 'on' : ''}">
+						<f:param name="value">#{msg.caseFiles}</f:param>
+					</ice:commandLink></td>
+					<td><ice:commandLink action="performanceMeasurementNetwork2"
+						styleClass="#{(action=='performanceMeasurementNetwork2' || action=='performanceMeasurementDesign2') ? 'on' : ''}">
+						<f:param name="value">#{msg.networkPmsDesign}</f:param>
+					</ice:commandLink></td>
+					<td><ice:commandLink action="teamFormation"
+						styleClass="#{action=='teamFormation' ? 'on' : ''}">
+						<f:param name="value">#{msg.teamFormation}</f:param>
+					</ice:commandLink></td>
+					<td><ice:commandLink action="runCoordination"
+						styleClass="#{(action=='executionFeedback' || action=='runCoordination') ? 'on' : ''}">
+						<f:param name="value">#{msg.runCoordination}</f:param>
+					</ice:commandLink></td>
+					<td><ice:commandLink action="performanceMeasurementEvaluation"
+						styleClass="#{(action=='performanceMeasurementEvaluation') ? 'on' : ''}">
+						<f:param name="value">#{msg.searchEvaluateEnterprise}</f:param>
+					</ice:commandLink></td>
+					<td><ice:commandLink action="cpReceiveMessages"
+						styleClass="#{(action=='cpReceiveMessages' || action=='cpSendMessages' || action=='bulletinboard' || action=='showFeedback') ? 'on' : ''}">
+						<f:param name="value">#{msg.communication}</f:param>
+					</ice:commandLink></td>
+				</tr>
+			</table>
+		</ice:form>
+
+		<ui:insert name="nav2">
+		</ui:insert>
+		<p id="topnavText"><ui:insert name="navigationTopText" /></p>
+
+	</ui:insert>
+
+	<div id="ContentText" style="min-height: 45em"><ui:insert
+		name="content">
+			Content
+		 </ui:insert></div>
+	</div>
+
+<p id="Fusszeile">#{msg.footer}</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+    
+    <ui:param name="action" value="showcontributions"/>
+     <ui:define name="nav2">
+     	<ice:form>
+			<table id="secondnav"><tr><td style="height: 25px;" colspan="3">#{msg.communication2}</td></tr><tr><td>
+				<ice:commandLink action="cpReceiveMessages" styleClass="#{(action=='cpReceiveMessages') ? 'selected' : ''}">#{msg.collabPlanningGetMessages}</ice:commandLink> </td><td > 
+				<ice:commandLink action="bulletinboard" styleClass="#{(action=='bulletinboard') ? 'selected' : ''}">#{msg.collabPlanningShowForum}</ice:commandLink> </td><td > 
+				<ice:commandLink action="showFeedback" styleClass="#{(action=='showFeedback') ? 'selected' : ''}">#{msg.trainingsImprovements}</ice:commandLink>
+			</td></tr></table>
+		</ice:form>
+	</ui:define>
+
+
+    
+     <ui:define name="navigationTopText">
+     all messages (contributions) to a discussion
+	 </ui:define>
+	 
+	<ui:define name="navigationPath">
+		<ice:form>
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Home" action="home" style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="BulletinBoards" action="bulletinboard"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Topics" action="showtopics"
+				style="margin-right:10px" />
+			<img src="themes/default/style/xp/css-images/arrow-ff.gif"
+				style="margin-right: 5px" />
+			<ice:commandLink value="Contributions" action="showcontributions"
+				style="margin-right:10px" />
+		</ice:form>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ice:form>
+
+			<ice:commandLink value="Create new Contribution"
+				actionListener="#{cpController.openNewContribution}" />
+			<br />
+			<br />
+
+			<ice:outputText
+				value="Selected Topic: #{cpController.selectedTopic.name}" />
+
+			<!-- 
+			<ice:outputText value="Name of Contribution: " />
+			<ice:inputText value="#{cpController.contributionSubject}"
+				style="margin:10px" />
+			<ice:commandButton value="Create"
+				action="#{cpController.createNewContribution}" />
+ -->
+			<br />
+			<br />
+
+
+
+			<ice:tree value="#{cpController.contributionModel}" var="item"
+				hideRootNode="true" hideNavigation="false" immediate="true"
+				imageDir="./themes/default/style/xp/css-images/">
+				<ice:treeNode>
+					<f:facet name="content">
+						<ice:panelGroup style="display: inline">
+
+							<ice:commandLink value="#{item.userObject.text}"
+								actionListener="#{cpController.openContribution}">
+								<f:param value="#{item.userObject}" id="userobject"
+									name="userobject"></f:param>
+							</ice:commandLink>
+						</ice:panelGroup>
+					</f:facet>
+				</ice:treeNode>
+			</ice:tree>
+
+
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

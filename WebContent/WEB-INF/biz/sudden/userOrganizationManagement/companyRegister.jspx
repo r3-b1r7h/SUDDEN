@@ -1,0 +1,81 @@
+<!--  
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+-->
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+	<ui:define name="content">
+
+		<h2>Registration Process - Step 3. Company Profile</h2>
+
+		<ice:form>
+			<ice:panelGroup>
+				<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+					rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+
+					<ice:outputLabel for="cName" value="Organization Name:" />
+					<ice:inputText id="cName" size="25" maxlength="25"
+						value="#{jsfOrganizationController.CName}" partialSubmit="true" />
+					<ice:outputLabel for="aux_countryCompany" value="Country:" />
+					<ice:selectOneMenu id="aux_countryCompany"
+						valueChangeListener="#{jsfOrganizationController.changeCountryId}"
+						value="#{jsfOrganizationController.aux_countryCompany}"
+						partialSubmit="true">
+						<f:selectItems id="slAuxCountryCompany"
+							value="#{jsfUserController.countryItems}" />
+					</ice:selectOneMenu>
+
+					<ice:outputLabel for="countryId" value="Country ID:" />
+					<ice:inputText id="countryId" size="25" maxlength="25"
+						value="#{jsfOrganizationController.countryId}" disabled="true" />
+					<BR />
+					<HR />
+
+
+					<ice:outputLabel for="cActivities" value="Activities:" />
+					<ice:inputText id="cActivities" size="25" maxlength="25"
+						value="#{jsfOrganizationController.CActivities}"
+						partialSubmit="true" />
+
+					<ice:outputLabel for="cSocialAddress" value="Social Address:" />
+					<ice:inputText id="cSocialAddress" size="25" maxlength="25"
+						value="#{jsfOrganizationController.CSocialAddress}"
+						partialSubmit="true" />
+
+					<ice:outputLabel for="cPhoneNumber" value="Phone Number:" />
+					<ice:inputText id="cPhoneNumber" size="25" maxlength="25"
+						value="#{jsfOrganizationController.CPhoneNumber}"
+						partialSubmit="true" />
+
+					<ice:outputLabel for="cFaxNumber" value="Fax Number:" />
+					<ice:inputText id="cFaxNumber" size="25" maxlength="25"
+						value="#{jsfOrganizationController.CFaxNumber}"
+						partialSubmit="true" />
+
+					<ice:outputLabel for="cWebPage" value="Web Page:" />
+					<ice:inputText id="cWebPage" size="25" maxlength="25"
+						value="#{jsfOrganizationController.CWebPage}" partialSubmit="true" />
+
+					<P /><BR />
+
+					<ice:commandButton value="Finish Registration Process"
+						action="${jsfOrganizationController.addCompany}" /> <BR />
+					<p />
+				</ice:panelGrid>
+			</ice:panelGroup>
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

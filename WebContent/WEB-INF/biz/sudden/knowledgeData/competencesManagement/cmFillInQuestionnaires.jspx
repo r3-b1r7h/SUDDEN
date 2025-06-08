@@ -1,0 +1,52 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:define name="content">
+
+		<ice:panelGrid columns="3" cellspacing="5">
+			<ice:form>
+				<ice:outputLabel for="SlctCompTyp" value="Organization:" />
+				<ice:selectOneMenu id="SlctCompTyp"
+					value="#{CMController.cmInstanceController.selectedOrganizationId}"
+					partialSubmit="true">
+					<f:selectItems id="SlctcompTypeItms"
+						value="#{CMController.cmInstanceController.existingOrganizations}" />
+				</ice:selectOneMenu>
+			</ice:form>
+
+			<ice:form>
+				<ice:outputLabel for="SlctQuestionnaire" value="Questionnaire:" />
+				<!-- valueChangeListener="#{CMController.cmInstanceController.onQuestionnaireChange}"  -->
+				<ice:selectOneMenu id="SlctQuestionnaire"
+					value="#{CMController.cmInstanceController.selectedQuestionnaireId}"
+					partialSubmit="true">
+					<f:selectItems id="SlctQuestionnaireItems"
+						value="#{CMController.cmInstanceController.existingQuestionnaires}" />
+				</ice:selectOneMenu>
+			</ice:form>
+
+			<ice:form>
+				<ice:commandButton value="REFRESH HTML"
+					actionListener="${CMController.cmInstanceController.refreshSelectedQuestionnaireHtmlButtonListener}" />
+			</ice:form>
+		</ice:panelGrid>
+
+		<ice:form>
+			<ice:panelGrid columns="1" cellspacing="5">
+				<ice:panelGroup style="border: 1px solid gray;"
+					styleClass="componentBox"
+					binding="#{CMController.cmInstanceController.questionnaireHtmlPanel}">
+				</ice:panelGroup>
+				<ice:commandButton value="SUBMIT"
+					action="${CMController.cmInstanceController.submitQuestionnaire}" />
+			</ice:panelGrid>
+		</ice:form>
+
+
+	</ui:define>
+
+</ui:decorate>

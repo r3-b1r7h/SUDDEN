@@ -1,0 +1,28 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+	 <ui:define name="content">
+        <ice:form>
+	     <ice:inputFile id="inputFileComponent"
+               
+              actionListener ="#{fileUploadController.upload}"
+                uniqueFolder="false" /> 
+         <ice:outputProgress  progressListener="#{fileUploadController.progress}" label="Uploading" value="#{fileUploadController.percent}"/>
+         <ice:outputText value="#{fileUploadController.msg}"/>   
+         <ice:outputText value="#{fileUploadController.path}"/>
+        </ice:form>
+     
+        <center><i>/// upload ///</i></center>
+
+		<ice:form>
+			<ice:commandLink value="home" action="home" />
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

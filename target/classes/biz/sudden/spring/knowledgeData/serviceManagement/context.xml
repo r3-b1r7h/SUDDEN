@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd ">
+	
+	<!-- define bean for Messages -->
+	
+	<!-- define beans for concrete Repositories -->
+	
+	<bean id="serviceManagement.thingRepository" class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.ThingRepository" 
+		  parent="repositoryTemplate" />
+		  
+	<bean id="serviceManagement.complexProductRepository"
+		class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.ComplexProductRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="serviceManagement.systemRepository"
+		class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.SystemRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="serviceManagement.simpleProductRepository"
+		class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.SimpleProductRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="serviceManagement.supportingServiceRepository"
+		class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.SupportingServiceRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="serviceManagement.materialRepository"
+		class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.MaterialRepositoryImpl"
+		parent="repositoryTemplate" />
+	
+	<bean id="serviceManagement.machineRepository"
+		class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.MachineRepositoryImpl"
+		parent="repositoryTemplate" />
+	
+	<bean id="serviceManagement.technologyRepository" class="biz.sudden.knowledgeData.serviceManagement.repository.hibernate.TechnologyRepositoryImpl"
+		parent="repositoryTemplate"/>
+	
+	<!-- define beans for concrete Services -->
+	
+	<bean id="serviceManagement.ProductMaterialSupportingServices"
+			class="biz.sudden.knowledgeData.serviceManagement.service.impl.ProductMaterialSupportingServices_ServiceImpl">
+			<property name="connectableService" ref="baseAndUtility.connectableService"/>
+			<property name="manufacturingService" ref="serviceManagement.ManufacturingProcessTypeService" />
+			<property name="complexProductRep" ref="serviceManagement.complexProductRepository" />
+			<property name="systemRep" ref="serviceManagement.systemRepository" />
+			<property name="simpleProductRep" ref="serviceManagement.simpleProductRepository" />
+			<property name="supportingServicesRep" ref="serviceManagement.supportingServiceRepository" />
+			<property name="materialRep" ref="serviceManagement.materialRepository" />
+			<property name="technologyService" ref="serviceManagement.TechnologyService" />
+			<property name="thingRepository" ref="serviceManagement.thingRepository" />
+			<property name="machineService" ref="serviceManagement.MachineryTypeServices" />
+		</bean>
+ 	
+ 	<bean id="serviceManagement.MachineryTypeServices"
+			class="biz.sudden.knowledgeData.serviceManagement.service.impl.MachineryType_ServiceImpl">
+			<property name="machineRep">
+				<ref local="serviceManagement.machineRepository" />
+			</property>
+			<property name="connectableService" ref="baseAndUtility.connectableService">
+			</property>
+		</bean>
+		
+ 	<bean id="serviceManagement.ManufacturingProcessTypeService"
+			class="biz.sudden.knowledgeData.serviceManagement.service.impl.ManufacturingProcessType_ServiceImpl">
+			<property name="connectableService" ref="baseAndUtility.connectableService">
+			</property>
+		</bean>
+	
+	<bean id="serviceManagement.TechnologyService"
+			class="biz.sudden.knowledgeData.serviceManagement.service.impl.TechnologyServiceImpl">
+		<property name="techRep">
+			<ref local="serviceManagement.technologyRepository"/>
+		</property>
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+	</bean>
+ 	
+</beans>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<ui:define name="content">
+
+		<h:messages globalOnly="true" />
+
+		<h2>Case files</h2>
+
+		<ice:form>
+			<ice:dataTable var="caseFile" value="#{teamFormationController.caseFiles}"
+				columnClasses="tableCol"
+				rendered="#{!empty teamFormationController.caseFiles}">
+
+				<f:facet name="header">
+					<ice:columnGroup>
+						<ice:headerRow>
+							<ice:column colspan="2">Business Opportunity Name</ice:column>
+							<ice:column>Business Opportunity Description</ice:column>
+							<ice:column>Phase</ice:column>
+						</ice:headerRow>
+					</ice:columnGroup>
+				</f:facet>
+	
+				<ice:column>
+					#{caseFile.id}
+				</ice:column>
+	
+				<ice:column>
+	  				<ice:commandLink value="#{caseFile.bo.name}" action="#{teamFormationController.selectCaseFile}">
+	    				<f:param name="id" value="#{caseFile.id}" />
+	  				</ice:commandLink>
+				</ice:column>
+	
+				<ice:column>
+					#{caseFile.bo.description}
+				</ice:column>
+	
+				<ice:column>
+					#{caseFile.phase}
+				</ice:column>
+
+			</ice:dataTable>
+			
+
+		</ice:form>
+
+	</ui:define>
+</ui:decorate>

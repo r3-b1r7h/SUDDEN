@@ -1,0 +1,137 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGrid columns="2" cellspacing="5">
+
+		<!-- first column, for tree navigation -->
+		<ice:panelGroup style="border: 1px solid gray; height: auto;">
+			<!--
+                    This is a very links tree comprising of only text nodes.  The
+                    expand and contract images are rendered because the "imageDir"
+                    attribute on the tree component has been set to a known path.
+                -->
+			<ice:tree id="tree"
+				value="#{CMController.cmCompetenceController.competenceController.categoryTreeController.model}"
+				var="item" hideRootNode="false" hideNavigation="false"
+				imageDir="./xmlhttp/css/xp/css-images/">
+				<ice:treeNode>
+					<f:facet name="icon">
+						<ice:panelGroup style="display: inline">
+							<h:graphicImage value="#{item.userObject.icon}" />
+						</ice:panelGroup>
+					</f:facet>
+					<f:facet name="content">
+						<ice:panelGroup style="display: inline">
+							<ice:commandLink actionListener="#{item.userObject.nodeSelected}"
+								value="#{item.userObject.text}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:treeNode>
+			</ice:tree>
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="border: 1px solid gray; height: 300px;">
+			<ice:commandButton value="Build Tree"
+				action="${CMController.cmCompetenceController.buildEntityTree}" />
+			<ice:outputLabel for="addCompetence" value="" />
+			<ice:commandButton id="addCompetence" value="ADD COMPETENCE"
+				actionListener="#{CMController.cmQuestionnaireController.addCompetenceButtonListener}" />
+			<h4>Selected Competence</h4>
+			<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+				rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+				<ice:outputLabel for="competenceID" value="ID: " />
+				<ice:outputText id="competenceID"
+					value="#{CMController.cmCompetenceController.competence.id}"
+					cols="20" />
+				<ice:outputLabel for="competenceName" value="Name: " />
+				<ice:outputText id="competenceName" size="25" maxlength="25"
+					value="#{CMController.cmCompetenceController.competence.name}" />
+				<ice:outputLabel for="competenceDescription" value="Description: " />
+				<ice:outputText id="competenceDescription"
+					value="#{CMController.cmCompetenceController.competence.description}"
+					cols="20" />
+				<ice:outputLabel for="competenceCategoryID" value="Category ID: " />
+				<ice:outputText id="competenceCategoryID"
+					value="#{CMController.cmCompetenceController.competence.categoryId}"
+					cols="20" />
+			</ice:panelGrid>
+		</ice:panelGroup>
+
+	</ice:panelGrid>
+
+	<ice:panelGroup styleClass="exampleBox dataScrollingContainer"
+		style="clear: left;">
+		<ice:panelGroup styleClass="clearer" />
+		<ice:panelGroup styleClass="componentBox">
+			<ice:commandButton id="removeSelectedCompetences"
+				value="REMOVE SELECTED COMPETENCES" style="float:left;"
+				actionListener="#{CMController.cmQuestionnaireController.removeSelectedCompetencesButtonListener}" />
+		</ice:panelGroup>
+		<ice:dataTable id="data" var="competence"
+			value="#{CMController.cmQuestionnaireController.addQuestionnaireDataScrollingModel.items}"
+			rows="10" scrollHeight="250px" style="float:left"
+			columnWidths="50px,100px,100px,320px,50px"
+			styleClass="dataPaginatorDataTable" cellpadding="0">
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column1" value="Competence ID" />
+				</f:facet>
+				<ice:outputText id="number" value="#{competence.competenceId}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column2" value="Name" />
+				</f:facet>
+				<ice:outputText id="firstName" value="#{competence.competenceName}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column3" value="Description" />
+				</f:facet>
+				<ice:outputText id="secondName"
+					value="#{competence.competenceDescription}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText value="Dimensions" />
+				</f:facet>
+				<ice:dataTable id="data" rows="20"
+					value="#{competence.requiredDimensions}" var="dimension"
+					scrollHeight="250px" style="float:left" columnWidths="50px,10px,220px"
+					styleClass="dataPaginatorDataTable" cellpadding="0">
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText id="column5" value="Required" partialSubmit="true"/>
+						</f:facet>
+						<ice:selectBooleanCheckbox id="selectDimension"
+							value="#{dimension.required}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="ID" />
+						</f:facet>
+						<ice:outputText value="#{dimension.id}" />
+					</ice:column>
+					<ice:column>
+						<f:facet name="header">
+							<ice:outputText value="Dimension Name" />
+						</f:facet>
+						<ice:outputText value="#{dimension.name}" />
+					</ice:column>
+				</ice:dataTable>
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText id="column4" value="Selected" />
+				</f:facet>
+				<ice:selectBooleanCheckbox id="selectCompetence"
+					value="#{competence.selected}" partialSubmit="true" />
+			</ice:column>
+		</ice:dataTable>
+
+		<ice:panelGroup styleClass="clearer" />
+	</ice:panelGroup>
+
+</ice:panelGroup>

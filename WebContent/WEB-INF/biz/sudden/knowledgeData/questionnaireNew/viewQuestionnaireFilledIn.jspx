@@ -1,0 +1,37 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content"> 
+		<h3>Fragebogen: #{fillinController.currentFillinQuestionnaire.name}</h3>
+		<h3>Name: #{fillinController.currentAnsweredQuestionnaire.organisation}</h3> 
+		<ice:form>
+		<ice:dataTable id="answeredQ" name="answeredQ"  var="question" value="#{fillinController.currentFillinQuestionnaire.questionList}"
+		scrollHeight="4" style="width:95%;border-collapse:collapse;font-size:9pt;">
+		 
+			<ice:column style="width:50%">
+				<f:facet name="header">
+					<ice:outputText value="Q" />   
+				</f:facet>
+				<ice:commandLink value="#{question.question}" actionListener="#{fillinController.gotoQuestion}">
+					<f:param name="thisquestion" id="thisquestion" value="#{question}" />	
+				</ice:commandLink>
+			</ice:column>
+			
+			<ice:column style="width:50%">
+				<f:facet name="header">
+					<ice:outputText value="A" />   
+				</f:facet>
+				<ice:commandLink value="#{fillinController.answer}" actionListener="#{fillinController.gotoQuestion}" />
+			</ice:column>
+			
+		</ice:dataTable>
+		</ice:form>
+	</ui:define>
+
+</ui:decorate>

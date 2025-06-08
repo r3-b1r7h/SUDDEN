@@ -1,0 +1,88 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ui:param name="action" value="organisationView"/>
+     <ui:define name="navigationTopText">
+     information about a certain organisation and the provided services / produced products
+	 </ui:define>
+
+<!-- 	<ui:define name="navigationPath">
+		<ice:outputLabel value="#{sm_Controller.selectedOrganisationName}" actionListener="#{sm_Controller.navigationPathChanged}"/>
+		<ice:form> <ice:commandLink value="#{sm_Controller.selectedOrganisationName}" action="treeDragDrop" />  </ice:form>
+	</ui:define>
+--> 
+
+	<ui:define name="content">
+		<!--  <f:view>-->
+
+		<!--  <hr />
+			<ice:form>
+				<p /><ice:commandButton
+					actionListener="#{sm_Controller.showOrgPopup}"
+					value="create an organisation" />
+				<p />
+			</ice:form>
+ 		-->
+		<ice:form>
+			<p /><ice:outputLabel for="SlctCompTyp"
+				value="Exiting Organisations:" /><!-- valueChangeListener="#{sm_Controller.selectedOrganisationChanged}"  -->
+				 <ice:selectOneMenu
+				id="SlctCompTyp" 
+				value="#{sm_Controller.selectedOrganisationId}"
+				partialSubmit="true">
+				<f:selectItems id="SlctcompTypeItms"
+					value="#{sm_Controller.existingOrganisations}" />
+			</ice:selectOneMenu>
+			<p />
+			<hr />
+			<p /><ice:outputText
+				value="Selected Organisation: #{sm_Controller.selectedOrganisationName}" />
+		</ice:form>
+
+		<ice:form>
+			<!-- Hier eigenes Bean fuer Popup -->
+			<ice:panelPopup draggable="true"
+				rendered="#{sm_Controller.orgPopupVisible}" styleClass="corePopup" >
+
+				<f:facet name="header">
+					<ice:panelGroup styleClass="popupHeaderWrapper">
+						<ice:outputText value="Create an Organisation!"
+							styleClass="popupHeaderText" />
+					</ice:panelGroup>
+				</f:facet>
+
+				<f:facet name="body">
+
+					<ice:panelGroup styleClass="popupBody">
+						<p /><ice:outputLabel value="Organisation Name: " /> <ice:inputText
+							size="25" maxlength="25"
+							actionListener="#{sm_Controller.createOrganisation}"
+							value="#{sm_Controller.selectedOrganisation}" />
+						<p /><ice:commandButton type="submit" value="create"
+							actionListener="#{sm_Controller.createOrganisation}" /> <ice:commandButton
+							type="submit" value="close"
+							actionListener="#{sm_Controller.hideOrgPopup}" />
+					</ice:panelGroup>
+				</f:facet>
+			</ice:panelPopup>
+		</ice:form>
+
+		<ice:form>
+			<p /><ice:commandButton
+				action="#{sm_Controller.navigateToProductValueCreatingView}"
+				value="#{msg.ServicemanagementSetProductService}" 
+				disabled="${sm_Controller.buttonNavigateToProductValueCreatingViewDisabled}" />
+				
+			<ice:outputText value="  #{sm_Controller.selectedOrganisation}" escape="false" rendered="#{sm_Controller.buttonNavigateToProductValueCreatingViewEnabled}"/>
+			<ice:outputText value="  #{msg.ServicemanagementSetProductServiceAlt}" escape="false" rendered="#{sm_Controller.buttonNavigateToProductValueCreatingViewDisabled}"/>
+				
+			<p />
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

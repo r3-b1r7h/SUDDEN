@@ -1,0 +1,104 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:define  name="navigationTop" />
+
+	<ui:define name="navigationLeft">
+
+	<form action="/sudden/login" method="POST">
+
+		<table id="outer12" style="1px solid red">
+
+		<tr style="vertical-align: middle !important;">
+			<td>#{msg.userName}</td>
+			<td rowspan="4" style="vertical-align:middle!important">
+			
+			<table style="vertical-align:middle!important">
+				<tbody> 
+					<tr>
+						<td colspan="2" height="12"></td>
+					</tr>
+					<tr>
+						<td height="100%"><img
+							src="images/secure_kombo.gif" border="0" /></td>
+						<td height="100%" style="vertical-align:middle!important">
+						
+						<input type="submit" value="#{msg.login}" id="login" size="5"/></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			</td>
+		</tr>
+
+	 
+
+		<tr>
+			<td>
+			
+			<input type="text" name="j_username" style="width:10em"/>
+			
+				
+				</td>
+		</tr>
+		<tr>
+			<td>#{msg.password}</td>
+		</tr>
+		<tr>
+			<td><input type="password" name="j_password" style="width:10em"/></td>
+		</tr>
+	
+
+		</table>
+
+		</form>
+	</ui:define>
+
+
+
+	<ui:define name="content">
+		<table cellpadding="0" cellspacing="10">
+			<tr>
+				<td class="bodytext"><!--  CONTENT ELEMENT, uid:15/textpic [begin] -->
+				<a></a> <!--  Header: [begin] -->
+
+				<div class="csc-header csc-header-n1"><br />
+				<h2 class="csc-firstHeader">#{msg.loginWithUserNameAndPassword}</h2>
+				<br />
+				<span> #{msg.usemozilla} </span>
+				<br />
+				</div>
+				<!--  Header: [end] --> <!--  Image block: [begin] -->
+				<div
+					class="csc-textpic csc-textpic-right csc-textpic-below csc-textpic-equalheight">
+				<div class="csc-textpic-text"><!--  Text: [begin] -->
+				
+				<p class="bodytext">#{msg.suddenText}</p>
+
+				<!--  Text: [end] --></div>
+				<div class="csc-textpic-imagewrap">
+				<dl class="csc-textpic-image csc-textpic-firstcol"
+					style="width: 65px;">
+					<dt><img src="images/logo_cordis_01.gif" width="65"
+						height="60" border="0" alt="" /></dt>
+				</dl>
+				<dl class="csc-textpic-image csc-textpic-lastcol"
+					style="width: 73px;">
+					<dt><img src="images/064221783a.jpg" width="73" height="60"
+						border="0" alt="" /></dt>
+				</dl>
+				</div>
+				</div>
+				<div class="csc-textpic-clear"><!-- --></div>
+				<!--  Image block: [end] --> <!--  CONTENT ELEMENT, uid:15/textpic [end] -->
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+
+</ui:decorate>
+

@@ -1,0 +1,148 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+
+	<ui:define name="content">
+
+		<ice:form>
+			<ice:commandButton value="Login"
+				actionListener="#{cpJSFController.participant.register}"
+				rendered="#{not cpJSFController.participant.registered}" />
+			<ice:inputText value="#{cpJSFController.participant.userName}" required="true"
+				actionListener="#{cpJSFController.participant.register}"
+				rendered="#{not cpJSFController.participant.registered}" />
+		</ice:form>
+
+
+		<ice:form>
+			<ice:commandButton value="Logout"
+				actionListener="#{cpJSFController.participant.logout}"
+				rendered="#{cpJSFController.participant.registered}" />
+		</ice:form>
+
+
+		<ice:outputText value="Logged in user: #{cpJSFController.participant.userName}"
+			style="color:red" rendered="#{cpJSFController.participant.registered}" />
+
+		<!-- style="z-position:999; top: 100px; left: 4px; width: 300px; height: 200px; position:absolute; background: #FFFFFF;" -->
+
+
+		<ice:form>
+
+
+
+			<ice:dataTable id="allParticipants" var="myuser"
+				value="#{cpJSFController.participant.users}" rows="15" columnClasses="tableCol"
+				rendered="#{cpJSFController.participant.registered}">
+
+				<ice:column>
+
+					<ice:rowSelector id="theSelected" value="#{myuser.selected}"
+						multiple="false" selectedClass="iceRowSelSelected" />
+
+					<f:facet name="header">
+						<ice:outputText id="column1" value="Name" />
+					</f:facet>
+
+					<ice:outputText id="UserName" value="#{myuser.userName}" />
+
+				</ice:column>
+
+			</ice:dataTable>
+
+
+			<ice:commandButton value="Start Chat with User"
+				actionListener="#{cpJSFController.participant.startChat}"
+				rendered="#{cpJSFController.participant.registered}" immediate="true" />
+				
+			<br /><br /><ice:commandLink style="color:red" value="Back to home"
+				action="home" immediate="true" />
+
+		</ice:form>
+
+
+
+
+		<c:forEach items="#{cpJSFController.participant.popupList}" var="thispopup">
+
+			<ice:form>
+
+				<ice:panelPopup draggable="true" rendered="true" clientOnly="true"
+					visible="true" styleClass="corePopup"
+					style="top: #{thispopup.topint}px; left: #{thispopup.leftint}px; width: #{thispopup.width}px; height: #{thispopup.height}px; position:absolute;">
+
+					<f:facet name="header">
+						<ice:panelGroup styleClass="popupHeaderWrapper">
+							<ice:outputText value="Chat" styleClass="popupHeaderText" />
+						</ice:panelGroup>
+					</f:facet>
+
+					<f:facet name="body">
+
+						<ice:panelGroup styleClass="popupBody">
+							<ice:commandButton type="submit" value="close"
+								actionListener="#{thispopup.dispose}" immediate="true" />
+							<p /><ice:inputText id="inputtext#{thispopup.popupid}"
+								style="margin-left:0px;padding-left:4px;width:100%"
+								value="#{thispopup.message}" required="true"
+								actionListener="#{thispopup.sendMessage}" /> <ice:commandButton
+								value="Send" actionListener="#{thispopup.sendMessage}" /> <ice:dataTable
+								scrollable="true" scrollHeight="140px"
+								style="margin-left:0px;padding-left:4px;width:100%;border:1px solid black!important"
+								value="#{thispopup.messages}" var="message"
+								columnClasses="tableCol">
+
+								<ice:column style="width:100%">
+									<ice:outputText value="#{message}" />
+								</ice:column>
+							</ice:dataTable> <br />
+						</ice:panelGroup>
+
+					</f:facet>
+
+				</ice:panelPopup>
+
+			</ice:form>
+
+		</c:forEach>
+
+		<!-- #{not empty participant.popupMessage} -->
+		<ice:form>
+			<ice:panelPopup draggable="true" rendered="#{not empty cpJSFController.participant.popupMessage}" clientOnly="true"
+				visible="true" styleClass="corePopup"
+				style="padding:10px; margin:10px; top: 200px; left: 200px; width: 300px; height: 100px; position:absolute;">
+
+				<f:facet name="header">
+					<ice:panelGroup styleClass="popupHeaderWrapper">
+						<ice:outputText value="Achtung!" styleClass="popupHeaderText" />
+					</ice:panelGroup>
+				</f:facet>
+
+				<f:facet name="body">
+
+					<ice:panelGroup styleClass="popupBody">
+						<ice:outputText value="#{cpJSFController.participant.popupMessage}" />
+						<ice:commandButton type="submit" value="close" actionListener="#{cpJSFController.participant.closeMessage}" immediate="true" />
+					</ice:panelGroup>
+					
+
+				</f:facet>
+
+			</ice:panelPopup>
+		</ice:form>
+
+		<br />
+
+
+	</ui:define>
+
+</ui:decorate>
+
+
+
+

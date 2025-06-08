@@ -1,0 +1,40 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="content">
+	
+		<ice:messages />
+
+		<ice:form>
+
+			<ice:panelGrid columns="2">
+				<ice:outputText value="Username" />				
+				<ice:selectInputText rows="10" width="300" value="#{userController.username}" required="true" />
+	
+				<ice:outputText value="Password" />				
+				<ice:selectInputText rows="10" width="300" value="#{userController.password}" required="true" />
+	
+				<ice:outputText value="Nickname" />				
+				<ice:selectInputText rows="10" width="300" value="#{userController.nickname}" required="true" />
+	
+				<ice:commandButton value="Absenden" action="#{userController.submit}"></ice:commandButton>
+				<br />
+				<ice:commandButton value="Create common" action="#{userController.createCommon}" immediate="true"></ice:commandButton>
+				
+	
+			</ice:panelGrid>
+
+			<p />
+
+			<ice:outputText value="#{userController.errorMessage}" style="color:red"/>
+
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

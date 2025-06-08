@@ -1,0 +1,186 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+
+
+
+	<ui:define name="content">
+		<!--  
+	<ice:outputDeclaration doctypeRoot="HTML"
+		doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	-->
+		<!-- 
+	<link rel="stylesheet" type="text/css"
+		href="./themes/default/style/style.css" />
+ -->
+		<!--  
+	<title>Drag and Drop</title>
+	</head>-->
+		<!--  <body>-->
+	<f:view>
+		<h1>Drag and Drop Tree Nodes!</h1>
+
+		<ice:panelGroup>
+			<!--  
+		<ice:form>
+		<ice:menuPopup id="menuPopupEffects">
+		   
+		        <ice:menuItem id="nodeManipulation"
+		                      value="manipulate Node">
+		            <ice:menuItem id="addSub"
+		                          value="add Subnode"
+		                          actionListener="#{dragDropBean.addNodeToSelectedNode}" >
+		   
+		            </ice:menuItem>
+		        </ice:menuItem>
+		</ice:menuPopup>
+		</ice:form>
+		Menu PopUp is bugy -->
+			<ice:form>
+				<p /><ice:commandButton
+									actionListener="#{dragDropBean.generateValues}"
+									 value="set tree values" />
+				<p />
+				<p /><ice:commandButton
+									actionListener="#{dragDropBean.generateValues2}"
+									 value="set tree values (including Associations)" />
+				<p />
+			</ice:form>
+			<table>
+				<tr>
+					<td><ice:form>
+						<ice:panelGroup scrollHeight="400px" scrollWidth="360px">
+							<ice:tree id="tree" value="#{dragDropBean.sourceTree}" var="item"
+								hideRootNode="false" hideNavigation="false">
+								<ice:treeNode>
+									<f:facet name="content">
+										<ice:panelGroup dragValue="#{item}" draggable="true"
+											styleClass="treenode"
+											dragMask="hover_start, dragging, hover_end, drag_cancel"
+											dragOptions="dragGhost"
+											dragListener="#{dragDropBean.dragListener}">
+											<ice:outputText value="#{item.userObject.text}" />
+										</ice:panelGroup>
+									</f:facet>
+								</ice:treeNode>
+							</ice:tree>
+						</ice:panelGroup>
+					</ice:form></td>
+
+					<td><ice:form>
+						<ice:panelGroup id="Hugo" scrollHeight="400px" scrollWidth="360px">
+							<ice:tree id="tree1" value="#{dragDropBean.targetTree}"
+								var="item2" hideRootNode="false" hideNavigation="false">
+								<ice:treeNode>
+									<f:facet name="content">
+										<ice:panelGroup id="item2TreeNode" dropValue="#{item2}"
+											dropListener="#{dragDropBean.dropListener}" dropTarget="true"
+											dropMask="hover_start, dragging, hover_end, drag_cancel"
+											styleClass="treenode">
+											<!--  <ice:outputText value="#{item2.userObject.text}" />-->
+											<ice:commandLink
+												actionListener="#{item2.userObject.nodeClicked}"
+												value="#{item2.userObject.text}" />
+											<!-- 	
+											<ice:selectBooleanCheckbox partialSubmit="true"
+									             value="selected"
+									         />	
+									          -->
+										</ice:panelGroup>
+									</f:facet>
+								</ice:treeNode>
+							</ice:tree>
+						</ice:panelGroup>
+					</ice:form></td>
+
+					<td><ice:form>
+						<ice:panelGroup>
+
+							<ice:outputText
+								value="Selected Node: #{dragDropBean.selectedNodeObject.text}"
+								escape="false" />
+							<p /><ice:commandButton
+								actionListener="#{dragDropBean.deleteSelectedNode}"
+								disabled="#{dragDropBean.deleteDisabled}" value="Delete" />
+							<p /><ice:commandButton
+								actionListener="#{dragDropBean.showPopup}"
+								disabled="#{dragDropBean.selectedDisabled}" value="Add Sub" /><!-- diabled wenn kein node selected -->
+							<p />
+						</ice:panelGroup>
+					</ice:form></td>
+
+				</tr>
+			</table>
+			<ice:form>
+				<ice:selectOneRadio value="#{dragDropBean.simpleCopy}"
+		                            partialSubmit="true" valueChangeListener="#{dragDropBean.changeDragDropCopyOption}">
+		            <f:selectItems value="#{dragDropBean.copyItems}"/>
+		        </ice:selectOneRadio>
+			</ice:form>
+
+
+			<ice:form>
+				<!-- Hier eigenes Bean fuer Popup -->
+				<ice:panelPopup draggable="true"
+					rendered="#{dragDropBean.popupVisible}" styleClass="corePopup" >
+
+					<f:facet name="header">
+						<ice:panelGroup styleClass="popupHeaderWrapper">
+							<ice:outputText value="Add Sub Node!"
+								styleClass="popupHeaderText" />
+						</ice:panelGroup>
+					</f:facet>
+
+					<f:facet name="body">
+
+						<ice:panelGroup styleClass="popupBody">
+							<ice:outputText
+								value="To Node: #{dragDropBean.selectedNodeObject.text}" />
+							<p /><ice:outputLabel value="Name: " /> <ice:inputText size="25"
+								maxlength="25" actionListener="#{dragDropBean.addNodeToSelectedNode}"
+								value="#{dragDropBean.name}" />
+							<p /><!-- Select one menu - component type --> <ice:outputLabel
+								for="SlctCompTyp" value="type" /> <ice:selectOneMenu
+								id="SlctCompTyp" value="#{dragDropBean.selectedComponent}"
+								partialSubmit="true">
+								<f:selectItems id="SlctcompTypeItms"
+									value="#{dragDropBean.componentItems}" />
+							</ice:selectOneMenu>
+							<p /><ice:commandButton type="submit" value="add"
+								actionListener="#{dragDropBean.addNodeToSelectedNode}" /> <ice:commandButton
+								type="submit" value="close"
+								actionListener="#{dragDropBean.hidePopup}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:panelPopup>
+			</ice:form>
+
+		</ice:panelGroup>
+<!--  
+		</body>-->
+		<!--  </html>-->
+		</f:view>
+	</ui:define>
+
+</ui:decorate>
+<!--  
+<f:view xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="ttp://www.springframework.org/tags">
+
+
+
+</f:view>-->

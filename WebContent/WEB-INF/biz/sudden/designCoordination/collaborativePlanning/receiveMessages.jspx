@@ -1,0 +1,298 @@
+
+<!--  
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+-->
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+     <ui:param name="action" value="cpReceiveMessages"/>
+     <ui:define name="nav2">
+     	<ice:form>
+			<table id="secondnav"><tr><td style="height: 25px;" colspan="3">#{msg.communication2}</td></tr><tr><td>
+				<ice:commandLink action="cpReceiveMessages" styleClass="#{(action=='cpReceiveMessages') ? 'selected' : ''}">#{msg.collabPlanningGetMessages}</ice:commandLink> </td><td > 
+				<ice:commandLink action="bulletinboard" styleClass="#{(action=='bulletinboard') ? 'selected' : ''}">#{msg.collabPlanningShowForum}</ice:commandLink> </td><td > 
+				<ice:commandLink action="showFeedback" styleClass="#{(action=='showFeedback') ? 'selected' : ''}">#{msg.trainingsImprovements}</ice:commandLink>
+			</td></tr></table>
+		</ice:form>
+	</ui:define>
+     
+     <ui:define name="navigationTopText">
+     inbox for messages received 
+	 </ui:define>
+			
+	<ui:define name="content">
+
+
+				<ice:form>
+					
+					
+					<!--  
+		<ice:panelPopup modal="true" rendered="#{cpController.popupVisible}" autoCentre="true" draggable="false" clientOnly="true" style="width:400px;height:400px;position:absolute" styleClass="corePopup">
+					<f:facet name="header">
+						<ice:panelGroup styleClass="popupHeaderWrapper">
+							<ice:outputText value="Message #{cpController.currentCommunicationWrapper.communication.subject}" styleClass="popupHeaderText" />
+							<ice:commandButton id="modalPnlCloseBtn" type="button"
+                               image="/themes/default/style/xp/css-images/popupclose.gif"
+                               action="#{cpController.closePopup}"
+                               styleClass="popupHeaderImage"
+                               title="Close Popup" alt="Close"/>
+
+						</ice:panelGroup>
+					</f:facet>
+
+					<f:facet name="body">
+
+						
+
+						<ice:panelGroup styleClass="popupBod">
+
+															
+
+								<ice:panelGrid columns="2" columnClasses="tableColFirst tableColSecond" style="width:100%;table-layout:fixed">
+									<ice:outputText value="Sender:"  style="width:20%" />
+									<ice:outputText value="#{cpController.currentCommunicationWrapper.communication.sender.nickname}" />
+									<ice:outputText value="Subject:" />
+									<ice:outputText value="#{cpController.currentCommunicationWrapper.communication.subject}" />
+									<hr /><hr />
+									<ice:outputText value="#{cpController.currentCommunicationWrapper.communication.message}" />									
+								</ice:panelGrid>
+							
+
+						</ice:panelGroup>
+
+					</f:facet>
+		</ice:panelPopup>
+		-->
+
+					<ice:dataPaginator for="communicationData" rowsCountVar="rowsCount"
+						displayedRowsCountVar="displayedRowsCountVar"
+						firstRowIndexVar="firstRowIndex" lastRowIndexVar="lastRowIndex"
+						pageCountVar="pageCount" pageIndexVar="pageIndex">
+
+						<ice:outputFormat
+							value="{0} Messages. Displaying Messages from  {2} to {3}. Page {4} / {5}"
+							styleClass="standard" style="margin:0px;padding:0px">
+							<f:param value="#{rowsCount}" />
+							<f:param value="#{displayedRowsCountVar}" />
+							<f:param value="#{firstRowIndex}" />
+							<f:param value="#{lastRowIndex}" />
+							<f:param value="#{pageIndex}" />
+							<f:param value="#{pageCount}" />
+						</ice:outputFormat>
+
+					</ice:dataPaginator>
+
+					<ice:panelGrid columns="1" styleClass="scrollerTable2"
+						columnClasses="standardTable_ColumnCentered">
+
+						<ice:dataPaginator for="communicationData" fastStep="10"
+							pageCountVar="pageCount" pageIndexVar="pageIndex"
+							paginator="true" paginatorMaxPages="9">
+
+							<f:facet name="first">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-first.gif"
+									style="border:none;" />
+							</f:facet>
+
+							<f:facet name="last">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-last.gif"
+									style="border:none;" />
+							</f:facet>
+
+							<f:facet name="previous">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-previous.gif"
+									style="border:none;" />
+							</f:facet>
+
+							<f:facet name="next">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-next.gif"
+									style="border:none;" />
+							</f:facet>
+
+							<f:facet name="fastforward">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-ff.gif"
+									style="border:none;" />
+							</f:facet>
+
+							<f:facet name="fastrewind">
+								<ice:graphicImage
+									url="themes/default/style/xp/css-images/arrow-fr.gif"
+									style="border:none;" />
+							</f:facet>
+
+						</ice:dataPaginator>
+
+
+					</ice:panelGrid>
+
+
+
+
+					<ice:panelDivider id="MessageIcePnlDvr"
+						dividerPosition="#{cpController.dividerPosition}"
+						orientation="horizontal" style="width: 100%; height: 50em;">
+
+						<f:facet name="first">
+
+
+
+							<ice:dataTable var="comm" id="communicationData"
+								binding="#{cpController.dataTable}"
+								value="#{cpController.myDataModel}" rows="10"
+								columnClasses="tableColFirst tableColFirst tableCol"
+								scrollHeight="4"
+								style="width:95%;border-collapse:collapse;font-size:9pt;">
+
+
+								<ice:column>
+									<f:facet name="header">
+										<ice:outputText value="Sender" />
+									</f:facet>
+				
+									<ice:panelGroup>
+										<ice:outputText value="#{comm.communication.sender.nickname}" />
+					           
+						                <ice:selectOneMenu id="selectOneMenu" value="#{rootLinkController.selectedItem}" valueChangeListener="#{rootLinkController.changeItem}"            	                        
+						                        partialSubmit="true" immediate="true" binding="#{rootLinkController.selectOneMenu}" >
+											<f:param name="sourceObject" id="sourceObject" value="#{comm.communication}" />	
+						                    <f:selectItems id="selectedItem"
+						                                   value="#{rootLinkController.linkentries}" />
+						                </ice:selectOneMenu>
+
+										<ice:panelSeries value="#{rootLinkController.primitiveTypeValues}" var="linkentry" binding="#{rootLinkController.panelSeries}">
+											<ice:outputText value="#{linkentry.name} #{linkentry.value}"></ice:outputText>
+										</ice:panelSeries>
+									
+ 
+										<!--  
+										<ice:commandLink value="#{rootLinkController.linkentries}" actionListener="#{rootLinkController.navigateTo}" binding="#{rootLinkController.commandLink}">
+											<f:param name="link" id="link" value = "#{comm.communication}" />
+										</ice:commandLink>
+										-->
+			
+										<ice:commandButton value="Link" actionListener="#{rootLinkController.link}">
+											<f:param name="link" id="link" value="#{comm.communication}" />
+										</ice:commandButton>
+									</ice:panelGroup>
+														
+								</ice:column>
+
+								<ice:column>
+									<f:facet name="header">
+										<ice:outputText value="Send Date" />
+									</f:facet>
+									<ice:outputText value="#{comm.communication.sendDate}">
+										<f:convertDateTime type="both" dateStyle="short" />
+									</ice:outputText>
+								</ice:column>
+
+								<ice:column>
+									<f:facet name="header">
+										<ice:outputText value="Subject" />
+									</f:facet>
+									<h:commandLink value="#{comm.communication.subject}"
+										action="#{comm.openCommItem}"
+										actionListener="#{cpController.selectComm}" />
+
+								</ice:column>
+
+							</ice:dataTable>
+						</f:facet>
+
+						<f:facet name="second">
+							<ice:panelGroup styleClass="popupBody"
+								style="padding:10px;font-size:9pt;text-align:left">
+
+								
+
+								<ice:panelGrid columns="2"
+									columnClasses="tableColFirst tableColSecond"
+									style="width:100%;table-layout:fixed;border-collapse:collapse;vertical-align:top">
+									<ice:outputText value="Sender:" style="width:20%" />
+									<ice:outputText
+										value="#{cpController.currentCommunicationWrapper.communication.sender.nickname}" />
+									<ice:outputText value="Subject:" />
+									<ice:outputText
+										value="#{cpController.currentCommunicationWrapper.communication.subject}" />
+									<hr style="width: 100%" />
+									<hr style="width: 100%" />
+
+								</ice:panelGrid>
+								<ice:outputText escape="false"
+									value="#{cpController.currentCommunicationWrapper.communication.message}" /> <br /><br />
+								<ice:commandLink value="#{cpController.currentCommunicationWrapper.communication.jsfLink.description}" actionListener="#{cpController.navigateTo}">
+										<f:param name="jsfLink" value="#{cpController.currentCommunicationWrapper.communication.jsfLink}" id="jsfLink"/>
+								</ice:commandLink>
+
+							</ice:panelGroup>
+						</f:facet>
+					</ice:panelDivider>
+
+
+
+
+
+
+
+					<!--  
+
+		<div id="communicationBox" style="height:14em">
+
+		<ice:dataTable var="comm" id="communicationData"
+				value="#{cpController.messages}" rows="10"
+				columnClasses="tableColFirst tableColFirst tableCol" scrollHeight="4" style="width:95%;border-collapse:collapse">
+
+ 
+				<ice:column >
+					<f:facet name="header">
+						<ice:outputText value="Sender" />
+					</f:facet>
+					<ice:outputText value="#{comm.communication.sender.nickname}" />
+				</ice:column>
+
+				<ice:column >
+					<f:facet name="header">
+						<ice:outputText value="Send Date" />
+					</f:facet>
+					<ice:outputText value="#{comm.communication.sendDate}">
+						<f:convertDateTime type="both" dateStyle="short"/>
+					</ice:outputText>
+				</ice:column>
+
+				<ice:column >
+					<f:facet name="header">
+						<ice:outputText value="Subject" />
+					</f:facet>
+					<ice:commandLink value="#{comm.communication.subject}" action="#{comm.openCommItem}" />
+				</ice:column>
+
+		</ice:dataTable>
+
+		</div>
+-->
+
+
+
+
+
+
+
+
+				</ice:form>
+	</ui:define>
+
+</ui:decorate>

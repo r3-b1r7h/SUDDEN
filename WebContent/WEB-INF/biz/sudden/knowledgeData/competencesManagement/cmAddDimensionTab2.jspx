@@ -1,0 +1,57 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGrid columns="2" cellspacing="5">
+
+		<!-- first column, for tree navigation -->
+		<ice:panelGroup style="border: 1px solid gray; height: auto;">
+			<!--
+                    This is a very links tree comprising of only text nodes.  The
+                    expand and contract images are rendered because the "imageDir"
+                    attribute on the tree component has been set to a known path.
+                -->
+			<ice:tree id="tree"
+				value="#{CMController.cmCVIController.cviController.categoryTreeController.model}"
+				var="item" hideRootNode="false" hideNavigation="false"
+				imageDir="./xmlhttp/css/xp/css-images/">
+				<ice:treeNode>
+					<f:facet name="icon">
+						<ice:panelGroup style="display: inline">
+							<h:graphicImage value="#{item.userObject.icon}" />
+						</ice:panelGroup>
+					</f:facet>
+					<f:facet name="content">
+						<ice:panelGroup style="display: inline">
+							<ice:commandLink actionListener="#{item.userObject.nodeSelected}"
+								value="#{item.userObject.text}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:treeNode>
+			</ice:tree>
+		</ice:panelGroup>
+		<ice:panelGroup styleClass="border: 1px solid gray; height: auto;">
+			<ice:commandButton value="Build Tree"
+				action="${CMController.cmCVIController.buildEntityTree}" />
+			<h4>Selected CVI</h4>
+			<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+				rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+				<ice:outputLabel for="cviID" value="ID: " />
+				<ice:outputText id="cviID"
+					value="#{CMController.cmCVIController.cvi.id}" cols="20" />
+				<ice:outputLabel for="cviName" value="Name: " />
+				<ice:outputText id="cviName" size="25" maxlength="25"
+					value="#{CMController.cmCVIController.cvi.name}"
+					partialSubmit="true" />
+				<ice:outputLabel for="cviDescription" value="Description: " />
+				<ice:outputText id="cviDescription"
+					value="#{CMController.cmCVIController.cvi.description}" cols="20" />
+				<ice:outputLabel for="cviCategoryID" value="Category ID: " />
+				<ice:outputText id="cviCategoryID"
+					value="#{CMController.cmCVIController.cvi.categoryId}" cols="20" />
+			</ice:panelGrid>
+		</ice:panelGroup>
+	</ice:panelGrid>
+
+</ice:panelGroup>

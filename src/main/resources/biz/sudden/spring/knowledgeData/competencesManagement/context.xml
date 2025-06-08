@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- define beans for Messages -->
+	<bean id="competencesManagement.cviCategory"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Category" />
+	<bean id="competencesManagement.dimensionCategory"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Category" />
+	<bean id="competencesManagement.competenceCategory"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Category" />
+	<bean id="competencesManagement.questionnaireCategory"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Category" />
+	<bean id="competencesManagement.roleCategory"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Category" />
+	<bean id="competencesManagement.tick"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Tick" />
+	<bean id="competencesManagement.cvi"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.CVI" />
+	<bean id="competencesManagement.dimension"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Dimension" />
+	<bean id="competencesManagement.competence"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Competence" />
+	<bean id="competencesManagement.questionnaire"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Questionnaire" />
+	<bean id="competencesManagement.role"
+		class="biz.sudden.knowledgeData.competencesManagement.domain.Role" />
+
+	<!-- Repositories -->
+	<bean id="competencesManagement.categoryRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.CategoryRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.tickRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.TickRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.cviRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.CVIRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.dimensionRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.DimensionRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.competenceRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.CompetenceRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.questionnaireRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.QuestionnaireRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.roleRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.RoleRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.tickInstanceRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.TickInstanceRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.cviInstanceRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.CVIInstanceRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.dimensionInstanceRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.DimensionInstanceRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.roleDimensionRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.RoleDimensionRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.competenceInstanceRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.CompetenceInstanceRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.roleCompetenceRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.RoleCompetenceRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.questionnaireInstanceRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.QuestionnaireInstanceRepositoryImpl"
+		parent="repositoryTemplate" />
+	<bean id="competencesManagement.roleQuestionnaireRepository"
+		class="biz.sudden.knowledgeData.competencesManagement.repository.hibernate.RoleQuestionnaireRepositoryImpl"
+		parent="repositoryTemplate" />
+
+	<!-- Services -->
+	<bean id="competencesManagement.CompetencesManagementService"
+		class="biz.sudden.knowledgeData.competencesManagement.service.impl.CMCompetencesManagement_ServiceImpl">
+		<property name="categoryRepository">
+			<ref local="competencesManagement.categoryRepository" />
+		</property>
+		<property name="tickRepository">
+			<ref local="competencesManagement.tickRepository" />
+		</property>
+		<property name="cviRepository">
+			<ref local="competencesManagement.cviRepository" />
+		</property>
+		<property name="dimensionRepository">
+			<ref local="competencesManagement.dimensionRepository" />
+		</property>
+		<property name="competenceRepository">
+			<ref local="competencesManagement.competenceRepository" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.QuestionnairesManagementService"
+		class="biz.sudden.knowledgeData.competencesManagement.service.impl.CMQuestionnairesManagement_ServiceImpl">
+		<property name="questionnaireRepository">
+			<ref local="competencesManagement.questionnaireRepository" />
+		</property>
+		<property name="organizationRepository"
+			ref="userOrganizationManagement.UserManagement.OrganizationsRepository" />
+	</bean>
+
+	<bean id="competencesManagement.RolesManagementService"
+		class="biz.sudden.knowledgeData.competencesManagement.service.impl.CMRolesManagement_ServiceImpl">
+		<property name="roleDimensionRepository">
+			<ref local="competencesManagement.roleDimensionRepository" />
+		</property>
+		<property name="roleCompetenceRepository">
+			<ref local="competencesManagement.roleCompetenceRepository" />
+		</property>
+		<property name="roleQuestionnaireRepository">
+			<ref
+				local="competencesManagement.roleQuestionnaireRepository" />
+		</property>
+		<property name="roleRepository">
+			<ref local="competencesManagement.roleRepository" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.InstancesManagementService"
+		class="biz.sudden.knowledgeData.competencesManagement.service.impl.CMInstancesManagement_ServiceImpl">
+		<property name="questionnaireInstanceRepository">
+			<ref
+				local="competencesManagement.questionnaireInstanceRepository" />
+		</property>
+		<property name="competenceInstanceRepository">
+			<ref
+				local="competencesManagement.competenceInstanceRepository" />
+		</property>
+		<property name="dimensionInstanceRepository">
+			<ref
+				local="competencesManagement.dimensionInstanceRepository" />
+		</property>
+		<property name="cviInstanceRepository">
+			<ref local="competencesManagement.cviInstanceRepository" />
+		</property>
+		<property name="tickInstanceRepository">
+			<ref local="competencesManagement.tickInstanceRepository" />
+		</property>
+
+		<!-- Services used by Georg!  -->
+		<property name="enterpriseEvalService" ref="pm.enterpriseService" />
+		<property name="smService" ref="serviceManagement.ProductMaterialSupportingServices" />
+		
+	</bean>
+
+	<!-- Controllers -->
+	<bean id="competencesManagement.cviCategoryController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.cviCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.cviController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.cviCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.dimensionCategoryController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.dimensionCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.dimensionController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.dimensionCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.competenceCategoryController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.competenceCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.competenceController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.competenceCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.questionnaireCategoryController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.questionnaireCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.questionnaireController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.questionnaireCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.roleCategoryController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.roleCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.roleController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCategoryControllerImpl">
+		<property name="category">
+			<ref local="competencesManagement.roleCategory" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.CVIController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCVIControllerImpl">
+		<property name="tick">
+			<ref local="competencesManagement.tick" />
+		</property>
+		<property name="cvi">
+			<ref local="competencesManagement.cvi" />
+		</property>
+		<property name="cviCategoryController">
+			<ref local="competencesManagement.cviCategoryController" />
+		</property>
+		<property name="cviController">
+			<ref local="competencesManagement.cviController" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.DimensionController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMDimensionControllerImpl">
+		<property name="dimension">
+			<ref local="competencesManagement.dimension" />
+		</property>
+		<property name="dimensionCategoryController">
+			<ref
+				local="competencesManagement.dimensionCategoryController" />
+		</property>
+		<property name="dimensionController">
+			<ref local="competencesManagement.dimensionController" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.CompetenceController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMCompetenceControllerImpl">
+		<property name="competence">
+			<ref local="competencesManagement.competence" />
+		</property>
+		<property name="competenceCategoryController">
+			<ref
+				local="competencesManagement.competenceCategoryController" />
+		</property>
+		<property name="competenceController">
+			<ref local="competencesManagement.competenceController" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.QuestionnaireController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMQuestionnaireControllerImpl">
+		<property name="questionnaire">
+			<ref local="competencesManagement.questionnaire" />
+		</property>
+		<property name="questionnaireCategoryController">
+			<ref
+				local="competencesManagement.questionnaireCategoryController" />
+		</property>
+		<property name="questionnaireController">
+			<ref local="competencesManagement.questionnaireController" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.RoleController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMRoleControllerImpl">
+		<property name="role">
+			<ref local="competencesManagement.role" />
+		</property>
+		<property name="roleCategoryController">
+			<ref local="competencesManagement.roleCategoryController" />
+		</property>
+		<property name="roleController">
+			<ref local="competencesManagement.roleController" />
+		</property>
+	</bean>
+
+	<bean id="competencesManagement.InstanceController"
+		class="biz.sudden.knowledgeData.competencesManagement.web.controller.impl.CMInstancesControllerImpl">
+	</bean>
+
+
+
+	<!--  NEW QUESTIONNAIRE !!!! -->
+
+
+	<bean id="questionnaireService"
+		class="biz.sudden.knowledgeData.questionnaireNew.service.impl.QuestionnaireServiceImpl">
+		<property name="genericRepository"
+			ref="suddenGenericRepository" />
+	</bean>
+
+	<bean id="tickService"
+		class="biz.sudden.knowledgeData.questionnaireNew.service.impl.TickServiceImpl">
+		<property name="genericRepository"
+			ref="suddenGenericRepository" />
+	</bean>
+
+	<bean id="fillinService"
+		class="biz.sudden.knowledgeData.questionnaireNew.service.impl.QuestionnaireFillInServiceImpl">
+		<property name="genericRepository"
+			ref="suddenGenericRepository" />
+	</bean>
+
+</beans>

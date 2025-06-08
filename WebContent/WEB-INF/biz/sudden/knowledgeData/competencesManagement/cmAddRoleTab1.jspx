@@ -1,0 +1,20 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="synopsisBox textEntryContainer">
+		<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+			rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+			<ice:outputLabel for="roleName" value="Name: " />
+			<ice:inputText id="roleName" size="25" maxlength="25"
+				value="#{CMController.cmRoleController.role.name}" partialSubmit="true" />
+			<ice:outputLabel for="roleDescription" value="Description: " />
+			<ice:inputTextarea id="roleDescription"
+				value="#{CMController.cmRoleController.role.description}" cols="20" rows="4"
+				partialSubmit="true" style="width:280px;height:80px;overflow: auto;" />							
+		</ice:panelGrid>
+	</ice:panelGroup>
+</ice:panelGroup>
+
+

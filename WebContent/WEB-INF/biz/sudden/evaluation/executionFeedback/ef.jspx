@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<ui:define name="content">
+
+		<h:messages globalOnly="true" />
+
+		<ice:form>
+
+			<ice:outputText rendered="#{empty executionFeedbackController.roleMap}">
+				There are no invitations pending.
+			</ice:outputText>
+
+			<ice:dataTable var="role"
+				binding="#{executionFeedbackController.roleDataTable}"
+				value="#{executionFeedbackController.roleMap}"
+				rendered="#{not empty executionFeedbackController.roleMap}">
+				
+				<f:facet name="header">
+					<ice:columnGroup>
+						<ice:headerRow>
+							<ice:column rowspan="2" colspan="2">Task</ice:column>
+							<ice:column rowspan="2">Supplier</ice:column>
+							<ice:column colspan="2">Date</ice:column>
+							<ice:column colspan="3">Cost</ice:column>
+							<ice:column colspan="3">Effort</ice:column>
+							<ice:column rowspan="2"></ice:column>
+						</ice:headerRow>
+
+						<ice:headerRow>
+							<ice:column>Start</ice:column>
+							<ice:column>Due</ice:column>
+
+							<ice:column>Total Expected</ice:column>
+							<ice:column>Expected So far</ice:column>
+							<ice:column>Actual</ice:column>
+	
+							<ice:column>Total Expected</ice:column>
+							<ice:column>Expected So far</ice:column>
+							<ice:column>Actual</ice:column>
+						</ice:headerRow>
+					</ice:columnGroup>
+				</f:facet>
+	
+				<ice:column>
+					#{executionFeedbackController.roleDataTable.rowIndex+1}
+				</ice:column>
+
+				<ice:column>
+					&amp;nbsp;#{role.key.qualificationProfile.firstProductName}
+				</ice:column>
+
+				<ice:column>
+					&amp;nbsp;#{role.value.organisation.name}
+				</ice:column>
+	
+				<ice:column>&amp;nbsp;
+					<ice:outputFormat value="{0,date,dd/MM/yyyy}" rendered="#{role.value.started}">
+						<f:param value="#{role.value.startDate}" />
+					</ice:outputFormat>
+				</ice:column>
+
+				<ice:column>&amp;nbsp;
+					<ice:outputFormat value="{0,date,dd/MM/yyyy}" rendered="#{role.value.dueDate != null}">
+						<f:param value="#{role.value.dueDate}" />
+					</ice:outputFormat>
+				</ice:column>
+
+				<ice:column>&amp;nbsp;
+					#{role.value.avgCostProposal}
+				</ice:column>
+
+				<ice:column>&amp;nbsp;
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{role.value.started}">
+						<f:param value="#{role.value.estimatedCost}" />
+					</ice:outputFormat>
+				</ice:column>
+
+				<ice:column>&amp;nbsp;
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{role.value.costActual != null}">
+						<f:param value="#{role.value.costActual}" />
+					</ice:outputFormat>
+					<ice:outputHtml rendered="#{!role.value.costWithinLimits}"><img title="should be around #{role.value.estimatedCost}" src="images/high_prio_task.gif" /></ice:outputHtml>
+				</ice:column>
+
+				<ice:column>&amp;nbsp;
+					#{role.value.avgDurationProposal}
+				</ice:column>
+
+				<ice:column>&amp;nbsp;
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{role.value.started}">
+						<f:param value="#{role.value.estimatedDuration}" />
+					</ice:outputFormat>
+				</ice:column>
+
+				<ice:column>&amp;nbsp;
+					<ice:outputText>#{role.value.durationActual}</ice:outputText>
+					<ice:outputHtml rendered="#{!role.value.durationWithinLimits}"><img title="should be around #{role.value.estimatedDuration}" src="images/high_prio_task.gif" /></ice:outputHtml>
+				</ice:column>
+
+				<ice:column>
+					<ice:commandButton value="Update"
+						actionListener="#{executionFeedbackController.selectSupplier}"
+						rendered="#{!role.value.completed}"
+						disabled="#{executionFeedbackController.selectedSupplier != null}">
+						<f:attribute name="supplier" value="#{role.value}"/>
+					</ice:commandButton>
+				</ice:column>
+
+			</ice:dataTable>
+
+			<br/>
+
+			<br/>
+
+			<ice:panelGrid rendered="#{executionFeedbackController.selectedSupplier != null}" columns="2">
+				<ice:outputText>Start Date</ice:outputText>
+				<ice:outputText rendered="#{executionFeedbackController.startDate != null}">
+					#{executionFeedbackController.startDate}
+				</ice:outputText>
+				<ice:selectInputDate value="#{executionFeedbackController.startDate}"
+						rendered="#{executionFeedbackController.startDate == null}"
+						renderMonthAsDropdown="true" renderYearAsDropdown="true" />
+				<ice:outputText>Report progress for:</ice:outputText>
+				<ice:selectInputDate value="#{executionFeedbackController.actualReportDate}"
+						renderMonthAsDropdown="true" renderYearAsDropdown="true" />
+				<ice:outputText>Actual cost</ice:outputText>
+				<ice:inputText value="#{executionFeedbackController.costActual}" />
+				<ice:outputText>Actual effort</ice:outputText>
+				<ice:inputText value="#{executionFeedbackController.durationActual}" />
+				<ice:commandButton value="Save" action="#{executionFeedbackController.update}" />
+				<ice:commandButton value="Cancel" action="#{executionFeedbackController.cancel}" />
+			</ice:panelGrid>
+		
+		</ice:form>
+	</ui:define>
+</ui:decorate>

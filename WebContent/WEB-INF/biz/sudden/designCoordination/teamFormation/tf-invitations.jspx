@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<ui:define name="content">
+
+		<h:messages globalOnly="true" />
+		
+		<ice:form>
+			<ice:outputText rendered="#{empty teamFormationInvitationController.allInvitations}">
+				There are no invitations pending.
+			</ice:outputText>
+
+			<ice:commandButton
+				value="Auto-Accept Remaining Invitations"
+				action="#{teamFormationInvitationController.autoAcceptRemainingInvitations}"
+				rendered="#{not empty teamFormationInvitationController.allInvitations}"/>
+			<ice:dataTable var="invitation"
+				binding="#{teamFormationInvitationController.invitationsDataTable}"
+				value="#{teamFormationInvitationController.allInvitations}"
+				rendered="#{not empty teamFormationInvitationController.allInvitations}">
+	
+				<ice:column>
+					#{teamFormationInvitationController.invitationsDataTable.rowIndex+1}
+				</ice:column>
+
+				<ice:column>
+					<f:facet name="header">Business Opportunity</f:facet>
+					#{invitation.caseFile.bo.name}
+				</ice:column>
+
+				<ice:column>
+					<f:facet name="header">Role</f:facet>
+					#{invitation.roleNode.qualificationProfile.firstProductName}
+				</ice:column>
+	
+				<ice:column>
+					<f:facet name="header">Supplier</f:facet>
+					#{invitation.supplier.organisation.name}
+				</ice:column>
+
+				<ice:column>
+					<f:facet name="header">Status</f:facet>
+
+					<ice:outputText rendered="#{invitation.status == 'CLOSED'}">This invitation is no longer available</ice:outputText>
+					<ice:outputText rendered="#{invitation.status == 'REJECTED'}">This invitation is rejected</ice:outputText>
+					<ice:outputText rendered="#{invitation.status == 'ACCEPTED'}">This invitation is accepted</ice:outputText>
+
+					<ice:commandLink rendered="#{invitation.status == 'ACCEPTED'}"
+							value="Change metrics..."
+							action="#{teamFormationInvitationController.selectTeamToJoin}">
+						<f:param name="id" value="#{invitation.id}" />
+					</ice:commandLink>
+
+					<ice:commandLink rendered="#{invitation.status == 'OPEN'}"
+							value="Join..."
+							action="#{teamFormationInvitationController.selectTeamToJoin}">
+						<f:param name="id" value="#{invitation.id}" />
+					</ice:commandLink>
+
+					<ice:commandLink rendered="#{invitation.status == 'OPEN'}"
+							value="Reject"
+							action="#{teamFormationInvitationController.rejectTeam}">
+						<f:param name="id" value="#{invitation.id}" />
+					</ice:commandLink>
+				</ice:column>
+	
+			</ice:dataTable>
+
+		</ice:form>
+
+	</ui:define>
+</ui:decorate>

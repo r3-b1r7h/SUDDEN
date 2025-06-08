@@ -1,0 +1,29 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="synopsisBox textEntryContainer">
+		<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+			rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+			<ice:outputLabel for="competenceName" value="Name: " />
+			<ice:inputText id="competenceName" size="25" maxlength="25"
+				value="#{CMController.cmCompetenceController.competence.name}" partialSubmit="true" />
+			<ice:outputLabel for="competenceDescription" value="Description: " />
+			<ice:inputTextarea id="competenceDescription"
+				value="#{CMController.cmCompetenceController.competence.description}" cols="20" rows="4"
+				partialSubmit="true" style="width:280px;height:80px;overflow: auto;" />
+			<ice:outputLabel for="competenceQText" value="Questionnaire Text: " />
+			<ice:inputText id="competenceQText" size="25" maxlength="25"
+				value="#{CMController.cmCompetenceController.competence.QText}" partialSubmit="true" />
+			<ice:outputLabel for="competenceEText" value="Evaluation Text: " />
+			<ice:inputText id="competenceEText" size="25" maxlength="25"
+				value="#{CMController.cmCompetenceController.competence.EText}" partialSubmit="true" />
+			<ice:outputLabel for="competenceWeightMultiplier" value="Weight Multiplier: " />
+			<ice:inputText id="competenceWeightMultiplier" size="25" maxlength="25"
+				value="#{CMController.cmCompetenceController.weightMultiplier}" partialSubmit="true" />													
+		</ice:panelGrid>
+	</ice:panelGroup>
+</ice:panelGroup>
+
+

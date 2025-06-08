@@ -1,0 +1,110 @@
+<ice:panelGroup styleClass="componentBox"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGrid columns="2" cellspacing="5">
+
+		<!-- first column, for tree navigation -->
+		<ice:panelGroup style="border: 1px solid gray; height: auto;">
+			<!--
+                    This is a very links tree comprising of only text nodes.  The
+                    expand and contract images are rendered because the "imageDir"
+                    attribute on the tree component has been set to a known path.
+                -->
+			<ice:tree id="tree"
+				value="#{CMController.cmDimensionController.dimensionController.categoryTreeController.model}"
+				var="item" hideRootNode="false" hideNavigation="false"
+				imageDir="./xmlhttp/css/xp/css-images/">
+				<ice:treeNode>
+					<f:facet name="icon">
+						<ice:panelGroup style="display: inline">
+							<h:graphicImage value="#{item.userObject.icon}" />
+						</ice:panelGroup>
+					</f:facet>
+					<f:facet name="content">
+						<ice:panelGroup style="display: inline">
+							<ice:commandLink actionListener="#{item.userObject.nodeSelected}"
+								value="#{item.userObject.text}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:treeNode>
+			</ice:tree>
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="border: 1px solid gray; height: 300px;">
+			<ice:commandButton value="Build Tree"
+				action="${CMController.cmDimensionController.buildEntityTree}" />
+			<ice:outputLabel for="addDimension" value="" />
+			<ice:commandButton id="addDimension" value="ADD DIMENSION"
+				actionListener="#{CMController.cmCompetenceController.addDimensionButtonListener}" />
+			<h4>Selected Dimension</h4>
+			<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+				rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+				<ice:outputLabel for="dimensionID" value="ID: " />
+				<ice:outputText id="dimensionID"
+					value="#{CMController.cmDimensionController.dimension.id}"
+					cols="20" />
+				<ice:outputLabel for="dimensionName" value="Name: " />
+				<ice:outputText id="dimensionName" size="25" maxlength="25"
+					value="#{CMController.cmDimensionController.dimension.name}" />
+				<ice:outputLabel for="dimensionDescription" value="Description: " />
+				<ice:outputText id="dimensionDescription"
+					value="#{CMController.cmDimensionController.dimension.description}"
+					cols="20" />
+				<ice:outputLabel for="dimensionCategoryID" value="Category ID: " />
+				<ice:outputText id="dimensionCategoryID"
+					value="#{CMController.cmDimensionController.dimension.categoryId}"
+					cols="20" />
+			</ice:panelGrid>
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="exampleBox dataScrollingContainer"
+			style="clear: left;">
+
+			<ice:panelGroup styleClass="clearer" />
+
+			<ice:dataTable id="data" var="dimension"
+				value="#{CMController.cmCompetenceController.addCompetenceDataScrollingModel.items}"
+				rows="10" scrollHeight="250px" style="float:left"
+				columnWidths="100px,100px,100px,100px"
+				styleClass="dataPaginatorDataTable" cellpadding="0">
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText id="column1" value="Dimension ID" />
+					</f:facet>
+					<ice:outputText id="number" value="#{dimension.id}" />
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText id="column2" value="Name" />
+					</f:facet>
+					<ice:outputText id="firstName" value="#{dimension.name}" />
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText id="column3" value="Description" />
+					</f:facet>
+					<ice:outputText id="secondName" value="#{dimension.description}" />
+				</ice:column>
+				<ice:column>
+					<f:facet name="header">
+						<ice:outputText id="column4" value="Selected" />
+					</f:facet>
+					<ice:selectBooleanCheckbox id="selectDimension"
+						value="#{dimension.selected}" partialSubmit="true" />
+				</ice:column>
+			</ice:dataTable>
+
+			<ice:panelGroup styleClass="clearer" />
+		</ice:panelGroup>
+
+		<ice:panelGroup styleClass="componentBox">
+			<ice:commandButton id="removeSelectedDimensions"
+				value="REMOVE SELECTED DIMENSIONS"
+				actionListener="#{CMController.cmCompetenceController.removeSelectedDimensionsButtonListener}" />
+		</ice:panelGroup>
+
+	</ice:panelGrid>
+
+</ice:panelGroup>

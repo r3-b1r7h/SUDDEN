@@ -1,0 +1,194 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+    <ui:param name="action" value="performanceMeasurementNetwork2"/>
+     <ui:define name="navigationTopText">
+     design a performance measurement system for your supply network
+	 </ui:define>
+
+	<ui:define name="content">
+		<ice:panelGroup>
+			<!-- 
+			<ice:form partialSubmit="true">
+				<ice:outputText value="Scope To Use: " />
+				<ice:selectOneMenu value="#{scopeController.userScopeID}"
+					valueChangeListener="#{scopeController.selectedUserScopeChanged}"
+					immediate="true">
+					<f:selectItems value="#{scopeController.listOfScopes}" />
+				</ice:selectOneMenu>
+			</ice:form>
+	 -->
+			<center><i>Create Network Evaluation Profile</i></center>
+			<ice:outputText style="font-weight: lighter; font-size: small">
+			Please select the appropriate Case File for your Business Opportunity and the appropriate Abstract Supply Network (ASN) below. <br/> 
+			Design an Network Evaluation profile, by dragging Enterprise Evaluation Profiles from the left tree to the right tree (into the ASN roles where appropriate).   <br/>
+			If no Trees are shown press the refresh tree button. <br/>
+			</ice:outputText>
+			<ice:form partialSubmit="true">
+				<ice:outputText value="#{msg.businesscase}" />
+				<ice:selectOneMenu value="#{pmNetworkDesignController2.caseFileId}"
+					valueChangeListener="#{pmNetworkDesignController2.selectedCaseFileChanged}"
+					immediate="true">
+					<f:selectItems
+						value="#{pmNetworkDesignController2.listOfCaseFiles}" />
+				</ice:selectOneMenu><br/>
+				<ice:outputText value="Abstract Supply Netwok: " />
+				<ice:selectOneMenu value="#{pmNetworkDesignController2.ASNSelect}"
+					valueChangeListener="#{pmNetworkDesignController2.selectedASNChanged}"
+					immediate="true">
+					<f:selectItems value="#{pmNetworkDesignController2.listOfASNs}" />
+				</ice:selectOneMenu>
+				<br/>
+					<ice:panelGroup>
+
+							<ice:selectOneMenu id="selectOneMenu"
+								value="#{rootLinkController.selectedItem}"
+								valueChangeListener="#{rootLinkController.changeItem}"
+								partialSubmit="true" immediate="true"
+								binding="#{rootLinkController.selectOneMenu}">
+								<f:param name="sourceObject" id="sourceObject"
+									value="#{pmNetworkDesignController2.selectedCaseFile}" />
+								<f:selectItems id="selectedItem"
+									value="#{rootLinkController.linkentries}" />
+							</ice:selectOneMenu>
+							<ice:panelSeries
+								value="#{rootLinkController.primitiveTypeValues}"
+								var="linkentry" binding="#{rootLinkController.panelSeries}">
+								<ice:outputText value="#{linkentry.name}: #{linkentry.value}" />
+							</ice:panelSeries>
+					</ice:panelGroup>
+			</ice:form>
+		</ice:panelGroup>
+		
+		<!-- ice:form>
+			<ice:panelGroup>
+					<ice:outputText value="Selected: " /><ice:inputText
+							immediate="false" value="#{pmNetworkDesignController2.selectedName}" />
+					<ice:outputText
+							value="Weight: " /><ice:inputText
+							immediate="false" partialSubmit="true"
+							value="#{pmNetworkDesignController2.newEProfileParameter}" />
+			</ice:panelGroup>
+		</ice:form -->
+
+		<ice:form partialSubmit="true">
+					<ice:panelGroup>
+						<br/>
+						<ice:outputText  style="font-weight: lighter; font-size: small">
+							Having assigned the evaluation profiles search for potential concrete teams:
+						</ice:outputText>
+						<ice:commandButton
+							value="Search Supply Networks for Prototype"
+							action="#{pmNetworkDesignController.triggerGeneratePrototypeTeam}"
+							rendered="#{pmNetworkDesignController.showPrototypeTeamButton}"></ice:commandButton>
+
+						<ice:commandButton
+							value="Search Supply Networks for Product"
+							action="#{pmNetworkDesignController.triggerGenerateFinalTeam}"
+							rendered="#{pmNetworkDesignController.showFinalTeamButton}"></ice:commandButton>
+			</ice:panelGroup>
+			<ice:panelGroup>
+				<table>
+					<tr>
+						<td><ice:outputLabel for="treed" value="depth of tree shown: " />
+						<ice:inputText id="treed" partialSubmit="true"
+							value="#{pmNetworkDesignController2.treeDepth}" size="2" /></td>
+						<td><ice:commandButton value="Refresh Trees"
+							actionListener="${pmNetworkDesignController2.refreshTree}" /></td>
+						<td><ice:commandButton value="#{msg.enterprisePmsDesign}" action="performanceMeasurementDesign2"  />
+						</td>
+					</tr> 
+					<tr>
+						<td><ice:commandButton value="Link" 
+							actionListener="#{rootLinkController.link}"
+							rendered="${pmNetworkDesignController2.showLinks}">
+							<f:param name="link" id="link"
+								value="#{pmNetworkDesignController2.indicatorTree.selectedNodeObject.reference}" />
+						</ice:commandButton></td>
+						<td><ice:selectOneMenu id="selectOneMenu" 
+							value="#{rootLinkController.selectedItem}"
+							valueChangeListener="#{rootLinkController.changeItem}" partialSubmit="true"
+							immediate="true" binding="#{rootLinkController.selectOneMenu}"
+							rendered="${pmNetworkDesignController2.showLinks}">
+							<f:param name="sourceObject" id="sourceObject" 
+								value="#{pmNetworkDesignController2.indicatorTree.selectedNodeObject.reference}" />
+							<f:selectItems id="selectedItem"
+								value="#{rootLinkController.linkentries}" />
+						</ice:selectOneMenu></td>
+						<td><ice:panelSeries
+							value="#{rootLinkController.primitiveTypeValues}" var="linkentry"
+							rendered="${pmNetworkDesignController2.showLinks}"
+							binding="#{rootLinkController.panelSeries}">
+							<ice:outputText value="#{linkentry.name}: #{linkentry.value}"/>
+						</ice:panelSeries></td>
+					</tr>
+				</table>
+			</ice:panelGroup>
+    </ice:form>
+      <ice:form  partialSubmit="true">
+			<ice:panelGroup>
+				<table>
+					<tr>
+						<td>
+						<ice:panelGroup scrollHeight="400px" scrollWidth="360px">
+						<ice:tree immediate="false"
+							value="#{pmNetworkDesignController2.sourceTreeForGUI}"
+							var="dragNode" hideRootNode="false" hideNavigation="false"  >
+							<ice:treeNode>
+								<f:facet name="content">
+									<ice:panelGroup dragValue="#{dragNode}" draggable="true"
+										 styleClass="treenode"
+										dragMask="hover_start, dragging, hover_end, drag_cancel"
+										dragOptions="dragGhost">
+										<ice:commandLink
+											actionListener="#{dragNode.userObject.nodeClicked}"
+											value="#{dragNode.userObject.text}" escape="true" />
+									</ice:panelGroup>
+								</f:facet>
+							</ice:treeNode>
+						</ice:tree>
+						</ice:panelGroup>
+						</td>
+						<td>
+						<ice:panelGroup scrollWidth="360px">
+						<ice:tree immediate="false"
+							value="#{pmNetworkDesignController2.targetTreeForGUI}"
+							var="targetNode" hideRootNode="false" hideNavigation="false">
+							<ice:treeNode>
+								<f:facet name="content">
+									<ice:panelGroup dropValue="#{targetNode}"
+										dropListener="#{pmNetworkDesignController2.dropListener}"
+										dropTarget="true"
+										dropMask="hover_start"
+										 styleClass="treenode">
+										 <ice:panelGroup
+										 draggable="true"
+										 dragListener="#{pmNetworkDesignController2.dragListener}"
+										 dragMask="dragging, hover_start, hover_end"
+										 style="display: inline;"
+										 dragValue="#{targetNode.userObject}"
+										 >
+											<ice:commandLink
+												actionListener="#{targetNode.userObject.nodeClicked}"
+												value="#{targetNode.userObject.text}" escape="true" />
+											</ice:panelGroup>
+									</ice:panelGroup>
+								</f:facet>
+							</ice:treeNode>
+						</ice:tree></ice:panelGroup></td>
+					</tr>
+				</table>
+			</ice:panelGroup>
+		</ice:form>
+
+		<ice:form>
+			<ice:commandLink value="home" action="home" />
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

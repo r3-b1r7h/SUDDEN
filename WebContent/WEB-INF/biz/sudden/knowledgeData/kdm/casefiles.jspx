@@ -1,0 +1,81 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+    <ui:param name="action" value="browseCaseFiles"/>
+     <ui:define name="navigationTopText">
+     browse and work on your business cases. over time content is provided and the description of your business case gets enriched and more and more detailed. 
+	 </ui:define>
+
+	<ui:define name="content"> <!-- partialSubmit="true" -->
+		<ice:form >
+			<ice:outputText value="Enter Business Opportunity (BO) Name and create a new or delete existing: "/>
+			<br/>
+			<ice:selectInputText id="boname" value="#{caseFileController.newBoName}" />
+			<ice:commandButton value="New Case File/BO" actionListener="#{caseFileController.newBO}" />
+			<ice:commandButton value="Delete Case File for BO" actionListener="#{caseFileController.deleteBO}" />
+			<br />
+			<br />
+			<ice:selectOneMenu id="selectOneMenu" value="#{caseFileController.updateCurrentCaseFileId}" partialSubmit="true" >	   
+                   <f:selectItems id="selectedItem" value="#{caseFileController.caseFiles}" />
+			</ice:selectOneMenu>
+			<ice:commandButton value="Refresh Case File Data" actionListener="#{caseFileController.updateCurrentCaseFile}" />
+			<br />
+			<ice:selectOneMenu id="selectOneMenuLink" value="#{rootLinkController.selectedItem}" valueChangeListener="#{rootLinkController.changeItem}"            	                        
+                      partialSubmit="true" immediate="true" binding="#{rootLinkController.selectOneMenu}" >
+				<f:param name="sourceObject" id="sourceObject" value="#{caseFileController.currentCaseFile}" />
+	            <f:selectItems id="selectedItem"
+                                 value="#{rootLinkController.linkentries}" />
+              </ice:selectOneMenu>
+			<ice:commandButton value="Link" actionListener="#{rootLinkController.link}">
+				<f:param name="link" id="link" value="#{caseFileController.currentCaseFile}" />
+			</ice:commandButton>
+			<ice:panelSeries value="#{rootLinkController.primitiveTypeValues}" var="linkentry" binding="#{rootLinkController.panelSeries}">
+				<ice:outputText value="#{linkentry.name} #{linkentry.value}"></ice:outputText>
+			</ice:panelSeries>
+
+
+			<br /><br />
+
+			<ice:panelGroup  > <!--don't do: immediate="true"  partialSubmit="true" -->
+				<ice:panelTabSet  binding="#{caseFileController.panelTabSet}" > 
+				</ice:panelTabSet>
+			</ice:panelGroup>
+
+			<ice:messages></ice:messages>
+		
+		
+			
+		</ice:form>
+		
+		<!--              popups  -->
+		<ice:form>
+			<ice:panelGroup>
+				<ice:panelPopup draggable="true"
+					rendered="#{caseFileController.popupIsVisible}" styleClass="corePopup" autoCentre="true">
+
+					<f:facet name="header">
+						<ice:outputText value="#{msg.question}" />
+					</f:facet>
+
+					<f:facet name="body">
+						<ice:panelGroup>
+							<ice:outputText value="#{msg.deleteBO}" /><br />
+							<ice:outputText escape="false" value="#{caseFileController.BOsToDelete}" />
+							<br />
+							<ice:commandButton type="submit" value="#{msg.yes}"
+								action="#{caseFileController.reallyDeleteBOs}" />
+							<ice:commandButton type="submit" value="#{msg.no}"
+								action="#{caseFileController.hidePopup}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:panelPopup>
+			</ice:panelGroup>
+		</ice:form>
+		
+	</ui:define>
+
+</ui:decorate>

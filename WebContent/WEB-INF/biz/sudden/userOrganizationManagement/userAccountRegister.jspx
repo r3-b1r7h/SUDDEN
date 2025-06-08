@@ -1,0 +1,54 @@
+
+<!--  
+<jsp:root xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+-->
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+
+	<ui:define name="content">
+
+		<h2>Registration Process - Step 1. User Account</h2>
+
+		<ice:form>
+			<ice:panelGroup>
+				<ice:panelGrid columns="2" styleClass="verticalAlignTop"
+					rowClasses="textFieldNameRow, textFieldNameRow, textFieldCommentsRow">
+					<ice:outputLabel for="userName" value="User Name:" />
+					<ice:inputText id="userName" size="25" maxlength="25"
+						value="#{jsfUserController.userName}" partialSubmit="true" />
+
+					<ice:outputLabel for="ePassword" value="Password:" />
+					<ice:inputSecret id="ePassword" maxlength="10" size="10"
+						value="#{jsfUserController.EPassword}" partialSubmit="true"
+						redisplay="true" />
+
+
+					<ice:outputLabel for="passwordRepeat" value="Repeat password:" />
+					<ice:inputSecret id="passwordRepeat" maxlength="10" size="10"
+						value="#{jsfUserController.passwordRepeat}" partialSubmit="true"
+						redisplay="true" />
+
+					<p /><BR />
+
+					<ice:commandButton value="Next Step" action="registerUserProfile" />
+					<br />
+					<p />
+				</ice:panelGrid>
+			</ice:panelGroup>
+		</ice:form>
+
+
+	</ui:define>
+
+</ui:decorate>

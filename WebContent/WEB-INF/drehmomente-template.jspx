@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+<ice:outputDeclaration doctypeRoot="HTML"
+    doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN"
+    doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" /> 
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+<link rel="stylesheet" type="text/css" href="themes/default/style/sudden/sudden.css" /> 
+<link href="themes/default/style/override.css" rel="stylesheet" type="text/css" />
+<title> SUddEN  @ Drehmomente 2009 </title>
+</head>
+<body>
+<f:loadBundle basename="biz.sudden.i18n.MessageResource" var="msg"/>
+<div id="Seite" style="background-image: url('images/hintergrundSukaba.jpg'); background-repeat: repeat-y; border-left: 0px; margin-left: 0px">
+<div id="Header"><img src="images/headerSukaba.jpg" /></div>
+<ul id="Navigation" >
+	<ice:form>
+		<ice:commandLink action="#{userController.toggleLocale}" value="#{msg.toggleLocale}" /><br />		
+	</ice:form> 
+	<ui:insert name="navigationLeft">
+		<ice:form>
+			<ice:panelPopup draggable="true"
+				rendered="#{userController.showWarning}" clientOnly="true"
+				visible="true" styleClass="corePopup" autoCentre="true"
+				style="position:absolute;" modal="true">
+
+				<f:facet name="header">
+					<ice:panelGroup styleClass="popupHeaderWrapper">
+						<ice:outputText value="Warnung!" styleClass="popupHeaderText" />
+					</ice:panelGroup>
+				</f:facet>
+
+				<f:facet name="body">
+
+					<ice:panelGroup styleClass="popupBody">
+						<ice:outputText value="Wegen Wartungsarbeiten wird der Server in 5 Minuten beendet. Bitte speichern Sie wichtige Daten ab!"></ice:outputText>
+						<ice:commandButton value="OK"
+							action="#{userController.hideWarning}" />
+
+					</ice:panelGroup>
+
+				</f:facet>
+			</ice:panelPopup>
+			<ice:outputText value="#{msg.usersOnline}: #{userController.nrOfUsers}" />
+			<br />
+			
+			<ice:selectOneMenu value="#{userController.selectedUser}"
+				partialSubmit="true" rendered="#{userController.nrOfUsers &gt; 0}">
+				<f:selectItems value="#{userController.userList}" />
+			</ice:selectOneMenu>
+
+			<ice:commandButton value="#{msg.chatWithThisUser}"
+				actionListener="#{userController.chat}"  rendered="#{userController.nrOfUsers &gt; 0}"/>
+
+			
+				<br />
+				<ice:outputText style="color:white"
+				value="#{msg.welcome} #{userController.loggedInUsername}" />
+			</ice:form>
+		<!--  Logout Button -->
+		<form action="/sudden/logout" method="post">
+			<input type="submit" value="#{msg.logout}" id="logout" size="5" />
+	    </form>
+
+		<ice:form id="outer">
+			<ice:commandLink value="home" action="index" />
+			<ice:outputText value="#{requestChatController.dummyNumber}" visible="false" ></ice:outputText>
+			<!--  renderedOnUserRole="ROLE_ADMIN" -->
+			<ice:outputText ><span style=" vertical-align: middle; text-align: center; padding:3px;color:white;letter-spacing:0.2em;font-size:120%; font-variant: small-caps;">#{msg.competences}</span></ice:outputText>
+			<ice:commandLink style="margin-bottom:15px" value="Fragebogen" action="showQuestionnaire" />
+
+
+			<ice:outputText ><span style="vertical-align: middle; text-align: center; padding:3px;color:white;letter-spacing:0.2em;font-size:120%; font-variant: small-caps;">#{msg.communication}</span></ice:outputText>
+			<ice:commandLink style="margin-top:8px" value="#{msg.collabPlanningSendMessage}" action="cpSendMessage" />
+			<ice:commandLink  value="#{msg.collabPlanningGetMessages}" action="cpReceiveMessages" />
+			<ice:commandLink style="margin-bottom:15px" value="#{msg.collabPlanningShowForum}" action="bulletinboard" />
+
+			<ice:outputText ><span style="vertical-align: middle; text-align: center; padding:3px;color:white;letter-spacing:0.2em;font-size:120%; font-variant: small-caps;">#{msg.administration}</span></ice:outputText>			
+			<ice:commandLink style="margin-bottom:15px" value="#{msg.viewCleanInit}" action="kdm" />			
+
+		</ice:form>
+	</ui:insert>
+
+</ul>
+
+<div id="Inhalt">
+
+<div id="ContentText" style="min-height:45em">
+	 <ui:insert name="content">zu
+		Content
+	 </ui:insert></div>
+</div>
+<p id="Fusszeile">#{msg.footer}</p>
+</div>
+</body>
+</html>

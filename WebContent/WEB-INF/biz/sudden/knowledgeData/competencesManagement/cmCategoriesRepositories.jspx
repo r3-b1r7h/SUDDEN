@@ -1,0 +1,30 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="content">
+
+		<link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+
+		<h2>Categories Repositories - Browse via Tree</h2>
+
+		<ice:form>
+			<ice:panelGroup styleClass="exampleBox panelTabSetContainer">
+				<ice:panelTabSet style="width: 100%; height: 100%">
+					<c:forEach
+						items="${CMController.categoryRepositoriesTabController.tabs}" var="tab">
+						<ice:panelTab label="${tab.label}">
+							<ui:include src="${tab.content}" />
+						</ice:panelTab>
+					</c:forEach>
+				</ice:panelTabSet>
+			</ice:panelGroup>
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

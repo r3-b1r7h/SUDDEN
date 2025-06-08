@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:param name="action" value="#{teamFormationController.selectedCaseFile.finalTeam == null ? 'teamFormation' : 'executionFeedback'}"/>
+
+	<ui:define name="content">
+		<style>
+			teamForm.class1 {
+			}
+		</style>
+		<h:messages globalOnly="true" />
+		
+		<h2>Case file id: #{teamFormationController.selectedCaseFile.id}</h2><br/>
+		<h2>Business Opportunity Name:</h2>#{teamFormationController.selectedCaseFile.bo.name}<br/>
+		<h2>Business Opportunity Description:</h2>#{teamFormationController.selectedCaseFile.bo.description}<br/>
+		<h2>Team : #{teamFormationController.selectedTeam.id}</h2><br/>
+		<ice:outputHtml rendered="#{teamFormationController.selectedCaseFile.finalTeam == teamFormationController.selectedTeam}">
+			This is the final team <img src="images/accepted.png" />
+		</ice:outputHtml>
+
+		<ice:form id="teamForm">
+
+			<ice:dataTable id="teamTable"
+				var="member"
+ 				value="#{teamFormationController.selectedTeamSuppliers}"
+				binding="#{teamFormationController.teamMembersDataTable}"
+				columnClasses="tableCol"
+				rendered="#{!empty teamFormationController.selectedTeamSuppliers}">
+ 
+				<f:facet name="header">
+					<ice:columnGroup>
+						<ice:headerRow>
+							<ice:column rowspan="2" colspan="2">Role</ice:column>
+							<ice:column rowspan="2">Supplier</ice:column>
+							<ice:column colspan="4">Cost (kEuros)</ice:column>
+							<ice:column colspan="4">Effort (md)</ice:column>
+						</ice:headerRow>
+
+						<ice:headerRow>
+							<ice:column>Min</ice:column>
+							<ice:column>Expected</ice:column>
+							<ice:column>Max</ice:column>
+							<ice:column>Actual</ice:column>
+	
+							<ice:column>Min</ice:column>
+							<ice:column>Expected</ice:column>
+							<ice:column>Max</ice:column>
+							<ice:column>Actual</ice:column>
+						</ice:headerRow>
+					</ice:columnGroup>
+				</f:facet>
+
+				<ice:column>
+					#{teamFormationController.teamMembersDataTable.rowIndex+1}
+				</ice:column>
+
+				<ice:column>
+					&amp;nbsp;#{member.key.qualificationProfile.firstProductName}
+				</ice:column>
+	
+				<ice:column>
+					<ice:panelCollapsible expanded="false">
+					    <f:facet name="header">
+					        <ice:panelGroup style="text-decoration: underline">#{member.value.organisation.name}</ice:panelGroup>
+					    </f:facet>
+					    <ice:panelGroup>
+					        <ice:panelGrid columns="2">
+								<h:outputText value="Organization:" />
+								<h:outputText value="#{member.value.organisation.name}" />
+								<h:outputText value="Country:" />
+								<h:outputText value="#{member.value.organisation.aux_countryCompany}" />
+								<h:outputText value="Manager:" />
+								<h:outputText value="#{member.value.organisation.aux_companyManager}(#{member.value.organisation.aux_userNameCompanyManager})" />
+								  <ice:commandLink 
+					        	action="#{teamFormationController.startTFAllFixedButOne}"
+								value="Find teams with replacement supplier">
+								<f:param name="supplierToReplace" value="#{member.value.organisation.name}" />
+					        </ice:commandLink>
+					        </ice:panelGrid>
+					    </ice:panelGroup>
+					</ice:panelCollapsible>
+					<f:facet name="footer">
+						<div style="text-align: right">Total:</div>
+					</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{member.value.minCostProposal > 0}">
+						<f:param value="#{member.value.minCostProposal}" />
+					</ice:outputFormat>
+					<f:facet name="footer">&amp;nbsp;
+						<ice:outputFormat value="{0,number,#.##}">
+							<f:param value="#{teamFormationController.selectedTeam.coordinationFitResults.minTotalCost}" />
+						</ice:outputFormat>
+					</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{member.value.avgCostProposal > 0}">
+						<f:param value="#{member.value.avgCostProposal}" />
+					</ice:outputFormat>
+					<f:facet name="footer">&amp;nbsp;
+						<ice:outputFormat value="{0,number,#.##}">
+							<f:param value="#{teamFormationController.selectedTeam.coordinationFitResults.avgTotalCost}" />
+						</ice:outputFormat>
+					</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{member.value.maxCostProposal > 0}">
+						<f:param value="#{member.value.maxCostProposal}" />
+					</ice:outputFormat>
+					<f:facet name="footer">&amp;nbsp;
+						<ice:outputFormat value="{0,number,#.##}">
+							<f:param value="#{teamFormationController.selectedTeam.coordinationFitResults.maxTotalCost}" />
+						</ice:outputFormat>
+					</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					<ice:outputFormat value="{0,number,#.##}" rendered="#{member.value.costActual != null}">
+						<f:param value="#{member.value.costActual}" />
+					</ice:outputFormat>
+					<ice:outputHtml rendered="#{!member.value.costWithinLimits}"><img title="should be around #{member.value.estimatedCost}" src="images/high_prio_task.gif" /></ice:outputHtml>
+					<f:facet name="footer">&amp;nbsp;</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					#{member.value.minDurationProposal}
+					<f:facet name="footer">#{teamFormationController.selectedTeam.coordinationFitResults.minTotalDuration}</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					#{member.value.avgDurationProposal}
+					<f:facet name="footer">#{teamFormationController.selectedTeam.coordinationFitResults.avgTotalDuration}</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					#{member.value.maxDurationProposal}
+					<f:facet name="footer">#{teamFormationController.selectedTeam.coordinationFitResults.maxTotalDuration}</f:facet>
+				</ice:column>
+
+				<ice:column style="text-align: right">&amp;nbsp;
+					#{member.value.durationActual}
+					<ice:outputHtml rendered="#{!member.value.durationWithinLimits}"><img title="should be around #{member.value.estimatedDuration}" src="images/high_prio_task.gif" /></ice:outputHtml>
+					<f:facet name="footer">&amp;nbsp;</f:facet>
+				</ice:column>
+
+			</ice:dataTable>
+
+			<ice:commandButton
+				action="#{teamFormationController.acceptTeam}"
+				value="Accept team"
+				disabled="#{teamFormationController.selectedCaseFile.finalTeam != null or not (teamFormationController.selectedTeam.coordinationFitResults.state == 'COMPLETED')}"
+				 />
+			<ice:commandButton action="teamFormationCase" value="Back to teams..."/>
+			
+			<ice:commandButton action="#{teamFormationController.clearAssignedTeam}" value="Clear Assigned Team"/>
+		</ice:form>
+
+	</ui:define>
+
+</ui:decorate>

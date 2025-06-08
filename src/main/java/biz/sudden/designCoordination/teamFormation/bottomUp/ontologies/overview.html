@@ -1,0 +1,17 @@
+<html>
+<body>
+This folder contains the ontologies used within the noticeboard system.
+
+There are no product ontologies here - or anything giving a structure to a potential
+product ontology. These ontologies contain the SL constructs used to create and query
+about noticeboards and potential extensions etc.
+
+Currently there are no corresponding concrete Java objects, and no plans to create them.
+
+However the algorithm itself is programmed using Java objects internally and hence there is
+a need to convert between AbsConcepts & Java objects. The ProcessIntrospector class does 
+this (but purposefully not as a normal Jade introspector - the conversions are not 1-1
+in terms of the information contained within the Java concepts and the concepts within
+the messages.).
+</body>
+</html>

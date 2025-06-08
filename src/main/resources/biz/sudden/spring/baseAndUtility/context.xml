@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xmlns:tx="http://www.springframework.org/schema/tx" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- Repositories -->
+	
+	<bean id="baseAndUtility.individualRepository" class="biz.sudden.baseAndUtility.repository.hibernate.IndividualRepositoryImpl" 
+	      parent="repositoryTemplate" />
+	      
+	<bean id="baseAndUtility.primitiveValueRepository" class="biz.sudden.baseAndUtility.repository.hibernate.PrimitiveValueRepositoryImpl" 
+	      parent="repositoryTemplate" />
+	
+	<bean id="baseAndUtility.linkRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.LinkRepositoryImpl"
+		parent="repositoryTemplate" />
+	
+	<bean id="baseAndUtility.jsfLinkRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.JsfLinkRepositoryImpl"
+		parent="repositoryTemplate" />
+	
+	<bean id="baseAndUtility.actorRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.ActorRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="baseAndUtility.processRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.ProcessRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="baseAndUtility.assocRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.AssociationRepositoryImpl"
+		parent="repositoryTemplate" />
+
+	<bean id="baseAndUtility.assocTypeRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.AssocTypeRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="baseAndUtility.assocRoleRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.AssociationRoleRepositoryImpl"
+		parent="repositoryTemplate" />
+
+	<bean id="baseAndUtility.assocRoleTypeRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.AssocRoleTypeRepositoryImpl"
+		parent="repositoryTemplate" />
+	
+	<bean id="baseAndUtility.manufacturerRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.ManufacturerRepositoryImpl"
+		parent="repositoryTemplate" />
+
+		
+	<bean id="baseAndUtility.occurTypeRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.OccurTypeRepositoryImpl" 
+		parent ="repositoryTemplate" />
+
+  	<bean id="baseAndUtility.occurrenceRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.OccurrenceRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="baseAndUtility.stringValueRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.StringValueRepositoryImpl"
+		parent="repositoryTemplate" />
+	
+	<bean id="baseAndUtility.scopeRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.ScopeRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="baseAndUtility.userRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.UserRepositoryImpl"
+		parent="repositoryTemplate" />
+			
+	<bean id="baseAndUtility.caseFileRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.CaseFileRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="baseAndUtility.businessOpportunityRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.BusinessOpportunityRepositoryImpl"
+		parent="repositoryTemplate" />
+		
+	<bean id="baseAndUtility.invitationRepository"
+		class="biz.sudden.baseAndUtility.repository.hibernate.InvitationRepositoryImpl"
+		parent="repositoryTemplate" />
+
+	<bean id="baseAndUtility.invitationService"
+		class="biz.sudden.baseAndUtility.service.impl.InvitationServiceImpl">
+		<property name="repository" ref="baseAndUtility.invitationRepository" />
+	</bean>
+
+	<!--  Target Types -->
+	
+	<bean id="baseAndUtility.individualService" class="biz.sudden.baseAndUtility.service.impl.IndividualServiceImpl">
+	       <property name="individualRepository" ref="baseAndUtility.individualRepository"></property>
+	</bean>
+	
+	<bean id="baseAndUtility.targetService" class="biz.sudden.designCoordination.collaborativePlanning.service.CollaborativePlanningTargetService" >
+	<property name="targetTypes">
+		<list>
+            <bean class="biz.sudden.baseAndUtility.web.controller.domain.JsfLink">
+            	  <property name="domainClass" value="biz.sudden.baseAndUtility.domain.PrimitiveType" />
+			      <property name="controllerBeanName" value="primitiveValueController" /> 
+			      <property name="description" value="Text (Comment)" />
+			     <!--  <property name="viewID" value="showcontribution" /> --> 
+			      <property name="parameterValuesPairs">
+			      		 <bean class="biz.sudden.baseAndUtility.web.controller.domain.ParameterNameValuePair">
+			      		 	<property name="parameter" value="" />
+			      		 	<property name="parameterValue" value="" />
+			      		 </bean>
+			      </property>		      
+			</bean>
+
+		</list>
+	</property>
+</bean>
+			
+	<!-- Services -->
+	
+	<!--  scope service see web.xml & RequestContextListener for scoped-proxy .... bean: scope="session" -->
+	
+	
+	<bean id="baseAndUtility.scopeService" class="biz.sudden.baseAndUtility.service.impl.ScopeServiceImpl">
+		<!-- aop:scoped-proxy proxy-target-class="false"/-->
+  	<property name="repository" ref="baseAndUtility.scopeRepository"/>
+  </bean>
+  
+  <bean id="baseAndUtility.primitiveValueService" class="biz.sudden.baseAndUtility.service.impl.PrimitiveValueServiceImpl">
+  	<property name="primitiveValueRepository" ref="baseAndUtility.primitiveValueRepository" />
+  </bean>
+  
+  
+  <bean id="baseAndUtility.linkService" class="biz.sudden.baseAndUtility.service.impl.LinkServiceImpl">
+  	<property name="linkRepository" ref="baseAndUtility.linkRepository" />
+  </bean>
+  
+    <bean id="baseAndUtility.jsfLinkService" class="biz.sudden.baseAndUtility.service.impl.JsfLinkServiceImpl" >
+    	<property name="jsfLinkRepository" ref="baseAndUtility.jsfLinkRepository" />
+    </bean>
+  	
+	<bean id="baseAndUtility.actorService"
+		class="biz.sudden.baseAndUtility.service.impl.ActorServiceImpl">
+		<property name="repository">
+			<ref local="baseAndUtility.actorRepository" />
+		</property>	
+	</bean>
+	
+	<bean id="baseAndUtility.smService"
+		class="biz.sudden.baseAndUtility.service.impl.ServiceManagementServiceImpl">
+		<property name="processRepository" ref="baseAndUtility.processRepository" />
+		<property name="manufacturerRep" ref="baseAndUtility.manufacturerRepository" />
+		<property name="organisationRep" ref ="userOrganizationManagement.UserManagement.OrganizationsRepository" />
+		<property name="connectableService" ref="baseAndUtility.connectableService" />
+	</bean>
+	
+	<bean id="baseAndUtility.connectableService"
+		class="biz.sudden.baseAndUtility.service.impl.ConnectableServiceImpl">
+		<property name="assocRep">
+			<ref local="baseAndUtility.assocRepository" />
+		</property>
+		<property name="assocTypeRep">
+			<ref local="baseAndUtility.assocTypeRepository" />
+		</property>
+		<property name="assocRoleRep">
+			<ref local="baseAndUtility.assocRoleRepository" />
+		</property>
+		<property name="assocRoleTypeRep">
+			<ref local="baseAndUtility.assocRoleTypeRepository" />
+		</property>
+		<property name="occurTypeRep">
+			<ref local="baseAndUtility.occurTypeRepository" />
+		</property>
+		<property name="occurRep">
+			<ref local="baseAndUtility.occurrenceRepository" />
+		</property>
+		<property name="stringValueRep">
+			<ref local="baseAndUtility.stringValueRepository" />
+		</property>
+		<property name="scopeService" >
+			<ref local="baseAndUtility.scopeService" />
+		</property>
+	</bean>
+	
+	<bean id="baseAndUtility.userService"
+		  class="biz.sudden.baseAndUtility.service.impl.UserServiceImpl" init-method="initAdmin">
+		  <property name="repository">
+		  	  <ref local="baseAndUtility.userRepository" /> 
+		  </property>
+		  <property name="initUsers">
+			  <list value-type="biz.sudden.baseAndUtility.domain.User">
+			  	<ref bean="initUsers.one" />
+			  	<ref bean="initUsers.two" />
+			  	<ref bean="initUsers.three" />
+			  	<ref bean="initUsers.four" />
+			  	<ref bean="initUsers.five" />
+			  </list>  
+		  </property>
+	</bean>
+	
+	<bean class="biz.sudden.baseAndUtility.domain.SuddenUser" id="initUsers.one">
+		<property name="springId" value="1" />
+  		<property name="username" value="georg" />
+  		<property name="password" value="weichhart" />
+  		<property name="nickname" value="Georg Weichhart" />
+	</bean>
+  	<bean class="biz.sudden.baseAndUtility.domain.SuddenUser" id="initUsers.two">
+  		<property name="springId" value="2" />
+  		<property name="username" value="thomas" />
+  		<property name="password" value="feiner" />
+  		<property name="nickname" value="Thomas Feiner" />
+  	</bean>
+  	<bean class="biz.sudden.baseAndUtility.domain.SuddenUser" id="initUsers.three">
+  		<property name="springId" value="3" />
+  		<property name="username" value="matthias" />
+  		<property name="password" value="neubauer" />
+  		<property name="nickname" value="Matthias Neubauer" />
+  	</bean>
+  	<bean class="biz.sudden.baseAndUtility.domain.SuddenUser" id="initUsers.four">
+		<property name="springId" value="4" />
+  		<property name="username" value="martin" />
+  		<property name="password" value="carpenter" />
+  		<property name="nickname" value="Martin Carpenter" />
+  	</bean>
+	<bean class="biz.sudden.baseAndUtility.domain.SuddenUser" id="initUsers.five">
+		<property name="springId" value="5" />
+  		<property name="username" value="victor" />
+  		<property name="password" value="blazques" />
+  		<property name="nickname" value="Victor Blazques" />
+	</bean>
+
+</beans>

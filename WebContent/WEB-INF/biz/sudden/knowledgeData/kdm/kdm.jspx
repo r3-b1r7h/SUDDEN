@@ -1,0 +1,211 @@
+<ui:decorate template="#{selectTemplate.decorateTemplate}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+    <ui:param name="action" value="kdm"/>
+     <ui:define name="navigationTopText">
+     this is the administrator view. touch only if you know what you are doing. 
+	 </ui:define>
+
+	<ui:define name="content">
+			<hr />
+			<h3>Clean the DB:</h3>
+			<br />
+			<ice:outputText style="font-size: small" value="- Clean Supplier Competences Data:"/>        
+			<ice:commandButton value="Clean Competence Databases"
+					action="${CMController.removeAll}" disabled="false" />
+			<br />
+			<ice:outputText style="font-size: small" value="- Clean the Ontology and Company data:      "/>  
+			<ice:commandButton value="#{msg.clean}" action="#{kdmController.clean}" />
+			<hr />
+			<br />
+			<h3>Initialize the DB:</h3>
+			<ice:outputText style="font-size: small" value="To fill the DB with new content follow the steps below:"/>
+			<br /> 
+			<ice:form>
+	        <ice:outputText style="font-size: small" value="#{msg.ontologyUploadText}" />
+			<br /> 
+	        <ice:outputText style="font-size: small; background-color: yellow;" value="#{msg.firefoxUploadIssue}" />
+			<br /><br />
+			<ice:inputFile id="inputFileComponent" actionListener ="#{kdmController.upload}" uniqueFolder="false" /> 
+			<br />
+			<ice:outputText style="font-size: small" value="#{msg.ontologyUploadHint}" /><br /><br />
+			<br />
+			<ice:outputText style="font-size: small" value="- After uploading the ontology file,  initialize the ontology realted data structures - this takes quite some time."/>      
+			<br />
+			<ice:commandButton value="#{msg.initDataStructures}"
+				action="${kdmController.initOntology}" /> <br />
+			<ice:outputText style="font-size: small; font-style: italic;" value="- At this point you might need to restart the app due some problems with jena. However you might run into this only later - tomcat will crash."/>
+			<br />
+			<ice:outputText style="font-size: small" value="- Now Insert Test data related to Competences:"/>
+			<br />        
+				<ice:commandButton value="Insert Competence Data"
+					action="${CMController.insertDBTestData}" disabled="false" />
+			<br />
+			<ice:outputText style="font-size: small; font-style: italic;" value="- (you can optionally generate Random Suppliers:"/>
+				<ice:commandButton value="Insert DB Data Random Suppliers"
+					action="${CMController.insertDBDataRandomSuppliers}" disabled="false" /> )
+			<br />
+			<ice:outputText style="font-size: small" value="- Generate supplier data based on the excel"/>
+			<br />        
+			<ice:commandButton value="Insert DB Data Real Suppliers"
+					action="${CMController.insertDBDataRealSuppliers}" disabled="false" />
+					<br />
+			<!--  
+			<ice:outputText style="font-size: small" value="- Generate supplier data based on the"/>
+			<br />        
+			<ice:commandButton value="Generate Performance Measurement System data"
+					action="${kdmController.initPMS}" disabled="false" />
+			-->
+			</ice:form>
+
+		<p />
+		<center><i>"#{msg.availableTopics}"</i></center>
+		<ice:form partialSubmit="true">
+			<!--valueChangeListener="#{scopeController.selectedUserScopeChanged}" 	  -->
+			<!-- this listener returns "object.toString()" as new Value of the event instead of the object itself -->
+			<ice:outputText value="#{msg.scopeToUse}: " />
+			<ice:selectOneMenu value="#{scopeController.userScope}"
+				valueChangeListener="#{scopeController.selectedUserScopeChanged}"
+				partialSubmit="true" immediate="true">
+				<f:selectItems value="#{scopeController.listOfScopes}" />
+			</ice:selectOneMenu>
+		</ice:form><br />
+		<ice:form>
+			<ice:selectOneMenu value="#{kdmController.showAssociations}">
+				<f:selectItems value="#{kdmController.selectShowAssociations}" />
+			</ice:selectOneMenu>
+			<ice:selectOneMenu value="#{kdmController.showOccurrences}">
+				<f:selectItems value="#{kdmController.selectShowOccurrences}" />
+			</ice:selectOneMenu>
+			<ice:outputText value="#{msg.showTreeInDepth}" />
+			<ice:inputText value="#{kdmController.showTreeDepth}"
+				style="text-align:center; width: 40px" />
+			<ice:commandButton value="#{msg.refreshTree}"
+				action="${kdmController.refreshTree}" />
+		</ice:form>
+		<br />
+		<ice:form partialSubmit="false">
+			<ice:panelGroup scrollHeight="400px" >
+				<table>
+					<tr>
+						<td><ice:tree value="#{kdmController.connectableTree}" partialSubmit="false" immediate="false"
+							var="node" hideRootNode="false" hideNavigation="false">
+							<ice:treeNode>
+								<f:facet name="content">
+									<ice:commandLink
+										actionListener="${node.userObject.nodeClicked}"
+										value="#{node.userObject.text}" escape="false" />
+								</f:facet>
+							</ice:treeNode>
+						</ice:tree></td>
+					</tr>
+				</table>
+			</ice:panelGroup>
+		</ice:form>
+		<br />
+		<hr />
+		
+		<br />
+		<ice:form partialSubmit="true">
+			<ice:panelGroup>
+
+				<ice:outputText
+					value="#{msg.performanceTestText}" />
+				<br />
+				<ice:outputText value="#{msg.width}" />
+				<ice:inputText value="#{kdmController.width}" maxlength="4"
+					immediate="true" style="text-align:center; width: 40px" />
+				<ice:outputText value=" #{msg.depth}" />
+				<ice:inputText value="#{kdmController.depth}" maxlength="4"
+					immediate="true" style="text-align:center; width: 40px" />
+				<ice:outputText value="#{msg.nodesGeneratedTotal}" />
+				<ice:outputText value="#{kdmController.nodeCount}" immediate="true" />
+				<br />
+				<ice:commandLink
+					value="#{msg.generateDataWatchout}"
+					action="${kdmController.initTest}" />
+			</ice:panelGroup>
+			<hr />
+			<ice:outputText value="#{kdmController.performanceInfo}"
+				escape="false" />
+		</ice:form>
+		<br />
+
+		<!--              popups  -->
+		<ice:form>
+			<ice:panelGroup>
+				<ice:panelPopup draggable="true"
+					rendered="#{kdmController.popupIsVisible}" styleClass="corePopup" autoPosition="true"
+					style="width:300px;">
+
+					<f:facet name="header">
+						<ice:outputText value="#{msg.question}" />
+					</f:facet>
+
+					<f:facet name="body">
+						<ice:panelGroup>
+							<ice:outputText value="#{msg.cleanDatabase}" />
+							<br />
+							<ice:commandButton type="submit" value="#{msg.yes}"
+								action="#{kdmController.clean}" />
+							<ice:commandButton type="submit" value="#{msg.no}"
+								action="#{kdmController.hidePopup}" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:panelPopup>
+			</ice:panelGroup>
+			<ice:panelGroup>
+				<ice:panelPopup draggable="true"
+					rendered="#{kdmController.showNodeDetails}" styleClass="corePopup">
+
+					<f:facet name="header">
+						<ice:outputText value="#{msg.detailsSelectedNode}" />
+					</f:facet>
+
+					<f:facet name="body">
+						<ice:panelGroup>
+							<ice:commandButton type="submit" value="#{msg.ok}"
+								action="#{kdmController.hideNodeDetails}" />
+							<br />
+							<ice:outputText value="#{kdmController.nodeDetails}"
+								escape="false" />
+						</ice:panelGroup>
+					</f:facet>
+				</ice:panelPopup>
+			</ice:panelGroup>
+		</ice:form>
+		<hr/>
+		<hr/>
+		<ice:form>
+			<ice:outputText value="#{msg.createNewUser}" />
+				<ice:panelGrid columns="2">
+					<ice:outputText value="#{msg.userName}" />				
+					<ice:selectInputText rows="10" width="300" value="#{userController.username}" required="true" />
+		
+					<ice:outputText value="#{msg.password}" />				
+					<ice:selectInputText rows="10" width="300" value="#{userController.password}" required="true" />
+		
+					<ice:outputText value="#{msg.nickname}" />				
+					<ice:selectInputText rows="10" width="300" value="#{userController.nickname}" required="true" />
+		
+					<ice:commandButton value="Absenden" action="#{userController.submit}"></ice:commandButton>
+
+			</ice:panelGrid>
+			<p />
+			<ice:outputText value="#{userController.errorMessage}" style="color:red"/>
+			<br />
+			<br />
+		</ice:form>
+		<hr />
+		<hr />
+		<ice:form>
+			<ice:commandLink value="#{msg.home}" action="home" />
+		</ice:form>
+		<hr />
+	</ui:define>
+
+</ui:decorate>

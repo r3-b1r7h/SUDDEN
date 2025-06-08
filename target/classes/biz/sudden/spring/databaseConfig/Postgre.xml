@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- MySQL configuration for running the database via network -->
+	<!-- Change ip, port, username and password suiting to your environment -->
+	
+	<bean id="dataSource" class="datasource.HsqldbDataSource" destroy-method="close">
+		<property name="databaseAsString" value="PostgreSQL" />
+		<property name="driverClassName" value="org.postgresql.Driver" />
+
+		<!-- Run Postgre via network -->
+ 		<property name="url" value="jdbc:postgresql://10.0.0.6:5432/sudden"/>
+		<property name="username" value="postgres" />
+ 		<property name="password" value="sa" />
+ 		
+<!-- 		 Run Postgre local -->
+<!--		<property name="url" value="jdbc:postgresql://localhost/sudden"/>-->
+<!--		<property name="username" value="postgres" />-->
+<!-- 		<property name="password" value="sa" />-->
+	</bean>
+</beans>

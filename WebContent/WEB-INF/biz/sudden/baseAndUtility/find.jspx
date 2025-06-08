@@ -1,0 +1,76 @@
+
+<jsp:root xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags">
+	<jsp:directive.page contentType='text/html; charset=UTF-8' />
+	<f:view>
+
+
+		<ice:outputDeclaration doctypeRoot="HTML"
+			doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+			doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<link rel="stylesheet" type="text/css"
+			href="../../../themes/default/style/style.css" />
+
+		<title>Process Box - Find Process</title>
+		</head>
+		<body>
+		<h1>Find a Process by name!</h1>
+
+		<ice:form>
+
+			<ice:outputLabel value="Process" />
+			<ice:inputText id="input"
+				value="${createProcessJSFController.searchName}"
+				partialSubmit="true" required="true">
+				<!-- <f:validateLongRange minimum="1" maximum="10"/> -->
+				<!--  <f:validator validatorId="dropletValidator" /> -->
+				<f:attribute name="fieldRef" value="Darf nicht leer sein" />
+			</ice:inputText>
+
+			<ice:message id="error" for="input" showDetail="false"
+				showSummary="true" style="color: red" />
+			<br />
+
+
+			<ice:commandButton value="Find"
+				action="${createProcessJSFController.search}" />
+			<br />
+
+		</ice:form>
+
+
+		<ice:outputText value="Processes found:"
+			rendered="${empty createProcessJSFController.found}" />
+
+		<ice:dataTable id="allProcesses" var="process"
+			value="${createProcessJSFController.found}"
+			rendered="${! empty createProcessJSFController.found}">
+
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText value="Processname" />
+				</f:facet>
+				<ice:outputText value="#{process.name}" />
+			</ice:column>
+			<ice:column>
+				<f:facet name="header">
+					<ice:outputText value="ID" />
+				</f:facet>
+				<ice:outputText value="#{process.id}" />
+			</ice:column>
+
+		</ice:dataTable>
+
+		</body>
+		</html>
+	</f:view>
+</jsp:root>
